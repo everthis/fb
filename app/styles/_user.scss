@@ -1,0 +1,136 @@
+.user_section {
+	@extend .container;
+	@extend %inline-block-fix;
+}
+.user_nav {
+	width: 150px;
+	height: 410px;
+	background: url('../images/user_left.png') bottom no-repeat;
+	border-top: 2px solid $user_nav_border;
+	margin: 20px 10px 0 0;
+	padding: 9px 8px 10px 8px;
+	+ span {
+		margin: 20px 0 0 0;
+	}
+	.nav_header {
+		border-left: 4px solid $user_nav_border;
+		padding: 0 0 0 8px;
+		margin: 0 0 7px 0;
+	}
+	h2 {
+		font-size: 14px;
+
+	}
+	h4 {
+		padding: 15px 0 7px 20px;
+		font-size: 14px;
+	}
+	.my_oders {
+		height: 140px;
+		border-bottom: 1px solid $user_nav_grey_border;
+	}
+	.my_info {
+		height: 130px;
+	}
+	.menu_item {
+		padding: 7px 0 7px 35px;
+	}
+}
+.user_content {
+	width: 839px;
+	margin: 20px 0 0 0;
+	.tabs {
+		@extend %inline-block-fix;
+		border-bottom: 1px solid $tab_font_color;
+		span {
+			width: 121px;
+			height: 36px;
+			line-height: 36px;
+			text-align: center;
+			font-size: 16px;
+			color: $tab_font_inactive;
+			border: 1px solid $tab_font_inactive;
+			border-top-width: 2px;
+			border-bottom: none;
+			margin: 0 20px 0 0;
+			&:first-child {
+				margin: 0 20px 0 48px;
+			}
+		}
+		.on {
+			height: 37px;
+			position: relative;
+			top: 1px;
+			background: white;
+			border: 1px solid green;
+			border-top-width: 2px;
+			border-bottom: none;
+			color: $tab_font_color;
+		}
+	}
+
+	.order_lists {
+		margin: 20px 0 0 0;
+		.number {
+			width: 205px;
+			padding-left: 20px;
+		}
+		.time {
+			width: 119px;
+		}
+		.info {
+			width: 120px;
+		}
+		.departure {
+			width: 110px;
+		}
+		.price {
+			width: 95px;
+		}
+		.status {
+			width: 70px;
+		}
+		.action {
+			width: 120px;
+		}
+	}
+	.lists_header {
+		@extend %inline-block-fix;
+		background: $lists_header_bg;
+		> span {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.number {
+			padding: 10px 0 10px 20px;
+		}
+	}
+	.per_list {
+		@extend %inline-block-fix;
+		padding: 20px 0 18px 0;
+		border-bottom: 1px dashed $footer-hori-line-color;
+		> span > div {
+			margin: 0 0 10px 0;
+			&:first-child {
+				height: 12px;
+				line-height: 12px;
+
+			}
+		}
+		.action {
+			margin-top: -5px;
+			div.wait {
+				margin-bottom: 20px;
+			}
+		}
+		.remaining {
+			// margin-top: 5px;
+		}
+	}
+}
+.wait_to_pay_btn {
+	width: 59px;
+	height: 22px;
+	border: none;
+	background: url('../images/wait_to_pay.png') center no-repeat;
+}

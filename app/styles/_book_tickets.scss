@@ -1,0 +1,336 @@
+
+.left_area {
+    display: inline-block;
+    vertical-align: top;
+    width: 730px;
+    height: auto;
+    padding: 1em;
+    _height: 560px;
+    margin-right: 10px;
+
+}
+.info_header {
+    @extend %inline-block-fix;
+    background: $coach_info_bg;
+    padding: 0 15px;
+    height: 35px;
+    > span {
+        line-height: 35px;
+    }
+    .title {
+        font-size: 16px;
+        margin-right: 1em;
+    }
+    .sub_title {
+        color: $grey;
+    }
+    .back_to_modify {
+        color: $date_bar_special_text;
+        float: right;
+        padding: 0 0 0 16px;
+        background: url('../images/modify.png') left center no-repeat;
+    }
+}
+.coach_info {
+    border: 1px solid $section_border_color;
+    margin: 0 0 20px 0;
+
+    .info_body {
+        padding: 0 15px;
+        .coach {
+            @extend %inline-block-fix;
+            border-bottom: 1px solid $light_section_border;
+            span {
+                height: 75px;
+                line-height: 75px;
+                font-size: 14px;
+            }
+            .date {
+                width: 25%;
+            }
+            .coach_num {
+                width: 25%;
+                text-align: center;
+            }
+            .ends {
+                width: 50%;
+            }
+        }
+        .type {
+            @extend %inline-block-fix;
+            > .per_type {
+                width: 25%;
+                height: 35px;
+                line-height: 35px;
+                .price {
+                    color: $date_bar_special_text;
+                }
+            }
+        }
+    }
+}
+.info_body {
+    .input,
+    .name,
+    .credential_num {
+        position: relative;
+        i {
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            background: url('../images/error.png') center no-repeat;
+            width: 14px;
+            height: 14px;
+        }
+    }
+    input {
+        border-width: 1px;
+    }
+}
+
+.passenger_info {
+    border: 1px solid $section_border_color;
+    margin: 0 0 20px 0;
+    .passenger_row {
+        margin: 0 0 10px 0;
+    }
+    .info_body {
+        padding: 15px 10px;
+
+        .seat_type {
+            @extend %inline-block-fix;
+            width: 160px;
+            > span {
+                line-height: 24px;
+            }
+            .text {
+                margin-right: 10px;
+            }
+        }
+        .name {
+            width: 90px;
+            padding: 0 0 0 0;
+            margin: 0 20px 0 0;
+        }
+        .credential_type {
+            width: 120px;
+        }
+        .credential_num {
+            width: 180px;
+        }
+        .action {
+            @extend %inline-block-fix;
+            width: 85px;
+            text-align: right;
+            float: right;
+            .delete {
+                width: 14px;
+                height: 24px;
+                background: url('../images/delete.png') center no-repeat;
+            }
+        }
+        .birth_date {
+            width: 205px;
+            input {
+                width: 150px !important;
+            }
+            .input {
+                height: 20px;
+                display: inline-block;
+            }
+        }
+        .gender {
+            width: 85px;
+        }
+
+    }
+    .passenger_head {
+        @extend %inline-block-fix;
+        background: $right_hint_header_bg;
+        height: 30px;
+        padding: 0 0 0 20px;
+        > span {
+            line-height: 30px;
+        }
+        .seat_type {
+            font-size: 12px;
+        }
+    }
+    .adult_body {
+        margin: 10px 0 0 0;
+        padding: 10px 0 10px 20px;
+        border-bottom: 1px dashed $dash_color;
+        @extend %inline-block-fix;
+        input {
+            width: 100%;
+        }
+        > span {
+            height: 24px;
+        }
+        .action {
+            @extend %inline-block-fix;
+            .add_child {
+                color: $date_bar_special_text;
+                padding: 0 5px 0 0;
+                a {
+                    display: inline-block;
+                    height: 24px;
+                    line-height: 24px;
+                }
+            }
+
+        }
+    }
+    .child_body {
+        margin: 10px 0 0 0;
+        padding: 10px 0 10px 20px;
+        border-bottom: 1px dashed $dash_color;
+        @extend %inline-block-fix;
+        input {
+            width: 100%;
+        }
+    }
+    .add_passenger {
+        @extend %inline-block-fix;
+        padding: 17px 17px 2px 17px;
+        .add_passenger_btn {
+            display: inline-block;
+            width: 130px;
+            height: 30px;
+            border: none;
+            background: url('../images/add_passenger.png') center no-repeat;
+
+        }
+        .insurance {
+            float: right;
+        }
+    }
+
+}
+
+.contact_info {
+    border: 1px solid $section_border_color;
+    margin: 0 0 20px 0;
+    input {
+        width: 120px;
+    }
+    .info_body {
+        padding: 15px 40px;
+        .contact_name {
+            margin: 0 50px 0 0;
+        }
+    }
+    .contact_cellphone,
+    .contact_name {
+        .input {
+            display: inline-block;
+            height: 20px;
+        }
+    }
+}
+.others_info {
+    border: 1px solid $section_border_color;
+    margin: 0 0 20px 0;
+    .info_body {
+        padding: 15px 30px;
+
+    }
+    .checkbox {
+        width: 25px;
+    }
+}
+.tos_info {
+    @extend %inline-block-fix;
+    background: $coach_info_bg;
+    padding: 10px 10px;
+    span {
+        line-height: 30px;
+        span {
+            line-height: 30px;
+        }
+    }
+    .check_tos {
+        width: 333px;
+    }
+    .price {
+        margin: 0 20px 0 0;
+    }
+    .submit_ticket_btn {
+        display: inline-block;
+        width: 130px;
+        height: 30px;
+        border: none;
+        background: url('../images/submit_order.png') center no-repeat;
+    }
+}
+.price_info {
+    border: 1px solid $right_border_color;
+    margin: 0 0 20px 0;
+    .info_header {
+        background: $right_header_bg;
+    }
+    .info_body {
+        border-bottom: 1px solid $right_border_color;
+        background: $right_body_bg;
+        padding: 12px;
+        > div {
+            @extend %inline-block-fix;
+            height: 35px;
+
+        }
+        .left {
+            width: 66px;
+            line-height: 35px;
+        }
+        .middle {
+            width: 90px;
+            height: 18px;
+            line-height: 35px;
+            border-bottom: 1px dashed $grey;
+        }
+        .right {
+            width: 70px;
+            line-height: 35px;
+        }
+
+    }
+    .total_price {
+        background: $white;
+        text-align: right;
+        height: 35px;
+        line-height: 35px;
+        padding: 0 12px 0 0;
+        .total {
+            font-size: 16px;
+        }
+    }
+}
+.hints_info {
+    border: 1px solid $hint_border;
+    .info_header {
+        background: $right_hint_header_bg;
+        height: 45px;
+        .title {
+            line-height: 45px;
+        }
+    }
+    .public_policy {
+        @extend %decimal-list;
+        padding: 15px 10px 15px 25px;
+        background: $hint_body_bg;
+        li {
+            margin: 0 0 20px 0;
+            line-height: 18px;
+        }
+    }
+}
+.basic_row {
+    @extend %inline-block-fix;
+
+}
+.right_area {
+    width: 256px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 1em 0;
+}

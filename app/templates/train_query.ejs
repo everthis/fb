@@ -1,0 +1,40 @@
+<% for(var i=0; i<data.length; i++) { %>
+<div class="per_list">
+    <span class="number">
+        <div><%=data[i].train_code%></div>
+        <div>经停站<em></em></div>
+    </span>
+    <span class="time">
+        <div><%=data[i].start_time%></div>
+        <div><%=data[i].arrive_time%>(次日到达)</div>
+    </span>
+
+    <span class="ends">
+        <div class="origin"><i class="icon"></i><%=data[i].from_station_name%></div>
+        <div class="departure"><i class="icon"></i><%=data[i].to_station_name%></div>
+    </span>
+    <span class="duration">
+        <div><%=data[i].run_time%></div>
+    </span>
+    <span class="price">
+        <% for(var j=0; j<data[i].listdata.length; j++) { %>
+        <div>
+            <span><%=data[i].listdata[j].seat_type%></span>
+            <span>￥ <%=data[i].listdata[j].ticket_price%></span>
+        </div>
+        <% } %>
+
+    </span>
+    <span class="action">
+        <% for(var j=0; j<data[i].listdata.length; j++) { %>
+            <% if(data[i].listdata[j].remain_num === "无") { %>
+                <div><a href="javascript:;"><input type="button" value="" class="train_none_btn"></a></div>
+            <% } else { %>
+                <div><a href="train_detail.html<%= window.location.search
+                + '&seat_type=' + data[i].listdata[j].seat_type
+                + '&train_code=' + data[i].train_code %>"><input type="button" value="" class="train_book_btn"></a></div>
+            <% } %>
+        <% } %>
+    </span>
+</div>
+<% } %>

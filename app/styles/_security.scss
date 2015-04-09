@@ -1,0 +1,255 @@
+.security_section {
+	width: 840px;
+	background: $order_details_bg;
+
+	.security_status {
+		@extend %inline-block-fix;
+		padding: 12px;
+		background: $header_bg;
+		color: $sec_header_color;
+		margin: 0 0 10px 0;
+		border: 1px solid $header_border;
+		span {
+			line-height: 22px;
+		}
+		.text {
+			color: $black;
+		}
+		.mark {
+			background: url('../images/security_status.png') center no-repeat;
+			height: 22px;
+			width: 140px;
+			margin: 0 20px 0 10px;
+		}
+	}
+	.security_methods {
+
+	}
+	.per_method {
+		@extend %inline-block-fix;
+		margin: 0 0 12px 12px;
+		border-top: 1px dashed $hint_border;
+		&:first-child {
+			border-top: none;
+		}
+		> span {
+			height: 60px;
+			line-height: 60px;
+		}
+		.icon {
+			width: 60px;
+			height: 60px;
+			&.pwd {
+				background: url('../images/pwd_sec.png') center no-repeat;
+			}
+			&.email {
+				background: url('../images/mail_sec.png') center no-repeat;
+			}
+			&.cellphone {
+				background: url('../images/phone_sec.png') center no-repeat;
+			}
+		}
+		.label {
+			width: 65px;
+			border-right: 1px solid $black;
+			margin: 24px;
+			line-height: 12px;
+			height: 12px;
+		}
+		.instructions {
+			width: 600px;
+		}
+		.action {
+		}
+	}
+}
+.indicator_row {
+	@extend %inline-block-fix;
+	height: 14px;
+	> span {
+		width: 55px;
+	}
+}
+
+.indicator {
+	background: url('../images/indi_05.png') no-repeat;
+	height: 10px;
+	&.fill {
+		background: url('../images/indicator_03.png') no-repeat;
+	}
+}
+
+.indicator_text {
+	height: 14px;
+	line-height: 14px;
+	text-align: center;
+}
+
+.input_row {
+	@extend %inline-block-fix;
+	height: 45px;
+	.text {
+		width: 120px;
+		text-align: right;
+		line-height: 33px;
+		padding: 0 12px 0 0;
+		& + .input {
+			padding: 5px 0 5px 0;
+		}
+	}
+	.input {
+		@extend %inline-block-fix;
+		font-size: 12px;
+		&.cellphone_val {
+			padding: 0;
+		}
+		&.pure_text {
+			line-height: 23px;
+		}
+	}
+	.hint {
+		height: 45px;
+		line-height: 45px;
+	}
+}
+
+.change_password {
+	input {
+		width: 237px;
+		border-width: 1px;
+		height: 25px;
+	}
+	input.short_input {
+		width: 130px;
+	}
+}
+.right_section_title {
+	height: 50px;
+	line-height: 50px;
+	color: $right_section_title;
+	font-size: 16px;
+	padding: 0 0 0 18px;
+}
+.full_width_hint {
+	@extend .security_status;
+	height: 46px;
+	line-height: 20px;
+	color: $right_section_title !important;
+	font-size: 12px !important;
+	.phone {
+		color: $red_text;
+		line-height: 20px !important;
+		margin: 0 0 0 10px;
+	}
+}
+.change_cellphone {
+	.full_width_hint {
+		margin: 0 0 45px 0;
+	}
+	.change_phone_btn {
+		background: url('../images/change_cellphone.png') center no-repeat;
+		width: 130px;
+		height: 30px;
+	}
+	input.cellphone_val {
+		height: 30px;
+		width: 130px;
+		border-width: 1px;
+	}
+}
+.sec_change_pwd {
+	background: url('../images/sec_change_pwd.png') center no-repeat;
+	width: 130px;
+	height: 30px;
+	margin: 0 18px 0 0;
+	& + span a {
+		line-height: 30px;
+	}
+}
+
+// change email
+.change_email {
+	 &.step_3 .input_row {
+		width: 400px;
+		margin: 0 auto;
+
+	}
+	.text_label {
+		font-size: 14px;
+	}
+	.new_email_address{
+		color: $red_text;
+	}
+	.input {
+		span {
+			line-height: 20px;;
+			height: 20px;;
+			display: inline-block;
+		}
+		p {
+			height: 20px;;
+			line-height: 20px;;
+		}
+	}
+}
+.check_email {
+	background: url('../images/check_mail.png') center no-repeat;
+	border: none;
+	width: 120px;
+	height: 30px;
+
+}
+.step_3 .email_change_status {
+	text-align: center;
+	+ .input_row {
+		margin: 65px auto 30px auto;
+	}
+}
+
+// change email step 1
+
+.step_1 {
+	.email_change_status {
+		margin-bottom: 25px;
+	}
+	select {
+		width: 238px;
+		height: 26px;
+		border-width: 1px;
+	}
+	input[type="text"] {
+		width: 125px;
+		height: 26px;
+		border-width: 1px;
+	}
+	.input {
+		.pure_text {
+			line-height: 23px;
+		}
+	}
+}
+.next_step {
+	background: url('../images/next.png') center no-repeat;
+	border: none;
+	width: 130px;
+	height: 30px;
+}
+
+// step 2
+.step_2 {
+	.email_change_status {
+		margin-bottom: 25px;
+	}
+	.new_email {
+		input {
+			width: 235px;
+			height: 26px;
+			border-width: 1px;
+		}
+	}
+	.short_input {
+		width: 125px;
+		height: 26px;
+		border-width: 1px;
+	}
+}

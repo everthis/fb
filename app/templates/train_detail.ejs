@@ -1,0 +1,14 @@
+<div class="coach">
+    <span class="date"><%= index_query_params.date %>（周四）</span>
+    <span class="coach_num"><%= data.train_code %> 次</span>
+    <span class="ends"><%= data.from_station_name %>（<%= data.start_time %>开）→ <%= data.to_station_name %>（<%= data.arrive_time %>到）</span>
+</div>
+<div class="type">
+    <% for(var i=0; i<data.listdata.length; i++) { %>
+    <span class="per_type">
+        <span class="seat_type"><%= data.listdata[i].seat_type %></span>
+        <span class="price">￥ <%= data.listdata[i].ticket_price %></span>
+        <span class="remaing"><%= data.listdata[i].remain_num %></span>
+    </span>
+    <% } %>
+</div>

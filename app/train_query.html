@@ -1,0 +1,384 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>fangbian_com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="root">
+
+    <div class="header_container">
+      <div class="header">
+        <span class="login_signup">
+          <span class="greetings">您好，欢迎访问方便网!</span>
+          <span class="login"><a href="login.html">登录</a></span>
+          <span class="signup"><a href="signup.html">注册</a></span>
+        </span>
+        <span class="order_menu">
+          <span class="menu">
+            <span class="menu_title"><a href="user.html" style="text-decoration: none; color: #000;">我的订单</a></span>
+            <span class="arrow"></span>
+            <span class="submenu hide">
+              <div class="item">火车票订单</div>
+              <div class="item">汽车票订单</div>
+            </span>
+          </span>
+          <span class="mobile_portal">手机方便网</span>
+          <span class="arrow"></span>
+          <span class="service">客服服务</span>
+          <span class="arrow"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="top_banner">
+      <a href="index.html" class="logo"></a>
+      <a href="#" class="sublogo"></a>
+      <a href="#" class="app_link"></a>
+    </div>
+
+    <div class="nav_bar_container">
+      <div class="nav_bar train">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="hotline"></span>
+      </div>
+    </div>
+
+        <div class="root_container">
+            <form id="CarFrom" action="">
+                <div class="search_box">
+                    <span class="note">出发地</span>
+                    <span class="input_box">
+                     <input name="from_city" type="text" value="请输入出发城市" id="from_city" autoComplete="Off" onblur="coach_hide_city();" onfocus="coach_ShowCity('from_city');"/>
+                     <input name="from_city_code" type="hidden" id="from_city_code" value="null"/>
+                     <span class="city_ico" onclick="coach_ShowCity('from_city');"></span>
+                    </span>
+                    <span>
+                        <img id="swap_destination" src="../images/dest_swap.jpg" alt="" style="margin-left: -1.6em;vertical-align: text-bottom;" />
+                   </span>
+                    <span class="note">目的地</span>
+                    <span class="input_box">
+                     <input name="to_city" type="text" value="请输入到达城市" id="to_city" autoComplete="Off" onblur="coach_hide_city();" onfocus="coach_Show_subCity('to_city');"/>
+                     <input name="to_city_code" type="hidden" id="to_city_code" value="null"/>
+                     <span class="city_ico" onclick="coach_Show_subCity('to_city');"></span>
+                    </span>
+                    <span class="note">出发日期</span>
+                    <span class="input_box">
+                     <input name="from_date" id="from_date" type="text" value="" class="txt trainCalendar" readonly="readonly" />
+                     <em class="date_ico" onclick="$('#from_date').focus();"></em>
+                   </span>
+                    <span class="input_box">
+                     <input id="" type="button" class="train_search_btn btn_blue btn" value="" />
+                   </span>
+                </div>
+                <input id="txtchannelid" type="hidden" />
+            </form>
+            <div class="time_bar train">
+                <span class="previous_day">
+                   <div class="icon"></div>
+                 </span>
+                <span class="day now" val="">
+                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="day" val="">
+                   <div class="detail">01-12</div>
+                   <div class="isreservable">周日</div>
+                 </span>
+                <span class="next_day">
+                   <div class="icon"></div>
+                 </span>
+            </div>
+
+            <div class="filter_section">
+
+                <div class="time">
+                    <span class="cate_area">
+                     <span class="note">车型选择：</span>
+                    <span class="select_all">全选</span>
+                    </span>
+                    <span class="time_array">
+                     <span class="time_range">
+                       <input type="checkbox" class="" value="1"/>G/C-高铁
+                     </span>
+                    <span class="time_range">
+                       <input type="checkbox" class="" value="2"/>D-动车
+                     </span>
+                    <span class="time_range">
+                       <input type="checkbox" class="" value="0"/>普通车型
+                     </span>
+                    <span class="time_range" style="width: 200px;">
+                      <strong id="total_number" style="color:#DE5900"></strong>
+                     </span>
+                    </span>
+
+                </div>
+
+                <div class="time">
+                    <span class="cate_area">
+                     <span class="note">出发时间：</span>
+                    <span class="select_all">全选</span>
+                    </span>
+                    <span class="time_array">
+                     <span class="time_range">
+                       <input type="checkbox" class="" value="1"/>上午(06:00-12:00)
+                     </span>
+                    <span class="time_range">
+                       <input type="checkbox" class="" value="2"/>下午(12:00-18:00)
+                     </span>
+                    <span class="time_range">
+                       <input type="checkbox" class="" value="0"/>晚上(18:00-06:00)
+                     </span>
+                    <span class="time_range" style="width: 200px;">
+                      <strong id="total_number" style="color:#DE5900"></strong>
+                     </span>
+                    </span>
+                    <span class="more">
+                        更多筛选条件<em></em>
+                    </span>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="result_section train_query_results">
+                <div class="title">
+                    <span class="ends">上海  →  北京南</span>
+                    <span class="date">(01月08日)</span>
+                    <span class="result"><span>车票信息</span><span class="num">13</span><span>条</span></span>
+                </div>
+                <div class="head">
+                    <span class="number">车次</span>
+                    <span class="time">出发/到达时间<em></em></span>
+                    <span class="ends">出发/到达站</span>
+                    <span class="duration">运行时间<em></em></span>
+                    <span class="price">票价</span>
+                    <span class="action">操作</span>
+                </div>
+                <div class="head fixed_head">
+                    <span class="number">车次</span>
+                    <span class="time">出发/到达时间</span>
+                    <span class="ends">出发/到达站</span>
+                    <span class="duration">运行时间</span>
+                    <span class="price">票价</span>
+                    <span class="action">操作</span>
+                </div>
+                <div id="trainList" class="train_list">
+
+<!--                     <div class="per_list">
+                        <span class="number">
+                            <div>K402</div>
+                            <div>经停站<em></em></div>
+                        </span>
+                        <span class="time">
+                            <div>08:00</div>
+                            <div>03:00(次日到达)</div>
+                        </span>
+
+                        <span class="ends">
+                            <div class="origin"><i class="icon"></i>上海</div>
+                            <div class="departure"><i class="icon"></i>北京南</div>
+                        </span>
+                        <span class="duration">
+                            <div>18小时23分钟</div>
+                        </span>
+                        <span class="price">
+                            <div>
+                                <span>一等座</span>
+                                <span>￥ 28.00</span>
+                            </div>
+                            <div>
+                                <span>商务座</span>
+                                <span>￥ 28.00</span>
+                            </div>
+                            <div>
+                                <span>二等座</span>
+                                <span>￥ 28.00</span>
+                            </div>
+                            <div>
+                                <span>无座</span>
+                                <span>￥ 28.00</span>
+                            </div>
+                        </span>
+                        <span class="action">
+                            <div><a href="train_detail.html"><input type="button" value="" class="train_book_btn"></a></div>
+                            <div><a href="train_detail.html"><input type="button" value="" class="train_book_btn"></a></div>
+                            <div><a href="train_detail.html"><input type="button" value="" class="train_book_btn"></a></div>
+                            <div><a href="train_detail.html"><input type="button" value="" class="train_none_btn"></a></div>
+                        </span>
+                    </div> -->
+
+                </div>
+                <div id="loading_gif" style="height:150px">
+                    <!-- <img class="loading_gif" style="display: none" src="../Images/loadinggif.GIF" alt="" /> -->
+                </div>
+                <div class="pagenation_section">
+                    <div class="pagenation">
+                        <span class="pre">&lt; 上一页</span>
+                        <span class="page now">1</span>
+                        <span class="page">2</span>
+                        <span class="page">3</span>
+                        <span class="page">4</span>
+                        <span class="page">5</span>
+                        <span class="page">...</span>
+                        <span class="next">下一页 &gt;</span>
+                        <span class="total">共100页</span>
+                        <span class="page_input">
+                            <span>到</span>
+                            <span>
+                                <input type="text">
+                            </span>
+                            <span>页</span>
+                        </span>
+                        <span class="action">
+                            <input type="button" value="确 定">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="root_footer"></div>
+    </div>
+    <div class="footer">
+      <div class="footer_box">
+        <div class="footer_container">
+
+          <div class="row first">
+            <span class="footer_item"><img src="images/bottomPic-1.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-2.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-3.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-4.jpg" alt=""></span>
+          </div>
+          <div class="row second">
+            <span class="footer_item">关于我们</span>
+            <span class="footer_item">免责声明</span>
+            <span class="footer_item">常见问题</span>
+            <span class="footer_item">联系我们</span>
+            <span class="footer_item">人才招聘</span>
+          </div>
+          <hr>
+          <div class="row third">
+            <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+<!--     <script id="train-query-template" type="text/x-handlebars-template">
+      {{#data}}
+      <div class="per_list">
+          <span class="number">
+              <div>{{train_code}}</div>
+              <div>经停站<em></em></div>
+          </span>
+          <span class="time">
+              <div>{{start_time}}</div>
+              <div>{{arrive_time}}(次日到达)</div>
+          </span>
+
+          <span class="ends">
+              <div class="origin"><i class="icon"></i>{{from_station_name}}</div>
+              <div class="departure"><i class="icon"></i>{{to_station_name}}</div>
+          </span>
+          <span class="duration">
+              <div>{{run_time}}</div>
+          </span>
+          <span class="price">
+              {{#listdata}}
+              <div>
+                  <span>{{seat_type}}</span>
+                  <span>￥ {{ticket_price}}</span>
+              </div>
+              {{/listdata}}
+
+          </span>
+          <span class="action">
+              {{#listdata}}
+                {{#if_eq remain_num "无"}}
+                  <div><a href="javascript:;"><input type="button" value="" class="train_none_btn"></a></div>
+                {{else}}
+                  <div><a href="train_detail.html" + {{window.location.search}} ><input type="button" value="" class="train_book_btn"></a></div>
+                {{/if_eq}}
+              {{/listdata}}
+          </span>
+      </div>
+      {{/data}}
+    </script> -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+    <!-- build:js({app,.tmp}) scripts/main.js -->
+
+    <!-- <script type="text/javascript" src="scripts/handlebars-v3.0.1.js"></script> -->
+    <!-- <script type="text/javascript" src="scripts/handlebar_helper.js"></script> -->
+
+    <script src="scripts/ejs.js"></script>
+    <script type="text/javascript" src="scripts/md55.js"></script>
+    <script type="text/javascript" src="scripts/tools.js"></script>
+    <script type="text/javascript" src="scripts/fbapi.js"></script>
+
+    <script type="text/javascript" src="scripts/listcity.js"></script>
+    <script type="text/javascript" src="scripts/buscity.js"></script>
+    <script type="text/javascript" src="scripts/calendar.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+
+
+        //Example how to use it:
+        var index_query_params = tools.parseQueryString();
+        FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT");
+    </script>
+    <!-- endbuild -->
+</body>
+
+</html>

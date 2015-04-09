@@ -1,0 +1,128 @@
+.passenger_list {
+	width: 839px;
+	.add_passenger_btn {
+		width: 159px;
+		height: 22px;
+		background: url('../images/passengers_03.png') center no-repeat;
+		margin: 0 0 10px 0;
+	}
+	.passenger_header {
+		@extend %inline-block-fix;
+		background: $lists_header_bg;
+		> span {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+	}
+	.passenger_body {
+		@extend %inline-block-fix;
+		padding: 20px 0 18px 0;
+		border-bottom: 1px dashed $footer-hori-line-color;
+	}
+	.name {
+		width: 100px;
+		padding: 0 0 0 15px;
+	}
+	.credential_type {
+		width: 120px;
+	}
+	.credential_num {
+		width: 140px;
+	}
+	.gender {
+		width: 50px;
+	}
+	.cellphone {
+		width: 120px;
+	}
+	.email {
+		width: 100px;
+	}
+	.type {
+		width: 90px;
+	}
+	.action {
+		// width: 8em;
+		.edit {
+			margin: 0 20px 0 0;
+		}
+	}
+}
+.popup_passenger {
+	padding: 0 12px 12px 12px;
+	width: 486px;
+	height: 395px;
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -198px 0 0 -243px;
+	border: 5px solid $popup_border;
+	border-radius: 5px;
+	background: white;
+
+	.header {
+		@extend %inline-block-fix;
+		width: 100%;
+		border-bottom: 1px solid $footer-hori-line-color;
+		  margin: 0 0 12px 0;
+		.title {
+			height: 47px;
+			font-size: 14px;
+			line-height: 47px;
+		}
+		.close {
+			background: url('../images/close_popup.png') center no-repeat;
+			width: 24px;
+			height: 24px;
+			float: right;
+			margin: 12px 0 0 0;
+		}
+	}
+	.input_row {
+		height: 33px;
+		.text {
+			text-align: right;
+			line-height: 33px;
+			padding: 0 12px 0 0;
+			& + .input {
+				padding: 5px 0 5px 0;
+			}
+		}
+		.input {
+			@extend %inline-block-fix;
+			&.radio {
+				font-size: 12px;
+				line-height: 18px;
+				input {
+					width: 20px;
+				}
+			}
+		}
+		input {
+			line-height: 23px;
+			padding: 0;
+			border-width: 1px;
+			width: 178px;
+
+		}
+		select {
+			line-height: 23px;
+			height: 23px;
+			width: 117px;
+		}
+	}
+
+	.add_passenger_btn {
+		background: url('../images/add_passenger_confirm.png') center no-repeat;
+		width: 100px;
+		height: 28px;
+		margin: 0 7px 0 0;
+	}
+	.cancel_add_passenger_btn {
+		background: url('../images/add_passenger_cancel.png') center no-repeat;
+		width: 60px;
+		height: 28px;
+	}
+}

@@ -1,0 +1,129 @@
+
+.pre_signup {
+	@extend .container;
+	@extend %inline-block-fix;
+	padding: 24px 0 20px 0;
+	.left {
+		padding: 0 0 0 20px;
+		font-size: 16px;
+		background: url('../images/user_03.png') left no-repeat;
+	}
+	.right {
+		float: right;
+	}
+}
+.signup_section {
+	@extend .container;
+	box-shadow: 0 0 5px 0 #ddd;
+	padding: 15px 0 20px 20px;
+	background: url('../images/shadow_03.png') center top no-repeat;
+	.step {
+		@extend %inline-block-fix;
+		margin: 50px 0 0 0;
+		padding: 0 20px 20px 0;
+		.right {
+			float: right;
+		}
+	}
+	.row {
+		@extend %inline-block-fix;
+		height: 32px;
+		line-height: 32px;
+		margin: 0 0 20px 0;
+		.indicator_row {
+			@extend %inline-block-fix;
+			height: 14px;
+			> span {
+				width: 55px;
+			}
+		}
+		.indicator {
+			background: url('../images/indi_05.png') no-repeat;
+			height: 10px;
+			&.fill {
+				background: url('../images/indicator_03.png') no-repeat;
+			}
+		}
+
+		.indicator_text {
+			height: 14px;
+			line-height: 14px;
+			text-align: center;
+		}
+		.text {
+			width: 105px;
+			font-size: 14px;
+			text-align: right;
+		}
+		.input {
+			padding: 0 0 0 12px;
+		}
+		input[type="text"] {
+			width: 240px;
+			height: 32px;
+			line-height: 32px;
+		}
+	}
+}
+.signup_progress {
+	width: 920px;
+	height: 60px;
+	margin: 0 20px;
+	background: url('../images/01_03.png') no-repeat;
+	.signup_progress_02 & {
+		background: url('../images/02_03.png') no-repeat;
+	}
+
+	.signup_progress_03 & {
+		background: url('../images/03_03.png') no-repeat;
+	}
+}
+.signup_progress_03 {
+	.step {
+		width: 380px;
+		margin: 95px auto 0;
+	}
+	.mark {
+		background: url('../images/right_03.png') no-repeat;
+		width: 48px;
+		height: 48px;
+	}
+	.result {
+		width: 180px;
+		height: 60px;
+		padding: 0 0 0 20px;
+		.first_line {
+			height: 24px;
+			line-height: 24px;
+		}
+		.second_line {
+			@extend .first_line;
+			.login_name {
+				color: $signup_orange_text;
+			}
+		}
+	}
+	.action {
+		width: 120px;
+		height: 48px;
+		background: url('../images/right_06.png') left bottom no-repeat;
+	}
+	.qrcode {
+		height: 210px;
+		background: url('../images/qr_03_03_03.png') center no-repeat;
+	}
+}
+.q_and_a {
+	background: $signup_tips_bg;
+	padding: 20px 15px 15px 15px;
+	margin: 20px 20px 0 0;
+	h4 {
+		margin: 0 0 15px 0;
+	}
+	.q {
+		margin: 0 0 10px 0;
+		& + .a {
+			margin: 0 0 20px 0;
+		}
+	}
+}

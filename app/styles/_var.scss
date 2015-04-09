@@ -1,0 +1,123 @@
+$font-family            : "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+$font-size              : 14px;
+$sm-font-size           : 12px;
+$big-font-size          : 16px;
+$default_font_size      : 12px;
+
+
+
+$post-item-margins      : 10px 0 0 0;
+
+$label-lineHeight       : 20px;
+$label-height           : 24px;
+$query-input-lineHeight : 22px;
+$large-margin           : 20px;
+$middle-margin          : 10px;
+$container_width        : 960px;
+
+// colors
+$transparent            : rgba(0, 0, 0, 0);
+$purple                 : #551a8b;
+$royalblue              : #4169E1;
+$dark_orange            : #FF8C00;
+$light-blue             : #EDF5FC;
+$dark-grey              : #999;
+$black                  : #000;
+$top-nav-bgcolor        : #eaeaea;
+$top-nav-green          : #559735;
+$top-border-color       : #d1d1d1;
+$top-submenu-border     : #dddddd;
+
+$dark-green             : #338800;
+$green                  : #469800;
+$yellow                 : #d4da00;
+$vertical-menu-green    : #6baa37;
+$white                  : #fff;
+$popup-link-color       : #67a73f;
+$nav-menu-font-color    : #559735;
+$footer-grey            : #f5f5f5;
+$footer-hori-line-color : #dadada;
+$footer-copyrights      : #a0a0a0;
+$footer-grey-link       : #666666;
+$signup_tips_bg         : #f2f2f2;
+$signup_orange_text     : #e46404;
+$orange: #e46404;
+$index_hot_grey_bg: #f5f5f5;
+$index_hot_green_bg: #eff6eb;
+
+/* coach query */
+$coach_query_search_bg: #f5f5f5;
+$coach_query_search_border: #dadada;
+$date_bar_bg: #eff6eb;
+$active_day_border: #559735;
+$date_bar_special_text: #e46404;
+$date_bar_grey_text: #999999;
+$list_head: #f5f5f5;
+$hint_border: #dddddd;
+$hint_body_bg: #f7f7f7;
+
+/** coach detail */
+$coach_info_bg: #eff6eb;
+$section_border_color: #bbd4af;
+$light_section_border: #e4e4e4;
+$right_header_bg: #feeed9;
+$right_body_bg: #fffaf4;
+$right_border_color: #ffddb4;
+$right_hint_header_bg: #eeeeee;
+$dash_color: #d6d6d6;
+
+
+/* user */
+$user_nav_border: #469800;
+$user_nav_grey_border: #ececec;
+$tab_font_color: #58a024;
+$tab_font_inactive: #999999;
+$lists_header_bg: #eee;
+
+/*order detail*/
+$order_title: #ff9000;
+
+/**	login
+*/
+$login_border: #bed6b2;
+$login_third_bg: #f7fbf5;
+
+// from outside
+$header_height: 32px;
+
+$light_grey: #F8F8F8;
+$grey: #777;
+$fangbian_blue: #559735;
+$white: #fff;
+$red: red;
+$border_color: #B3CDF6;
+$body_background_color: #eeeeee;
+
+$head_z_index: 9999;
+
+$card_margin: 0 0 1em 0;
+$card_borders: 1px solid $border_color;
+$card_paddings: 0 12px 0 12px;
+$card_body_paddings: 10px 12px 0 12px;
+$card_head_paddings: 10px 12px 10px 12px;
+
+/* order detail */
+$header_color: #f9f5f0;
+$order_details_bg: #fffcf9;
+
+/* security */
+$header_bg: #ffefe0;
+$header_border: #ffd39a;
+$sec_header_color: #ffab59;
+
+// passengers
+$popup_border: #7c7c7c;
+
+//change password
+$right_section_title: #ff9000;
+
+// change cellphone
+$red_text: #ff0000;
+
+// add address
+$add_address_btn_bg: #FF9000;

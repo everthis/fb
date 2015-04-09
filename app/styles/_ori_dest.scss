@@ -1,0 +1,97 @@
+.tip_qcp_city,.tip_qcp_city2{float:left;position:relative;background:#fff;border: 1px solid #CACAC7;-box-shadow:1px 1px 1px #ddd;-webkit-box-shadow:1px 1px 1px #ddd;-moz-box-shadow:1px 1px 1px #ddd;}
+.tip_qcp_city{width:350px;}
+.tip_qcp_city p{padding:5px 10px 5px;color: #999;background-color: #EEF1F4;}
+.tip_city_close{width: 13px;height: 13px;position:absolute;right: 5px;top:4px;background: url(./qiche/img/ico_close.gif) -30px -5px no-repeat;text-indent: -9999px}
+.tip_city_close:hover{background-position: -30px -30px}
+.tip_qcp_city_list{width:350px;height: 200px;float:left;overflow-y:auto ;overflow-x: hidden}
+
+.tip_qcp_city_list dl{clear: both;padding: 5px 10px;overflow: hidden}
+.tip_qcp_city_list dl.hot{padding: 10px 10px;margin-bottom:10px;color: #F88400;border-bottom: 1px solid #CACAC7}
+.tip_qcp_city_list dl.hot a{color: #F88400;}
+.tip_qcp_city_list dt{width: 40px;float: left}
+.tip_qcp_city_list dd{width: 120px;float: left}
+.tip_qcp_city_list dd a{margin-right: 10px;white-space:nowrap;float: left;line-height: 20px}
+
+.tip_qcp_city2{width:179px;}
+.tip_qcp_city2 li{width:100%;height: 30px;float:left;line-height:30px;clear: both;cursor: pointer}
+.tip_qcp_city2 li span{width:45%;float: left;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-indent: 10px}
+.tip_qcp_city2 li label{width:55%;float: right;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.tip_qcp_city2 li:hover,.tip_qcp_city2 li.now{background:#4082BC;color: #fff}
+
+.tip_qcp_city_list > dl > dt,
+.tip_qcp_city_list > dl > .province_sub_division_area {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0;
+}
+.province_sub_division .province_sub_division_link,
+.province_sub_division .county_area {
+	font-size: 0;
+}
+.province_sub_division_area {
+	display: inline-block;
+	width: 270px;
+}
+.tip_qcp_city_list > dl > dt.province_name {
+	font-size: 12px;
+	line-height: 20px;
+	height: 20px;
+}
+.province_sub_division {
+	float: left;
+	position: relative;
+	font-size: 0;
+	> a {
+		// position: absolute;
+		display: inline-block;
+		width: 50px;
+		top: 0;
+		left: 0;
+	}
+	a,
+	.county_area {
+		vertical-align: top;
+	}
+	.province_sub_division_link {
+		display: inline-block;
+		width: 50px;
+		line-height: 20px;
+		height: 20px;
+		font-size: 12px;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
+}
+.county_area {
+	display: inline-block;
+	width: 220px;
+	// margin-left: 50px;
+	.county {
+		display: inline-block;
+		width: 55px;
+		height: 20px;
+		line-height: 20px;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		font-size: 12px;
+	}
+}
+
+.dest_city_area {
+	font-size: 0;
+	padding: 10px 9px 10px 10px;
+	.dest_city_item {
+		display: inline-block;
+		width: 58px;
+		height: 20px;
+		margin-right: 5px;
+		a {
+			font-size: 12px;
+			white-space:nowrap;
+			overflow:hidden;
+			text-overflow:ellipsis;
+		}
+	}
+}

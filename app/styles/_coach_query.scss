@@ -1,0 +1,377 @@
+.search_box {
+    @extend %inline-block-fix;
+    margin: 15px 0 20px 0;
+    padding: 8px 30px;
+    background: $coach_query_search_bg;
+    border: 1px solid $coach_query_search_border;
+    > span {
+        height: 30px;
+        line-height: 30px;
+    }
+    .date_ico {
+        position: absolute;
+        right: 5px;
+        top: 2px;
+        width: 20px;
+        height: 24px;
+        padding-top: 8px;
+        background: url(../images/date.jpg) center no-repeat;
+        text-align: center;
+        line-height: 45px;
+        font: normal 11px tahoma;
+        color: #9A9A98;
+    }
+
+    .city_ico {
+        @extend .date_ico;
+        background: url(../images/city.jpg) center no-repeat;
+    }
+    .note {
+        margin-right: 1em;
+    }
+    .input_box {
+        position: relative;
+        margin-right: 2em;
+        input {
+            height: 30px;
+            line-height: 26px;
+            width: 172px;
+            &#btnSearch {
+                background: url('../images/search_coach.png') center no-repeat;
+                width: 140px;
+                border: none;
+            }
+        }
+    }
+
+    span {
+        display: inline-block;
+    }
+}
+.time_bar {
+    font-size: 0;
+    .previous_day, .next_day {
+        width: 6.25%;
+        cursor: pointer;
+        border-bottom: 1px solid $active_day_border;
+        .icon {
+            width: 28px;
+            height: 50px;
+            margin: 0 auto;
+        }
+    }
+    .previous_day {
+       &.disabled .icon {
+            background: url(../images/left_disable.jpg) center no-repeat;
+        }
+        .icon {
+            background: url(../images/left_disable.jpg) center no-repeat;
+        }
+    }
+    .next_day {
+        &.disabled .icon {
+            background: url(../images/right_enable.jpg) center no-repeat;
+        }
+        .icon {
+            background: url(../images/right_enable.jpg) center no-repeat;
+        }
+    }
+    span {
+        display: inline-block;
+        height: 50px;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        &:first-child {
+            border-left: none;
+        }
+        * {
+            font-size: $default_font_size;
+        }
+    }
+    .day {
+        width: 12.5%;
+        text-align: center;
+        padding: 7px 10px 8px;
+        cursor: pointer;
+        background: $date_bar_bg;
+        border-bottom: 1px solid $active_day_border;
+        &.now {
+            border-top: 2px solid $active_day_border;
+            border-left: 1px solid $active_day_border;
+            border-right: 1px solid $active_day_border;
+        	border-bottom: 1px solid $white;
+            background: $white;
+        }
+        &.unavailable {
+            background: $coach_query_search_bg;
+            .isreservable {
+                color: $date_bar_grey_text;
+            }
+            .detail {
+                color: $date_bar_grey_text;
+            }
+        }
+        .detail,
+        .isreservable {
+        	line-height: 16px;
+
+        }
+        .isreservable {
+            color: $date_bar_special_text;
+            font-size: 16px;
+        }
+    }
+}
+.filter_section {
+    padding: 1em;
+    border: 1px solid #ddd;
+    margin: 10px 0 20px 0;
+    span {
+        display: inline-block;
+    }
+    .select_all {
+        background-color: $fangbian_blue;
+        cursor: pointer;
+        color: $white;
+    }
+    .note,
+    .select_all {
+        height: 19px;
+        line-height: 19px;
+        padding: 0 3px;
+    }
+    .cate_area {
+        font-size: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .station {
+        position: relative;
+        // margin-bottom: 12px !important;
+    }
+    .origin_array {
+        margin-left: 120px;
+        width: 816px;
+    }
+    .time_array {
+        margin-left: 120px;
+        width: 816px;
+        font-size: 0;
+    }
+    .time,
+    .type {
+        position: relative;
+    }
+    .time {
+        height: 30px;
+          border-bottom: 1px dashed #DDD;
+          margin-bottom: 10px;
+    }
+    .station {
+        padding-top: 10px;
+    }
+    .time {
+        font-size: 0;
+
+    }
+    .time_range, .origin_station {
+        width: 16%;
+        font-size: 12px;
+    }
+}
+.result_section {
+    margin: 0 0 25px 0;
+    .title {
+        margin: 0 0 10px 0;
+        .ends {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .date {
+            color: $grey;
+        }
+        .result {
+             @extend %inline-block-fix;
+            .num {
+                font-size: 12px;
+                color: $date_bar_special_text;
+            }
+        }
+
+    }
+    .head, .list {
+        font-size: 0;
+        padding: 5px 30px;
+    }
+    .lists_area {
+        padding: .1em 0;
+    }
+    .list {
+    	border-bottom: 1px solid #ddd;
+        padding: 15px 30px;
+        &:hover {
+            background-color: $light_grey;
+        }
+        .time {
+            font-size: 20px;
+        }
+    }
+    .head {
+
+    	box-shadow: 0 1px 2px 0 #bbb;
+        background-color: $list_head;
+        color: $black;
+        padding: 12px 30px;
+        z-index: $head_z_index;
+        &.fixed_head {
+            width: 960px;
+            background-color: $list_head;
+            color: $black;
+            padding: 12px 15px;
+            display: none;
+            position: fixed;
+            top: 0;
+        }
+        .time {
+            em {
+                display: inline-block;
+                width: 9px;
+                height: 10px;
+                background: url('../images/arrow_orange.png') center no-repeat;
+            }
+        }
+        .price {
+            em {
+                display: inline-block;
+                width: 9px;
+                height: 10px;
+                background: url('../images/arrow_grey.png') center no-repeat;
+            }
+        }
+    }
+    span {
+        display: inline-block;
+        font-size: $default_font_size;
+        vertical-align: middle;
+        .currency_sign, .number {
+            display: inline-block;
+        }
+    }
+    em {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        background: url(../images/list_2014.gif) no-repeat;
+        background-position: -20px -37px;
+        margin-left: 3px;
+        cursor: pointer;
+        display: none;
+    }
+    .origin, .departure {
+        height: 16px;
+        line-height: 14px;
+        vertical-align: top;
+    }
+    .origin .icon {
+        background: url(../images/chu.jpg) no-repeat;
+    }
+    .origin_station_span {
+        width: 60%;
+    }
+    .departure .icon {
+        background: url(../images/dao.jpg) no-repeat;
+    }
+    .icon {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        margin: 0px 5px 0 0;
+    }
+    .time {
+        width: 20%;
+    }
+    .origin_station_span {
+        width: 15%;
+        line-height: 16px;
+    }
+    .station {
+        width: 25%;
+        > div:first-child {
+            margin-bottom: 4px;
+        }
+    }
+
+    .type {
+        width: 25%;
+    }
+    .price {
+        width: 15%;
+        div {
+            font-size: 20px;
+            color: $date_bar_special_text;
+        }
+    }
+    .operation {
+        width: 15%;
+        .query_book_btn {
+            background: url('../images/query_book_btn.jpg') center no-repeat;
+            width: 60px;
+            height: 28px;
+            border: none;
+        }
+    }
+}
+
+.pagenation_section {
+    margin: 20px 0 0 0;
+}
+.pagenation {
+    margin: 0 auto;
+    width: 640px;
+    @extend %inline-block-fix;
+    > span {
+        height: 37px;
+        line-height: 35px;
+        text-align: center;
+
+        &:first-child {
+        }
+    }
+    .pre {
+        width: 75px;
+        height: 37px;
+        border: 1px solid #ddd;
+    }
+    .next {
+        @extend .pre;
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+    .page {
+        width: 35px;
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        &.now {
+            background: $date_bar_special_text;
+            color: $white;
+        }
+    }
+    .total {
+        margin: 0 0 0 20px;
+    }
+    .page_input {
+        margin: 0 20px;
+        input {
+            width: 40px;
+        }
+    }
+}
+
+.root_container {
+    @extend .container;
+    position: relative;
+}

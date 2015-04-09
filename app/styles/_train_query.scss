@@ -1,0 +1,177 @@
+.train_search_btn {
+	display: inline-block;
+	height: 30px;
+	width: 140px !important;
+	border: none;
+	background: url('../images/search.jpg') center no-repeat;
+}
+.coach_query_results {
+	.head {
+		@extend %inline-block-fix;
+	}
+
+	.per_list {
+		@extend %inline-block-fix;
+		border-bottom: 1px solid #ddd;
+		padding: 5px;
+		> span {
+			> div {
+				height: 24px;
+				line-height: 24px;
+			}
+		}
+	}
+	.number {
+		width: 15%;
+	}
+	.time {
+		width: 15%;
+	}
+	.ends {
+		width: 15%;
+	}
+	.duration {
+		width: 15%;
+	}
+	.price {
+		width: 15%;
+		> div {
+			margin-bottom: .5em;
+		}
+	}
+	.action {
+		width: 15%;
+		> div {
+			margin-bottom: .5em;
+		}
+	}
+
+}
+.time + .time {
+	margin-bottom: 0;
+	height: 19px;
+	border-bottom: none;
+}
+.time_bar.train .day .isreservable {
+	color: $black;
+	font-size: 12px;
+}
+.train_query_results {
+	.head {
+		.time {
+			em {
+			    display: inline-block;
+			    width: 9px;
+			    height: 10px;
+			    background: url('../images/arrow_orange.png') center no-repeat;
+			}
+		}
+		.duration {
+			em {
+			    display: inline-block;
+			    width: 9px;
+			    height: 10px;
+			    background: url('../images/arrow_grey.png') center no-repeat;
+			}
+		}
+
+	}
+	.number {
+		width: 15%;
+		em {
+			display: inline-block;
+			width: 9px;
+			height: 5px;
+			background: url('../images/arrow_down.png') center no-repeat;
+
+		}
+	}
+	.ends {
+		width: 15%;
+	}
+	.duration {
+		width: 15%;
+	}
+	.price {
+		width: 20%;
+	}
+	.per_list {
+		@extend %inline-block-fix;
+		padding: 12px 30px;
+		border-bottom: 1px solid #ddd;
+		.number {
+			div:first-child {
+				font-size: 20px;
+			}
+		}
+		.time {
+			div:first-child {
+				font-size: 16px;
+			}
+		}
+		.price {
+			div {
+				@extend %inline-block-fix;
+				margin: 0 0 7px 0;
+				&:first-child span {
+					height: 28px;
+					line-height: 22px;
+				}
+				span {
+					height: 28px;
+					line-height: 28px;
+
+				}
+				span:first-child {
+					color: $black;
+					width: 4em;
+				}
+				span + span {
+					font-size: 16px;
+				}
+			}
+		}
+		.ends {
+			div {
+				margin: 0 0 10px 0;
+			}
+		}
+		.action {
+			div {
+				margin: 0 0 7px 0;
+			}
+		}
+	}
+	.train_book_btn {
+		width: 60px;
+		height: 28px;
+		border: none;
+		background: url('../images/query_book_btn.jpg') center no-repeat;
+
+	}
+	.train_none_btn {
+		width: 60px;
+		height: 28px;
+		border: none;
+		background: url('../images/01_19.jpg') center no-repeat;
+
+	}
+}
+.filter_section {
+	.time {
+		position: relative;
+		.more {
+			position: absolute;
+			right: 0;
+			top: 5px;
+			color: $nav-menu-font-color;
+			em {
+				display: inline-block;
+				width: 9px;
+				height: 5px;
+				background: url('../images/arrow_down.png') center no-repeat;
+
+			}
+		}
+	}
+}

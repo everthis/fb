@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>fangbian_com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body style="background: #fcfcfc;">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="root">
+
+    <div class="header_container">
+      <div class="header">
+        <span class="login_signup">
+          <span class="greetings">您好，欢迎访问方便网!</span>
+          <span class="login"><a href="login.html">登录</a></span>
+          <span class="signup"><a href="signup.html">注册</a></span>
+        </span>
+        <span class="order_menu">
+          <span class="menu">
+            <span class="menu_title"><a href="user.html" style="text-decoration: none; color: #000;">我的订单</a></span>
+            <span class="arrow"></span>
+            <span class="submenu hide">
+              <div class="item">火车票订单</div>
+              <div class="item">汽车票订单</div>
+            </span>
+          </span>
+          <span class="mobile_portal">手机方便网</span>
+          <span class="arrow"></span>
+          <span class="service">客服服务</span>
+          <span class="arrow"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="top_banner">
+      <a href="index.html" class="logo"></a>
+      <a href="#" class="sublogo"></a>
+      <a href="#" class="app_link"></a>
+    </div>
+
+    <div class="nav_bar_container">
+      <div class="nav_bar user">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="hotline"></span>
+      </div>
+    </div>
+
+      <!-- <div class="breadcrumb">
+        <span class="left">我的方便网</span>
+      </div> -->
+
+      <div class="user_section">
+        <span class="user_nav">
+          <h2 class="nav_header">我的方便网</h2>
+          <div class="my_oders">
+              <h4><a href="user.html">我的订单</a></h4>
+              <div class="menu_item"><a href="order_details.html">火车票订单</a></div>
+              <div class="menu_item"><a href="order_details.html">汽车票订单</a></div>
+              <div class="menu_item">机票订单</div>
+          </div>
+
+          <div class="my_info">
+              <h4>我的信息</h4>
+              <div class="menu_item">账号信息</div>
+              <div class="menu_item"><a href="passengers.html">常用乘客信息</a></div>
+              <div class="menu_item"><a href="address.html">邮寄信息</a></div>
+              <div class="menu_item"><a href="security.html">安全设置</a></div>
+          </div>
+
+        </span>
+        <span class="address_list">
+          <!-- <h4><input type="button" value="+新增邮寄地址"></h4> -->
+          <span class="add_address pop_btn">+新增邮寄地址</span>
+          <div class="address_header">
+              <span class="name">收件人</span>
+              <span class="address">所在地区</span>
+              <span class="address_detail">街道地址</span>
+              <span class="postcode">邮编</span>
+              <span class="telephone">电话</span>
+              <span class="cellphone">手机号码</span>
+              <span class="action">操作</span>
+          </div>
+          <div class="address_body">
+            <span class="name">哈哈</span>
+            <span class="address">上海浦东新区川沙镇</span>
+            <span class="address_detail">散散三撒32号</span>
+            <span class="postcode">200000</span>
+            <span class="telephone">010-1111111-221</span>
+            <span class="cellphone">136*******1</span>
+            <span class="action">
+                <a class="edit" href="">编辑</a>
+                <a class="delete" href="">删除</a>
+            </span>
+          </div>
+
+          <div class="shadow hide"></div>
+          <div class="popup_address hide">
+	          <div class="header">
+              <span class='title'>新增常邮寄地址</span>
+              <span class='close'></span>
+            </div>
+            <div class="input_row">
+              <span class="text">收件人姓名</span>
+              <span class="input">
+                <input type="text">
+              </span>
+              <span class="hint"></span>
+            </div>
+            <div class="input_row">
+              <span class="text">所在区域</span>
+              <span class="input address_select">
+                <select name="" id="">
+                  <option value="">请选择省份</option>
+                </select>
+                <select name="" id="">
+                  <option value="">请选择市</option>
+                </select>
+                <select name="" id="">
+                  <option value="">请选择县/区</option>
+                </select>
+              </span>
+              <span class="hint"></span>
+            </div>
+            <div class="input_row">
+              <span class="text">街道地址</span>
+              <span class="input">
+                <input type="text" class="street_address">
+              </span>
+              <span class="hint"></span>
+            </div>
+            <div class="input_row">
+              <span class="text">邮政编码</span>
+              <span class="input">
+                  <input type="text">
+              </span>
+              <span class="hint"></span>
+            </div>
+            <div class="input_row">
+              <span class="text">电话号码</span>
+              <span class="input">
+                <span class="sub_input"><input type="text"></span>
+                <span>-</span>
+                <span class="sub_input"><input type="text"></span>
+                <span>-</span>
+                <span class="sub_input"><input type="text"></span>
+              </span>
+              <span class="hint">区号-电话号码-分机</span>
+            </div>
+            <div class="input_row">
+              <span class="text">手机号码</span>
+              <span class="input">
+                <input type="text">
+              </span>
+              <span class="hint"></span>
+            </div>
+
+
+            <div class="input_row">
+              <span class="text"></span>
+              <span class="input">
+                <span class="add_address_btn"></span>
+                <span class="cancel_add_address_btn"></span>
+              </span>
+              <span class="hint"></span>
+            </div>
+
+          </div>
+
+        </span>
+      </div>
+
+
+
+      <div class="root_footer"></div>
+    </div>
+    <div class="footer">
+      <div class="footer_box">
+        <div class="footer_container">
+
+          <div class="row first">
+            <span class="footer_item"><img src="images/bottomPic-1.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-2.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-3.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-4.jpg" alt=""></span>
+          </div>
+          <div class="row second">
+            <span class="footer_item">关于我们</span>
+            <span class="footer_item">免责声明</span>
+            <span class="footer_item">常见问题</span>
+            <span class="footer_item">联系我们</span>
+            <span class="footer_item">人才招聘</span>
+          </div>
+          <hr>
+          <div class="row third">
+            <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- build:js(div.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script type="text/javascript" src="scripts/listcity.js"></script>
+        <script type="text/javascript" src="scripts/buscity.js"></script>
+        <script type="text/javascript" src="scripts/calendar.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

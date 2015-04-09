@@ -1,0 +1,541 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>fangbian_com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="root">
+    <div class="header_container">
+      <div class="header">
+        <span class="login_signup">
+          <span class="greetings">您好，欢迎访问方便网!</span>
+          <span class="login"><a href="login.html">登录</a></span>
+          <span class="signup"><a href="signup.html">注册</a></span>
+        </span>
+        <span class="order_menu">
+          <span class="menu">
+            <span class="menu_title"><a href="user.html" style="text-decoration: none; color: #000;">我的订单</a></span>
+            <span class="arrow"></span>
+            <span class="submenu hide">
+              <div class="item">火车票订单</div>
+              <div class="item">汽车票订单</div>
+            </span>
+          </span>
+          <span class="mobile_portal">手机方便网</span>
+          <span class="arrow"></span>
+          <span class="service">客服服务</span>
+          <span class="arrow"></span>
+        </span>
+      </div>
+    </div>
+
+      <div class="top_banner">
+        <a href="index.html" class="logo"></a>
+        <a href="#" class="sublogo"></a>
+        <a href="#" class="app_link"></a>
+      </div>
+
+      <div class="nav_bar_container">
+        <div class="nav_bar train">
+          <span class="item"></span>
+          <span class="item"></span>
+          <span class="item"></span>
+          <span class="item"></span>
+          <span class="item"></span>
+          <span class="hotline"></span>
+        </div>
+      </div>
+
+      <div class="query_section">
+        <div class="query_container">
+          <div class="query_box">
+            <span class="query_menu">
+              <div class="inner_query">
+                <div class="menu_item train active"><span class="icon"></span><span class="text">火车票</span></div>
+                <div class="menu_item coach"><span class="icon"></span><span class="text">汽车票</span></div>
+                <div class="menu_item airplane"><span class="icon"></span><span class="text">机票</span></div>
+                <div class="menu_item app"><span class="icon"></span><span class="text">手机端</span></div>
+              </div>
+
+            </span>
+            <span class="query_input">
+
+              <input type="hidden" class="wangfan" />
+              <span id="fan_span" style="display:none;">
+                  <label>返回日期</label>
+                  <input id="fandate" style="color:black;" class="trainfanCalendar" type="text" value=""/>
+              </span>
+
+              <form id="Form1" class="query_form" role="form" runat="server">
+
+                  <!-- 火车票 -->
+                  <div class="train ori_dest on">
+                    <div class="row">
+                      <span class="input_label">出发站</span>
+                      <span class="input_span position_relative">
+                          <input id="train_from" name="train_from" onblur="hideCity();" onfocus="showCity('train_from');" type="text"  class="train_ori"/>
+                          <input id="train_from_code" name="train_from_code" type="hidden"/>
+                          <a id="changecitya" href="javascript:;" class="icon_change position_absolute"></a>
+                      </span>
+                      <span id="train_from_msg" class=" " style="padding-top: 18px;"></span>
+                    </div>
+                    <div class="row">
+                      <span class="input_label">到达站</span>
+                      <span class="input_span position_relative">
+                          <input id="train_to" name="train_to" onblur="hideCity();" onfocus="showCity('train_to');" type="text" class="train_dest"/>
+                          <input id="train_to_code" name="train_to_code" type="hidden"/>
+                      </span>
+                      <span id="train_to_msg" class=" " style="padding-top: 18px;"></span>
+                    </div>
+                  </div>
+
+
+                  <!-- 汽车票 -->
+                  <div class="coach ori_dest hide">
+                    <div class="row">
+                      <span class="input_label">出发地</span>
+                      <span class="input_span position_relative">
+                          <input type="text" id="from_city" name="from_city" value="请输入出发城市"  class="coach_ori" onblur="coach_hide_city();" onfocus="coach_ShowCity('from_city');" />
+                          <input id="from_city_code" name="from_city_code" type="hidden"  value="null"/>
+                          <a id="coach_change_city" href="javascript:;" class="icon_change position_absolute"></a>
+                      </span>
+                      <span id="" class=" " style="padding-top: 18px;"></span>
+                    </div>
+                    <div class="row">
+                      <span class="input_label">到达地</span>
+                      <span class="input_span position_relative">
+                          <input type="text" id="to_city" name="to_city" value="请输入到达城市" class="coach_dest" onblur="coach_hide_city();" onfocus="coach_Show_subCity('to_city');"/>
+                          <input name="to_city_code" type="hidden" id="to_city_code" value="null"/>
+                      </span>
+                      <span id="" class=" " style="padding-top: 18px;"></span>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row">
+                      <span class="input_label">出发日</span>
+                      <span class="input_span">
+                          <!-- <input id="wangdate" name='wangdate' type="text" class=" trainWangCalendar" readonly="readonly"/> -->
+                          <input id="wangdate" name='wangdate' type="text" class="trainWangCalendar" style="cursor:pointer;"/>
+                      </span>
+                      <span id="wangdate_msg" class=" " style="padding-top: 18px;"></span>
+                  </div>
+                  <div class="query_submit">
+                      <span id="btnsubmit" class="btn query_btn"></span>
+                      <a id="newwindowhelp" href="#" class="hide" target="_blank"></a>
+                  </div>
+
+              </form>
+
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hot_routines_section">
+        <div class="hot_header">
+          <span class="type">火车票 热门线路预订</span>
+          <span class="origins">
+            <span class="per_origin active"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+          </span>
+          <span class="more">更多</span>
+        </div>
+        <div class="hot_content">
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-1.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-2.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-3.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-4.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-5.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="hot_routines_section">
+        <div class="hot_header">
+          <span class="type">汽车票 热门线路预订</span>
+          <span class="origins">
+            <span class="per_origin active"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+            <span class="per_origin"><span>上海</span></span>
+          </span>
+          <span class="more">更多</span>
+        </div>
+        <div class="hot_content">
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-1.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-2.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-3.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-4.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+          <span class="img_col">
+            <div class="img"><img src="images/listPic-5.jpg" alt=""></div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+            <div class="details">
+              <span class="left">
+                <div class="dests">北京-上海</div>
+                <div class="dates">01-09</div>
+              </span>
+              <span class="right">
+                ￥700
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+
+
+      <div class="root_footer"></div>
+    </div>
+    <div class="footer">
+      <div class="footer_box">
+        <div class="footer_container">
+
+          <div class="row first">
+            <span class="footer_item"><img src="images/bottomPic-1.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-2.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-3.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-4.jpg" alt=""></span>
+          </div>
+          <div class="row second">
+            <span class="footer_item">关于我们</span>
+            <span class="footer_item">免责声明</span>
+            <span class="footer_item">常见问题</span>
+            <span class="footer_item">联系我们</span>
+            <span class="footer_item">人才招聘</span>
+          </div>
+          <hr>
+          <div class="row third">
+            <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
+        <script type="text/javascript" src="scripts/listcity.js"></script>
+        <script type="text/javascript" src="scripts/buscity.js"></script>
+        <script type="text/javascript" src="scripts/calendar.js"></script>
+        <script src="scripts/main.js"></script>
+
+        <script>
+            FBAPI.get_brief_code();
+            FBAPI.query_train_hots();
+
+        </script>
+        <!-- endbuild -->
+</body>
+</html>

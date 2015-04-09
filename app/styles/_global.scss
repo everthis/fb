@@ -1,0 +1,61 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+@include sticky-footer(309px, ".root", ".root_footer", ".footer");
+@include sticky-footer(120px, ".sm_root", ".sm_root_footer", ".sm_footer");
+html * {
+    font-family: $font-family;
+    font-size: $sm-font-size;
+    outline: none;
+}
+.clearfix {
+    @include clearfix();
+}
+.hide {
+    display: none !important;
+}
+.block_btn {
+	display: inline-block;
+	@include bxsd();
+	@include bdrs();
+}
+hr {
+  margin: 0;
+  color: $footer-hori-line-color;
+  border-bottom: none;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+input[type="button"] {
+  cursor: pointer;
+}
+.white_bg {
+  background-color: $white;
+}
+header {
+  background-color: $white;
+  box-shadow: 0 0 5px 0 #aaa;
+}
+.breadcrumb {
+  @extend .pre_signup;
+}
+.notice {
+  padding: 10px;
+  background: $dark_orange;
+  color: $white;
+}
+.grey {
+  color: $grey;
+}
+.orange {
+  color: $orange;
+}
+.twenty_four {
+  font-size: 24px;
+}

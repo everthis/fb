@@ -1,0 +1,125 @@
+.address_list {
+	width: 839px;
+	.address_header {
+		@extend %inline-block-fix;
+		background: $lists_header_bg;
+		> span {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+	}
+	.address_body {
+		@extend %inline-block-fix;
+		padding: 20px 0 18px 0;
+		border-bottom: 1px dashed $footer-hori-line-color;
+	}
+	.add_address {
+		background: $add_address_btn_bg;
+		color: $white;
+		display: inline-block;
+		height: 22px;
+		line-height: 22px;
+		margin-bottom: 10px;
+		padding: 0 20px;
+		border-radius: 5px;
+	}
+	.address_header {
+		@extend %inline-block-fix;
+	}
+	.address_body {
+		@extend %inline-block-fix;
+	}
+	.name {
+		width: 8em;
+		padding-left: 15px;
+	}
+	.address {
+		width: 12em;
+	}
+	.address_detail {
+		width: 12em;
+	}
+	.postcode {
+		width: 8em;
+	}
+	.telephone {
+		width: 12em;
+	}
+	.cellphone {
+		width: 8em;
+	}
+	.action {
+		// width: 8em;
+		.edit {
+			margin: 0 20px 0 0;
+		}
+	}
+}
+.popup_address{
+	padding: 0 12px 12px 12px;
+
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -167px 0 0 -350px;
+	width: 700px;
+	height: 334px;
+	border: 5px solid $popup_border;
+	border-radius: 5px;
+	background: white;
+
+	.header {
+		@extend %inline-block-fix;
+		width: 100%;
+		border-bottom: 1px solid $footer-hori-line-color;
+		  margin: 0 0 12px 0;
+		.title {
+			height: 47px;
+			font-size: 14px;
+			line-height: 47px;
+		}
+		.close {
+			background: url('../images/close_popup.png') center no-repeat;
+			width: 24px;
+			height: 24px;
+			float: right;
+			margin: 12px 0 0 0;
+		}
+	}
+	.address_select {
+		@include inline-block-fix(select);
+		select {
+			margin-right: 5px;
+		}
+	}
+	.add_address_btn {
+		background: url('../images/add_passenger_confirm.png') center no-repeat;
+		width: 100px;
+		height: 28px;
+		margin: 0 7px 0 0;
+	}
+	.cancel_add_address_btn {
+		background: url('../images/add_passenger_cancel.png') center no-repeat;
+		width: 60px;
+		height: 28px;
+	}
+	.input_row {
+		height: 36px;
+		.hint {
+			height: 35px;
+			line-height: 35px;
+			color: grey;
+			margin: 0 0 0 10px;
+		}
+		input.street_address {
+			width: 270px;
+		}
+	}
+	input,
+	select {
+		height: 26px;
+		border-width: 1px;
+		width: 130px;
+	}
+}

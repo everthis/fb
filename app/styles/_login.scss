@@ -1,0 +1,117 @@
+.login_section {
+	@extend .container;
+	@extend %inline-block-fix;
+	margin: 95px auto 0;
+	height: 434px;
+	.left {
+		width: 610px;
+		height: 385px;
+		background: url('../images/left_login_03.png') no-repeat;
+	}
+	.right {
+		width: 362px;
+	}
+	.login_container {
+		border: 1px solid $login_border;
+	}
+	.input_section {
+		padding: 45px 32px 32px 32px;
+	}
+	.user_name {
+		@extend %inline-block-fix;
+		border: 1px solid $login_border;
+		margin: 0 0 20px 0;
+		input {
+			width: 253px;
+			height: 100%;
+			border: none;
+			padding: 0 15px;
+		}
+		.text {
+			height: 38px;
+			width: 40px;
+			background: url('../images/user_03.png') center no-repeat;
+		}
+		.input {
+			width: 254px;
+			height: 38px;
+			text-align: right;
+			background: url('../images/login_slice_03.png') left center no-repeat;
+		}
+	}
+	.password {
+		@extend .user_name;
+		.text {
+			background: url('../images/password_07.png') center no-repeat;
+		}
+
+	}
+	.auto_login {
+		@extend %inline-block-fix;
+		.forget_pwd {
+			float: right;
+		}
+
+	}
+	.login_header {
+		@extend %inline-block-fix;
+		background: url('../images/login_shadow_03.png') no-repeat;
+		height: 55px;
+		&.reverse {
+			background: url('../images/sms_03.png') no-repeat;
+		}
+		.active {
+			border-bottom: 3px solid $green;
+		}
+		span {
+			height: 55px;
+			width: 50%;
+		}
+	}
+	.login_btn {
+		margin: 20px 0 0 0;
+		> input {
+		width: 298px;
+		height: 30px;
+		border: none;
+		background: url('../images/login_btn_07.png') no-repeat;
+		}
+	}
+	.hint {
+		background: $login_third_bg;
+		margin: 45px 0 0 0;
+		padding: 15px 15px 0 0;
+		* {
+			font-size: 14px;
+		}
+		p {
+			line-height: 25px;
+		}
+		.tencent {
+			margin: 10px 0 0 0;
+		}
+	}
+	.val_code_login {
+		.sms_val {
+			@extend %inline-block-fix;
+			margin: 0 0 20px 0;
+		}
+		.captcha_val {
+			@extend .sms_val;
+		}
+		.sms_box {
+			input {
+				width: 130px;
+				height: 38px;
+				border: 1px solid $login_border;
+				padding: 0 15px;
+			}
+		}
+		.sms_btn_box {
+			@extend .sms_box;
+		}
+		.captcha_box {
+			@extend .sms_box;
+		}
+	}
+}

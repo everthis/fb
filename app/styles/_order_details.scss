@@ -1,0 +1,268 @@
+.order_details {
+	width: 840px;
+	background: $order_details_bg;
+	h4 {
+		color: $order_title;
+	}
+	.summary {
+		@extend %inline-block-fix;
+		span {
+			height: 30px;
+			line-height: 30px;
+		}
+	}
+	> div[class$="_info"] {
+		margin: 0 0 1em 0;
+		padding: 5px;
+		border-top: 1px solid $hint_border;
+
+		> h4 {
+			height: 50px;
+			line-height: 50px;
+			font-size: 16px;
+			& + div[class$="_header"] {
+				height: 26px;
+				line-height: 26px;
+				background: $header_color;
+			}
+		}
+	}
+	.journey_info {
+		// @extend %border;
+		border-top: none !important;
+		.journey_header {
+			@extend %inline-block-fix;
+		}
+		.per_order {
+			@extend %inline-block-fix;
+			height: 70px;
+		}
+		.order_num {
+			width: 170px;
+		}
+		.per_order {
+			.order_num {
+				height: 70px;
+				line-height: 70px;
+			}
+			.vehicle_num {
+				height: 70px;
+				line-height: 70px;
+			}
+			.ends {
+				padding: 15px 0 0 0;
+			}
+			.time {
+				padding: 15px 0 0 0;
+			}
+		}
+		.vehicle_num {
+			width: 160px;
+		}
+		.ends {
+			width: 210px;
+		}
+		.time {
+			// width: 10em;
+		}
+		.origin {
+			padding: 0 0 0 20px;
+			height: 20px;
+			line-height: 20px;
+			background: url('../images/chu.jpg') left center no-repeat;
+		}
+		.departure {
+			@extend .origin;
+			background: url('../images/dao.png') left center no-repeat;
+		}
+		.start {
+			height: 20px;
+			line-height: 20px;
+		}
+		.end {
+			@extend .start;
+		}
+	}
+	.pay_info {
+		// @extend %border;
+		.price {
+			color: #ff0000;
+		}
+		> div > span {
+			line-height: 20px;
+			height: 20px;
+		}
+	}
+	.order_passenger_info {
+		// @extend %border;
+		.passenger_header {
+			@extend %inline-block-fix;
+		}
+		.per_passenger {
+			@extend %inline-block-fix;
+			span {
+				height: 50px;
+				line-height: 50px;
+			}
+		}
+		.name {
+			width: 80px;
+		}
+		.passenger_type {
+			width: 75px;
+		}
+		.credential_type {
+			width: 85px;
+		}
+		.credential_num {
+			width: 135px;
+		}
+		.seat_num {
+			width: 100px;
+		}
+		.insurance {
+			width: 90px;
+		}
+		.insurance_num {
+			width: 90px;
+		}
+		.action {
+			// width: 8em;
+		}
+		.refund_btn {
+			background: url('../images/refund.png') no-repeat;
+			border: none;
+			width: 60px;
+			height: 28px;
+			margin-right: 5px;
+			  margin-top: 10px;
+		}
+		.change_btn {
+			@extend .refund_btn;
+			background: url('../images/change.png') no-repeat;
+		}
+	}
+	.order_contact_info {
+		// @extend %border;
+		div span {
+			// margin-right: 20px;
+		}
+		.label {
+			margin-left: 20px;
+		}
+	}
+	.reimburse_info {
+		// @extend %border;
+		.reimburse_header {
+			@extend %inline-block-fix;
+
+		}
+		.reimburse_body {
+			@extend %inline-block-fix;
+
+		}
+		.name {
+			width: 125px;
+		}
+		.cellphone {
+			width: 195px;
+		}
+		.address {
+			width: 355px;
+		}
+		.post_code {
+			// width: 10em;
+		}
+		.reimburse_body {
+			span {
+				height: 60px;
+				line-height: 60px;
+			}
+		}
+	}
+	.back_to_orders {
+		background: url('../images/train_order_detail_10.png') no-repeat;
+		width: 130px;
+		height: 30px;
+		border: none;
+		display: block;
+	    margin: 0 auto;
+	}
+
+}
+.shadow {
+	position: fixed;
+	content: ' ';
+	width: 100%;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .4);
+}
+.popup_ticket_refund {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -105px 0 0 -250px;
+	width: 495px;
+	height: 210px;
+	border: 5px solid $popup_border;
+	border-radius: 5px;
+	background: white;
+
+	.header {
+		@extend %inline-block-fix;
+		width: 100%;
+		// border-bottom: 1px solid $footer-hori-line-color;
+		  margin: 0 0 0 0;
+		.title {
+			height: 47px;
+			font-size: 14px;
+			line-height: 47px;
+		}
+		.close {
+			background: url('../images/close_popup.png') center no-repeat;
+			width: 24px;
+			height: 24px;
+			float: right;
+			margin: 12px 10px 0 0;
+		}
+	}
+	.refund_info {
+		font-size: 16px;
+		margin: 0 0 25px 0;
+		.ticket_info {
+			font-size: 16px;
+			color: $red_text;
+
+		}
+	}
+	.hint {
+		padding: 0 35px;
+		p {
+			line-height: 22px;
+			padding: 10px 0 0 0;
+			color: grey;
+		}
+	}
+	.content {
+		padding: 0 35px 20px 35px;
+		@extend %inline-block-fix;
+		border-bottom: 1px solid $footer-hori-line-color;
+	}
+	.confirm_refund {
+		background: url('../images/confirm_refund.png') no-repeat;
+		width: 100px;
+		height: 28px;
+		border: none;
+		margin: 0 7px 0 0;
+	}
+	.cancel_refund {
+		background: url('../images/cancel_refund.png') no-repeat;
+		width: 60px;
+		height: 28px;
+		border: none;
+	}
+}
