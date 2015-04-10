@@ -1,0 +1,21 @@
+<% for(var i=0; i<data.length; i++) { %>
+<div class="per_passenger">
+  <span class="name"><%= data[i].passenger_name %></span>
+  <span class="credential_type"><%= data[i].card_type %></span>
+  <span class="credential_num"><%= data[i].passenger_card_no %></span>
+  <% if(data[i].gender === 1) { %>
+    <span class="gender">男</span>
+  <% } else if(data[i].gender === 2) { %>
+    <span class="gender">女</span>
+  <% } else { %>
+    <span class="gender"><%= data[i].gender %></span>
+  <% } %>
+  <span class="cellphone"><%= data[i].mobile_no %></span>
+  <span class="email"></span>
+  <span class="type"><%= data[i].passenger_type %></span>
+  <span class="action">
+    <a class="edit" href="">编辑</a>
+    <a class="delete" href="">删除</a>
+  </span>
+</div>
+<% } %>

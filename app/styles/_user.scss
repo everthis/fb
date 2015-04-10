@@ -112,10 +112,12 @@
 		> span > div {
 			margin: 0 0 10px 0;
 			&:first-child {
-				height: 12px;
+				height: 13px;
 				line-height: 12px;
-
 			}
+		}
+		> span.number > div {
+			@extend .ellipsis;
 		}
 		.action {
 			margin-top: -5px;

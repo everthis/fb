@@ -98,7 +98,10 @@
               <span class="type">乘客类型</span>
               <span class="action">操作</span>
           </div>
-          <div class="passenger_body">
+          <div id="passenger_body">
+
+          </div>
+<!--           <div class="per_passenger">
             <span class="name">撒是你</span>
             <span class="credential_type">深度吧</span>
             <span class="credential_num">1238126*****164361</span>
@@ -110,7 +113,7 @@
               <a class="edit" href="">编辑</a>
               <a class="delete" href="">删除</a>
             </span>
-          </div>
+          </div> -->
 
           <div class="shadow hide"></div>
           <div class="popup_passenger hide">
@@ -235,10 +238,14 @@
 
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script type="text/javascript" src="scripts/listcity.js"></script>
-        <script type="text/javascript" src="scripts/buscity.js"></script>
-        <script type="text/javascript" src="scripts/calendar.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
         <script src="scripts/main.js"></script>
+        <script>
+            FBAPI.get_contacts("2");
+        </script>
         <!-- endbuild -->
 </body>
 </html>

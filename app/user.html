@@ -102,7 +102,8 @@
               <span class="status">订单状态</span>
               <span class="action">订单操作</span>
             </div>
-            <div class="per_list">
+            <div id="order_lists_body"></div>
+<!--             <div class="per_list">
               <span class="number">
                 <div>tggggggg1111111111111</div>
                 <div><a href="order_details.html">订单详情</a></div>
@@ -125,7 +126,7 @@
                 <div class="wait"><input type="button" class="wait_to_pay_btn" value=""></div>
                 <div class="remaining">剩余时间：00:25:00</div>
               </span>
-            </div>
+            </div> -->
           </div>
 
           <div class="pagenation_section">
@@ -194,10 +195,14 @@
 
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script type="text/javascript" src="scripts/listcity.js"></script>
-        <script type="text/javascript" src="scripts/buscity.js"></script>
-        <script type="text/javascript" src="scripts/calendar.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
         <script src="scripts/main.js"></script>
+        <script>
+          FBAPI.get_orders("9");
+        </script>
         <!-- endbuild -->
 </body>
 </html>

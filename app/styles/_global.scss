@@ -59,3 +59,8 @@ header {
 .twenty_four {
   font-size: 24px;
 }
+.ellipsis {
+    overflow: hidden;        /* 1 */
+    white-space: nowrap;     /* 2 */
+    text-overflow: ellipsis; /* 3 */
+}

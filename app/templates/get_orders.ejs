@@ -1,0 +1,26 @@
+<% for(var i=0; i<data.length; i++) { %>
+<div class="per_list">
+  <span class="number">
+    <div><%= data[i].order_id %></div>
+    <div><a href="order_details.html">订单详情</a></div>
+  </span>
+  <span class="time">
+    <div><%= data[i].order_time.split(" ")[0] %></div>
+    <div><%= data[i].order_time.split(" ")[1] %></div>
+  </span>
+  <span class="info">
+    <div><%= data[i].order_ticket.train_number %></div>
+    <div><%= data[i].order_ticket.from_station_name %>→<%= data[i].order_ticket.to_station_name %></div>
+  </span>
+  <span class="departure">
+    <div><%= data[i].order_ticket.start_time.split(" ")[0] %></div>
+    <div><%= data[i].order_ticket.start_time.split(" ")[1] %></div>
+  </span>
+  <span class="price">￥ <%= data[i].order_ticket.ticket_price %></span>
+  <span class="status"><%= data[i].order_status_desc %></span>
+  <span class="action">
+    <div class="wait"><input type="button" class="wait_to_pay_btn" value=""></div>
+    <div class="remaining">剩余时间：00:25:00</div>
+  </span>
+</div>
+<% } %>

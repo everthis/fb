@@ -42,6 +42,11 @@ FBAPI.Ajax = function(callback) {
         }
     });
 };
+FBAPI.renderTemplate = function(id, data, template) {
+    document.getElementById(id).innerHTML = '';
+    document.getElementById(id).innerHTML = new EJS({url: './templates/' + template + '.ejs'}).render(data);
+};
+
 FBAPI.get_brief_code = function() {
     this.general_input("U0100", "", "Query", "GET", this.get_brief_code_complete);
 };
@@ -62,11 +67,10 @@ FBAPI.query_train_tickets = function(date, origin, destination, passenger_type) 
         "to_station": destination,
         "purpose_codes": passenger_type
     };
-    this.general_input("U0109", query_train_data, "Query", "POST", this.query_train_tickets_complete);
+    this.general_input("U0109", query_train_data, "Query", "POST", this.query_train_tickets_complete.bind(this));
 };
 FBAPI.query_train_tickets_complete = function(data) {
-    document.getElementById("trainList").innerHTML = '';
-    document.getElementById("trainList").innerHTML = new EJS({url: './templates/train_query.ejs'}).render(data);
+    this.renderTemplate("trainList", data, "train_query");
 };
 FBAPI.query_train_hots = function() {
     var query_train_data = {
@@ -89,21 +93,20 @@ FBAPI.query_specific_train = function(date, from_station, to_station, purpose_co
         "purpose_codes": purpose_codes,
         "train_code": train_code
     };
-    this.general_input("U0117", query_data, "Query", "POST", this.query_specific_train_complete);
+    this.general_input("U0117", query_data, "Query", "POST", this.query_specific_train_complete.bind(this));
 };
 FBAPI.query_specific_train_complete = function (data){
-    document.getElementById("specific_train").innerHTML = '';
-    document.getElementById("specific_train").innerHTML = new EJS({url: './templates/train_detail.ejs'}).render(data);
+    this.renderTemplate("specific_train", data, "train_detail");
 };
 FBAPI.get_contacts = function(user_id) {
     var query_data = {
         "user_id": user_id
     };
-    this.general_input("U0113", query_data, "Query", "POST", this.get_contacts_complete);
+    this.general_input("U0113", query_data, "Query", "POST", this.get_contacts_complete.bind(this));
 
 };
-FBAPI.get_contacts_complete = function() {
-
+FBAPI.get_contacts_complete = function(data) {
+    this.renderTemplate("passenger_body", data, "passengers");
 };
 FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code) {
     var query_data = {
@@ -152,10 +155,10 @@ FBAPI.get_orders = function(user_id) {
     var query_data = {
         "user_id": user_id
     };
-    this.general_input("U0107", query_data, "Query", "POST", this.get_orders_complete);
+    this.general_input("U0107", query_data, "Query", "POST", this.get_orders_complete.bind(this));
 };
-FBAPI.get_orders_complete = function() {
-
+FBAPI.get_orders_complete = function(data) {
+    this.renderTemplate("order_lists_body", data, "get_orders");
 };
 
 FBAPI.cellphone_val = function (phone, code_scope){
