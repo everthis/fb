@@ -1,0 +1,11 @@
+<span class="label">常用乘客：</span>
+<span class="pass_area">
+	<% for(var i=0; i<data.length; i++) { %>
+	<span class="per_pass">
+		<span class="checkbox">
+		    <input type="checkbox">
+		</span>
+		<span class="pass_name"><%= data[i].passenger_name %></span>
+	</span>
+	<% } %>
+</span>

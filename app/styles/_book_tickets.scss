@@ -92,7 +92,24 @@
     border: 1px solid $section_border_color;
     margin: 0 0 20px 0;
     .passenger_row {
+        @extend %inline-block-fix;
         margin: 0 0 10px 0;
+        padding: 0 0 0 60px;
+        position: relative;
+        > span:first-child {
+        }
+        .label {
+            position: absolute;
+            left: 0;
+            padding: 4px 0 0 0;
+        }
+        .pass_area {
+            overflow: hidden;
+        }
+        .per_pass {
+          display: inline-block;
+          width: 6em;
+        }
     }
     .info_body {
         padding: 15px 10px;
@@ -333,4 +350,14 @@
     display: inline-block;
     vertical-align: top;
     padding: 1em 0;
+}
+.popup_submit_order {
+    width: 400px;
+    height: 220px;
+    margin: -110px 0 0 -200px;
+    .close {
+        display: inline-block;
+        cursor: pointer;
+        width: 36px;
+    }
 }

@@ -20,7 +20,8 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="root">
-        <div class="header_container">
+        <div id="header"></div>
+<!--         <div class="header_container">
           <div class="header">
             <span class="login_signup">
               <span class="greetings">您好，欢迎访问方便网!</span>
@@ -59,7 +60,7 @@
             <span class="item"></span>
             <span class="hotline"></span>
           </div>
-        </div>
+        </div> -->
 
             <div id="divinfo" class="root_container">
                 <!-- 左侧订单填写区域 -->
@@ -108,14 +109,14 @@
                             <span class="sub_title">一个订单最多可代购5张票</span>
                         </div>
                         <div class="info_body">
-                            <div class="passenger_row">
-                                <span>常用乘客：</span>
+                            <div id="passenger_row" class="passenger_row">
+                                <!-- <span>常用乘客：</span>
                                 <span class="checkbox">
                                     <input type="checkbox">张三
                                 </span>
                                 <span class="checkbox">
                                     <input type="checkbox">张三
-                                </span>
+                                </span> -->
                             </div>
                             <div class="passenger_head">
                                 <span class="seat_type">席别</span>
@@ -250,7 +251,7 @@
                             订单总价: <span class="orange twenty_four"> ¥ 68.0</span>
                         </span>
                         <span class="">
-                            <input type="button" class="submit_ticket_btn">
+                            <input type="button" class="submit_ticket_btn pop_btn">
                         </span>
                     </div>
 
@@ -300,10 +301,24 @@
 
                 </div>
             </div>
+
+            <div class="shadow hide"></div>
+            <div class="popup_submit_order hide">
+              <div class="header">
+                <span class='title'></span>
+                <span class='close'>X</span>
+              </div>
+              <div class="content">
+                dsadsada
+              </div>
+
+            </div>
+
             <div class="root_footer"></div>
         </div>
-        <div class="footer">
-          <div class="footer_box">
+        <div id="footer" class="footer">
+
+<!--           <div class="footer_box">
             <div class="footer_container">
 
               <div class="row first">
@@ -324,7 +339,7 @@
                 <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
               </div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
@@ -340,13 +355,15 @@
         <script type="text/javascript" src="scripts/fbapi.js"></script>
 
         <script src="scripts/main.js"></script>
+        <script src="scripts/partial_loader.js"></script>
         <script>
 
             //Example how to use it:
             var index_query_params = tools.parseQueryString();
             // FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT");
             // FBAPI.query_specific_train("2015-04-09", "CSQ", "KFF", "ADULT", "T370");
-            FBAPI.query_specific_train(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT", index_query_params.train_code);
+            FBAPI.query_specific_train(index_query_params.date, index_query_params.origin_code, index_query_params.dest_code, "ADULT", index_query_params.train_code);
+            FBAPI.get_contacts("2", FBAPI.preserve_get_contacts_complete);
         </script>
         <!-- endbuild -->
     </body>

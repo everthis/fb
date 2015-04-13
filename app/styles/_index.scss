@@ -140,6 +140,9 @@
 		color: white;
 		font-weight: bold;
 		width: 125px;
+		&.active {
+			background: url("../images/nav_item_shadow.png") center no-repeat;
+		}
 	}
 	.hotline {
 		color: $yellow;

@@ -23,8 +23,8 @@
     <![endif]-->
 
     <div class="root">
-
-    <div class="header_container">
+    <div id="header"></div>
+<!--     <div class="header_container">
       <div class="header">
         <span class="login_signup">
           <span class="greetings">您好，欢迎访问方便网!</span>
@@ -63,7 +63,7 @@
         <span class="item"></span>
         <span class="hotline"></span>
       </div>
-    </div>
+    </div> -->
 
         <div class="root_container">
             <form id="CarFrom" action="">
@@ -185,10 +185,10 @@
             </div>
 
             <div class="result_section train_query_results">
-                <div class="title">
-                    <span class="ends">上海  →  北京南</span>
+                <div id="train_query_results_title" class="title">
+<!--                     <span class="ends">上海  →  北京南</span>
                     <span class="date">(01月08日)</span>
-                    <span class="result"><span>车票信息</span><span class="num">13</span><span>条</span></span>
+                    <span class="result"><span>车票信息</span><span class="num">13</span><span>条</span></span> -->
                 </div>
                 <div class="head">
                     <span class="number">车次</span>
@@ -283,8 +283,8 @@
 
         <div class="root_footer"></div>
     </div>
-    <div class="footer">
-      <div class="footer_box">
+    <div id="footer" class="footer">
+<!--       <div class="footer_box">
         <div class="footer_container">
 
           <div class="row first">
@@ -305,7 +305,7 @@
             <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
     </div>
@@ -368,15 +368,15 @@
     <script type="text/javascript" src="scripts/fbapi.js"></script>
 
     <script type="text/javascript" src="scripts/listcity.js"></script>
-    <script type="text/javascript" src="scripts/buscity.js"></script>
     <script type="text/javascript" src="scripts/calendar.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/partial_loader.js"></script>
     <script>
 
 
         //Example how to use it:
         var index_query_params = tools.parseQueryString();
-        FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT");
+        FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin_code, index_query_params.dest_code, "ADULT");
     </script>
     <!-- endbuild -->
 </body>

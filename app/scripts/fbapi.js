@@ -9,7 +9,7 @@ var FBAPI = {};
  * @param  {Function} callback    [description]
  * @return {[type]}               [description]
  */
-FBAPI.general_input = function(service_id, data, api_method, ajax_method, callback) {
+FBAPI.general_input = function(service_id, data, api_method, ajax_method, callb) {
     this.ci = "fbp0101abcd00001",
     this.ver = "1.0.0",
     this.ts = Date.now(),
@@ -28,15 +28,15 @@ FBAPI.general_input = function(service_id, data, api_method, ajax_method, callba
         "sign": this.md5_sign,
         "data": this.da
     };
-    this.Ajax(callback);
+    this.Ajax(callb);
 };
-FBAPI.Ajax = function(callback) {
+FBAPI.Ajax = function(callb) {
     $.ajax({
         url: "http://192.168.1.85/FangBianCRMInterface/m.ashx?action=" + this.api_method,
         method: this.ajax_method,
         dataType: "json",
         data: this.ajax_data,
-        success: callback,
+        success: callb,
         error: function (ajaxContext) {
             console.log(ajaxContext.responseText)
         }
@@ -51,6 +51,7 @@ FBAPI.get_brief_code = function() {
     this.general_input("U0100", "", "Query", "GET", this.get_brief_code_complete);
 };
 FBAPI.get_brief_code_complete = function(data) {
+    this.brief_codes = data.data || [];
     for(var per_item of data.data) {
         var per_arr_item = [];
         per_arr_item.push(per_item["station_name"]);
@@ -71,6 +72,24 @@ FBAPI.query_train_tickets = function(date, origin, destination, passenger_type) 
 };
 FBAPI.query_train_tickets_complete = function(data) {
     this.renderTemplate("trainList", data, "train_query");
+    this.renderTemplate("train_query_results_title", data, "train_query_title");
+};
+FBAPI.code_to_name = function(code) {
+    if (this.brief_codes && this.brief_codes.length > 0) {
+        this.code_to_name_complete(code);
+    } else {
+        this.general_input("U0100", "", "Query", "GET", this.code_to_name_complete(code));
+    };
+};
+FBAPI.code_to_name_complete = function(code) {
+    return function(data, textStatus, jqXHR) {
+           var data_arr = data? data.data: this.brief_codes;
+           for (var per_data of data_arr) {
+               if (per_data.brief_code === code) {
+                   return per_data.station_name;
+               };
+           }
+       };
 };
 FBAPI.query_train_hots = function() {
     var query_train_data = {
@@ -98,15 +117,18 @@ FBAPI.query_specific_train = function(date, from_station, to_station, purpose_co
 FBAPI.query_specific_train_complete = function (data){
     this.renderTemplate("specific_train", data, "train_detail");
 };
-FBAPI.get_contacts = function(user_id) {
+FBAPI.get_contacts = function(user_id, callback) {
     var query_data = {
         "user_id": user_id
     };
-    this.general_input("U0113", query_data, "Query", "POST", this.get_contacts_complete.bind(this));
+    this.general_input("U0113", query_data, "Query", "POST", callback.bind(this));
 
 };
 FBAPI.get_contacts_complete = function(data) {
     this.renderTemplate("passenger_body", data, "passengers");
+};
+FBAPI.preserve_get_contacts_complete = function(data) {
+    this.renderTemplate("passenger_row", data, "order_passengers");
 };
 FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code) {
     var query_data = {

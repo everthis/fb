@@ -1,10 +1,10 @@
-$(".order_menu .menu").on('mouseover', function(event) {
+$("body").on('mouseover', ".order_menu .menu", function(event) {
 	event.preventDefault();
 	/* Act on the event */
 	$(".order_menu .submenu").removeClass('hide');
 	$(this).addClass('white_bg');
 });
-$(".order_menu .menu").on('mouseleave', function(event) {
+$("body").on('mouseleave', ".order_menu .menu", function(event) {
 	event.preventDefault();
 	/* Act on the event */
 	$(".order_menu .submenu").addClass('hide');
@@ -77,12 +77,14 @@ $('input[value="取消"]').click(function(event) {
 
         $("#btnsubmit").click(function(event) {
           var $ori_dest = $('#Form1 > .on');
-          var _origin, _dest, _date, str;
+          var _origin_code, _dest_code, _origin_name, _dest_name, _date, str;
           if ($ori_dest.hasClass('train')) {
-            _origin = $("#train_from_code").val();
-            _dest = $("#train_to_code").val();
+            _origin_code = $("#train_from_code").val();
+            _origin_name = $("#train_from").val();
+            _dest_code = $("#train_to_code").val();
+            _dest_name = $("#train_to").val();
             _date = $("#wangdate").val();
-            str = "?origin=" + _origin + "&dest=" + _dest + "&date=" + _date;
+            str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + _date;
             window.location.href ="train_query.html" + str;
           } else if($ori_dest.hasClass('coach')) {
             window.location.href ="coach_query.html";
