@@ -14,8 +14,9 @@
 	<script type="text/javascript" src="scripts/fbapi.js"></script>
 	<!-- add contact -->
 	<script>
+	// use user_id = 6
 	// FBAPI.add_contact("9", "何杰", "1", "二代身份证", "510823198908107970", "1", "1");
-	// FBAPI.get_contacts("2", this.get_contacts_complete);
+	// FBAPI.get_contacts("6", FBAPI.get_contacts_complete);
 	//
 	// card_type: "二代身份证"
 	// card_type_code: "1"
@@ -41,11 +42,14 @@
 	//
 	// date..replace(/-/g,'')
 	//
-	// FBAPI.book_train_tickets("9", "K577", "CSQ", "CUW", "20150416", "14:36", "372.5", "2", [{"passenger_id": 86, "ticket_type": 1}])
+	// tools.getAllUsersID();
+	// tools.batchBookTickets("2015-04-25", "SHH", "NJH", "ADULT");
+	// FBAPI.book_train_tickets("6", "K526", "SHH", "NJH", "20150422", "04:23", "140.5", "2", [{"passenger_id": 4, "ticket_type": 1}])
 	// order_id: CSFBHC_20150409165251_10001_test
 	// FBAPI.get_order_status("CSFBHC_20150409165251_10001_test");
-	// FBAPI.get_orders("2");
-	FBAPI.code_to_name("GZG");
+	// FBAPI.get_order_detail("2", "CSFBHC_20150313194141_10001_test");
+	// FBAPI.get_orders("4");
+	// FBAPI.code_to_name("GZG");
 	</script>
 </body>
 </html>

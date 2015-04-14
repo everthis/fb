@@ -86,8 +86,8 @@
           </div>
 
         </span>
-        <span class="order_details">
-          <div class="summary">
+        <span id="order_details" class="order_details">
+<!--           <div class="summary">
             <span>订单号：FT54DB008421003D1761</span>
             <span>订单状态： 出票成功</span>
             <span>预订时间：2015-02-11 15:12:02</span>
@@ -184,7 +184,7 @@
             </div>
           </div>
 
-          <input class="back_to_orders" type="button" value="">
+          <input class="back_to_orders" type="button" value=""> -->
         </span>
       </div>
 
@@ -247,10 +247,16 @@
 
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script type="text/javascript" src="scripts/listcity.js"></script>
-        <script type="text/javascript" src="scripts/buscity.js"></script>
-        <script type="text/javascript" src="scripts/calendar.js"></script>
+                <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
         <script src="scripts/main.js"></script>
+        <script src="scripts/fbapi.js"></script>
+        <script>
+            var index_query_params = tools.parseQueryString();
+            FBAPI.get_order_detail("6", index_query_params.order_id);
+        </script>
         <!-- endbuild -->
 </body>
 </html>

@@ -43,8 +43,11 @@ FBAPI.Ajax = function(callb) {
     });
 };
 FBAPI.renderTemplate = function(id, data, template) {
-    document.getElementById(id).innerHTML = '';
-    document.getElementById(id).innerHTML = new EJS({url: './templates/' + template + '.ejs'}).render(data);
+    var _ele = document.getElementById(id);
+    if(_ele && data.data !== "[]") {
+        document.getElementById(id).innerHTML = '';
+        document.getElementById(id).innerHTML = new EJS({url: './templates/' + template + '.ejs'}).render(data);
+    };
 };
 
 FBAPI.get_brief_code = function() {
@@ -181,6 +184,17 @@ FBAPI.get_orders = function(user_id) {
 };
 FBAPI.get_orders_complete = function(data) {
     this.renderTemplate("order_lists_body", data, "get_orders");
+};
+FBAPI.get_order_detail = function(user_id, order_id) {
+    var query_data = {
+        "user_id": user_id,
+        "order_id": order_id
+    };
+    this.general_input("U0107", query_data, "Query", "POST", this.get_order_detail_complete.bind(this));
+
+};
+FBAPI.get_order_detail_complete = function(data) {
+    this.renderTemplate("order_details", data, "order_detail");
 };
 
 FBAPI.cellphone_val = function (phone, code_scope){
