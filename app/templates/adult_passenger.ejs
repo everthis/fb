@@ -1,0 +1,30 @@
+<div class="adult_body">
+    <span class="seat_type">
+        <span class="text">成人票</span>
+        <span class="select">
+            <select name="" id="">
+            <% for(var i=0; i<data.listdata.length; i++) { %>
+                <option value=""><%= data.listdata[i].seat_type %> ￥<%= data.listdata[i].ticket_price %></option>
+            <% } %>
+            </select>
+        </span>
+    </span>
+    <span class="name">
+        <input type="text"><i></i>
+    </span>
+    <span class="credential_type">
+        <select name="" id="">
+            <option value="">二代身份证</option>
+            <option value="">台湾通行证</option>
+            <option value="">港澳通行证</option>
+            <option value="">护照</option>
+        </select>
+    </span>
+    <span class="credential_num">
+        <input type="text"><i></i>
+    </span>
+    <span class="action">
+        <span class="add_child"><a href="javascript:;">添加儿童</a></span>
+        <span class="delete"></span>
+    </span>
+</div>

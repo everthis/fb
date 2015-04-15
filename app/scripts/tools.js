@@ -1,3 +1,4 @@
+"use strict";
 var tools = {};
 var _useful_user_id_hashTable = {},
 	_contain_specific_user_hashTable = {};
@@ -50,18 +51,54 @@ tools.batchBookTicketsCallback = function(data) {
 	for (var per_id in _useful_user_id_hashTable) {
 		var _first_contact = _useful_user_id_hashTable[per_id][0].contact_id;
 
-			// for (var i = data.data.length - 1; i >= 0; i--) {
-			//     var dt= data.data[i],
-			//         train_code = dt.train_code,
-			//         start_time = dt.start_time,
-			//         price, seat_type;
-		 //        for (var j = dt.listdata.length - 1; j >= 0; j--) {
-		 //            if (dt.listdata[j].remain_num !== "无" && dt.listdata[j].seat_type === "一等座") {
-		 //                price = dt.listdata[j].ticket_price;
-		 //                seat_type = "M";
-		 //                FBAPI.book_train_tickets(per_id, train_code, "SHH", "NJH", "20150425", start_time, price, "M", [{"passenger_id": _first_contact, "ticket_type": 1}])
-		 //            };
-		 //        };
-			// };
+		for (var i = data.data.length - 1; i >= 0; i--) {
+		    var dt= data.data[i],
+		        train_code = dt.train_code,
+		        start_time = dt.start_time,
+		        price, seat_type;
+	        for (var j = dt.listdata.length - 1; j >= 0; j--) {
+	            if (dt.listdata[j].remain_num !== "无" && dt.listdata[j].seat_type === "一等座") {
+	                price = dt.listdata[j].ticket_price;
+	                seat_type = "M";
+	                FBAPI.book_train_tickets(per_id, train_code, "SHH", "NJH", "20150425", start_time, price, "M", [{"passenger_id": _first_contact, "ticket_type": 1}])
+	            };
+	        };
+		};
 	};
 };
+
+tools.removeAddedPassenger = function(obj) {
+	var contact_id = obj.attr('contact_id');
+	$(".adult_body .name input[type='text']").val('');
+	$(".adult_body .credential_num input[type='text']").val('');
+	$(".adult_body").removeAttr('contact_id');
+
+
+};
+tools.addExtraAdult = function() {
+	var extraAdult = $("#adult_template .adult_body").clone();
+	$('#passenger_section').append(extraAdult);
+};
+tools.addExistingPassenger = function(obj) {
+	var contact_id = obj.attr('contact_id');
+	var name = obj.attr('passenger_name');
+	var number = obj.attr('passenger_card_no');
+
+	$(".adult_body").attr('contact_id', contact_id);
+	$(".adult_body .name input[type='text']").val(name);
+	$(".adult_body .credential_num input[type='text']").val(number);
+};
+
+$('body').on('click', '.per_pass input[type="checkbox"]', function(event) {
+	event.stopPropagation();
+	/* Act on the event */
+
+	// add passenger
+	if ($(this).is(':checked')) {
+		tools.addExtraAdult();
+		// tools.addExistingPassenger($(this));
+	// remove passenger
+	} else {
+		tools.removeAddedPassenger($(this));
+	};
+});

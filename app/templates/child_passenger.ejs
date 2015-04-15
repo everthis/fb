@@ -1,0 +1,33 @@
+<div class="child_body">
+    <span class="seat_type">
+        <span class="text">儿童票</span>
+        <span class="select">
+            <select name="" id="">
+            <% for(var i=0; i<data.listdata.length; i++) { %>
+                <option value=""><%= data.listdata[i].seat_type %> ￥<%= data.listdata[i].ticket_price %></option>
+            <% } %>
+            </select>
+        </span>
+    </span>
+    <span class="name">
+        <input type="text"><i></i>
+    </span>
+    <span class="birth_date">
+        <span class="text">出生日期</span>
+        <span class="input">
+            <input type="text"><i></i>
+        </span>
+    </span>
+    <span class="gender">
+        <span class="text">性别</span>
+        <span class="select">
+            <select name="" id="">
+                <option value="">男</option>
+                <option value="">女</option>
+            </select>
+        </span>
+    </span>
+    <span class="action">
+        <span class="delete"></span>
+    </span>
+</div>

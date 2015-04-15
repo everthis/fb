@@ -14,7 +14,8 @@ FBAPI.general_input = function(service_id, data, api_method, ajax_method, callb)
     this.ver = "1.0.0",
     this.ts = Date.now(),
     this.da = JSON.stringify(data),
-    this.md5_private_key = md5("4C6EA522-9057"),
+    // this.md5_private_key = md5("4C6EA522-9057"),
+    this.md5_private_key = md5("ES2s#kd&(js9}dks2"),
     this.si = service_id,
     this.md5_sign = md5(this.ci + this.si + this.ts + this.da + this.md5_private_key),
 
@@ -32,7 +33,7 @@ FBAPI.general_input = function(service_id, data, api_method, ajax_method, callb)
 };
 FBAPI.Ajax = function(callb) {
     $.ajax({
-        url: "http://192.168.1.85/FangBianCRMInterface/m.ashx?action=" + this.api_method,
+        url: "http://115.29.79.63:8080/FangBianCRMInterface/m.ashx?action=" + this.api_method,
         method: this.ajax_method,
         dataType: "json",
         data: this.ajax_data,
@@ -44,7 +45,7 @@ FBAPI.Ajax = function(callb) {
 };
 FBAPI.renderTemplate = function(id, data, template) {
     var _ele = document.getElementById(id);
-    if(_ele && data.data !== "[]") {
+    if(_ele && data.data !== "[]" && data.data !== "") {
         document.getElementById(id).innerHTML = '';
         document.getElementById(id).innerHTML = new EJS({url: './templates/' + template + '.ejs'}).render(data);
     };
@@ -119,6 +120,8 @@ FBAPI.query_specific_train = function(date, from_station, to_station, purpose_co
 };
 FBAPI.query_specific_train_complete = function (data){
     this.renderTemplate("specific_train", data, "train_detail");
+    this.renderTemplate("adult_template", data, "adult_passenger");
+    this.renderTemplate("child_template", data, "child_passenger");
 };
 FBAPI.get_contacts = function(user_id, callback) {
     var query_data = {

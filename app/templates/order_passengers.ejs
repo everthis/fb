@@ -3,7 +3,11 @@
 	<% for(var i=0; i<data.length; i++) { %>
 	<span class="per_pass">
 		<span class="checkbox">
-		    <input type="checkbox">
+		    <input type="checkbox"
+		    contact_id="<%= data[i].contact_id %>"
+		    passenger_name="<%= data[i].passenger_name %>"
+		    card_type_code="<%= data[i].card_type_code %>"
+		    passenger_card_no="<%= data[i].passenger_card_no %>">
 		</span>
 		<span class="pass_name"><%= data[i].passenger_name %></span>
 	</span>
