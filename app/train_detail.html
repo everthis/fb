@@ -126,7 +126,7 @@
                                 <span class="action"></span>
                             </div>
                             <div id="passenger_section"></div>
-                            <div id="passenger_template_section">
+                            <div id="passenger_template_section" class="hide">
                                 <div id="adult_template"></div>
                                 <div id="child_template"></div>
                             </div>
@@ -313,9 +313,7 @@
                 <span class='title'></span>
                 <span class='close'>X</span>
               </div>
-              <div class="content">
-                dsadsada
-              </div>
+              <div class="content"></div>
 
             </div>
 
@@ -365,6 +363,7 @@
 
             //Example how to use it:
             var index_query_params = tools.parseQueryString();
+            var query_specific_train_result;
             // FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT");
             // FBAPI.query_specific_train("2015-04-09", "CSQ", "KFF", "ADULT", "T370");
             FBAPI.query_specific_train(index_query_params.date, index_query_params.origin_code, index_query_params.dest_code, "ADULT", index_query_params.train_code);

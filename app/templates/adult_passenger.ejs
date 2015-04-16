@@ -4,7 +4,7 @@
         <span class="select">
             <select name="" id="">
             <% for(var i=0; i<data.listdata.length; i++) { %>
-                <option value=""><%= data.listdata[i].seat_type %> ￥<%= data.listdata[i].ticket_price %></option>
+                <option value="<%= tools.seatTypeCode(data.listdata[i].seat_type) %>" ticket_price="<%= data.listdata[i].ticket_price %>"><%= data.listdata[i].seat_type %> ￥<%= data.listdata[i].ticket_price %></option>
             <% } %>
             </select>
         </span>

@@ -119,8 +119,10 @@ FBAPI.query_specific_train = function(date, from_station, to_station, purpose_co
     this.general_input("U0117", query_data, "Query", "POST", this.query_specific_train_complete.bind(this));
 };
 FBAPI.query_specific_train_complete = function (data){
+    query_specific_train_result = data;
     this.renderTemplate("specific_train", data, "train_detail");
     this.renderTemplate("adult_template", data, "adult_passenger");
+    $("#adult_template .adult_body").clone().appendTo('#passenger_section');
     this.renderTemplate("child_template", data, "child_passenger");
 };
 FBAPI.get_contacts = function(user_id, callback) {
@@ -166,7 +168,7 @@ FBAPI.book_train_tickets = function(user_id, train_number, from_station_code, to
     this.general_input("U0203", query_data, "Order", "POST", this.book_train_tickets_complete);
 };
 FBAPI.book_train_tickets_complete = function(data){
-
+    $('.popup_submit_order .content').text(data.message);
 };
 
 FBAPI.get_order_status = function(order_id) {
