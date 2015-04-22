@@ -162,10 +162,10 @@
                 </div>
             </div>
             <div class="result_section">
-                <div class="title">
-                    <span class="ends">长沙->岳阳</span>
+                <div id="coach_query_results_title" class="title">
+<!--                     <span class="ends">长沙->岳阳</span>
                     <span class="date">(01月08日)</span>
-                    <span class="result"><span>车票信息</span><span class="num">13</span><span>条</span></span>
+                    <span class="result"><span>车票信息</span><span class="num">13</span><span>条</span></span> -->
                 </div>
                 <div class="head">
                     <span class="time">发车时间<em></em></span>
@@ -184,7 +184,10 @@
                     <span>操作</span>
                 </div>
                 <div id="cralist" class="lists_area">
-                    <div class="list" leave_time="16:47" leave_time_type="2" origin_station="上海长途客运南站" price="24.00">
+
+
+
+<!--                     <div class="list" leave_time="16:47" leave_time_type="2" origin_station="上海长途客运南站" price="24.0000">
                         <span id="s_origin_station" class="hide">上海长途客运南站</span>
                         <span class="time">16:47</span>
                         <span class="station">
@@ -197,49 +200,7 @@
                             <div class="number">24.00</div>
                         </span>
                         <span class="operation"><a href="coach_detail.html"><input type="button" class="query_book_btn" value="" onclick=""></a></span>
-                    </div>
-                    <div class="list" leave_time="16:47" leave_time_type="2" origin_station="上海长途客运南站" price="24.00">
-                        <span id="s_origin_station" class="hide">上海长途客运南站</span>
-                        <span class="time">16:47</span>
-                        <span class="station">
-                            <div class="origin"><i class="icon"></i>上海长途客运南站</div>
-                            <div class="departure"><i class="icon"></i>昆山</div>
-                        </span>
-                        <span class="type">0083380</span>
-                        <span class="price">
-                            <div class="currency_sign">¥</div>
-                            <div class="number">24.00</div>
-                        </span>
-                        <span class="operation"><a href="coach_detail.html"><input type="button" class="query_book_btn" value="" onclick=""></a></span>
-                    </div>
-                    <div class="list" leave_time="16:47" leave_time_type="2" origin_station="上海长途客运南站" price="24.00">
-                        <span id="s_origin_station" class="hide">上海长途客运南站</span>
-                        <span class="time">16:47</span>
-                        <span class="station">
-                            <div class="origin"><i class="icon"></i>上海长途客运南站</div>
-                            <div class="departure"><i class="icon"></i>昆山</div>
-                        </span>
-                        <span class="type">0083380</span>
-                        <span class="price">
-                            <div class="currency_sign">¥</div>
-                            <div class="number">24.00</div>
-                        </span>
-                        <span class="operation"><a href="coach_detail.html"><input type="button" class="query_book_btn" value="" onclick=""></a></span>
-                    </div>
-                    <div class="list" leave_time="16:47" leave_time_type="2" origin_station="上海长途客运南站" price="24.0000">
-                        <span id="s_origin_station" class="hide">上海长途客运南站</span>
-                        <span class="time">16:47</span>
-                        <span class="station">
-                            <div class="origin"><i class="icon"></i>上海长途客运南站</div>
-                            <div class="departure"><i class="icon"></i>昆山</div>
-                        </span>
-                        <span class="type">0083380</span>
-                        <span class="price">
-                            <div class="currency_sign">¥</div>
-                            <div class="number">24.00</div>
-                        </span>
-                        <span class="operation"><a href="coach_detail.html"><input type="button" class="query_book_btn" value="" onclick=""></a></span>
-                    </div>
+                    </div> -->
                 </div>
                 <div id="loading_gif" style="height:150px">
                     <img class="loading_gif" style="display: none" src="../Images/loadinggif.GIF" alt="" />
@@ -306,10 +267,20 @@
 
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
+    <script src="scripts/ejs.js"></script>
+    <script type="text/javascript" src="scripts/md55.js"></script>
+    <script type="text/javascript" src="scripts/tools.js"></script>
+    <script type="text/javascript" src="scripts/fbapi.js"></script>
+
     <script type="text/javascript" src="scripts/listcity.js"></script>
     <script type="text/javascript" src="scripts/buscity.js"></script>
     <script type="text/javascript" src="scripts/calendar.js"></script>
     <script src="scripts/main.js"></script>
+
+    <script>
+        var index_query_params = tools.parseQueryString();
+        FBAPI.coach.query_tickets(index_query_params.origin_name, index_query_params.origin_code, index_query_params.dest_name, index_query_params.dest_code, index_query_params.date, index_query_params.query_type);
+    </script>
     <!-- endbuild -->
 </body>
 

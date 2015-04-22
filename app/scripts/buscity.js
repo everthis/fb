@@ -60,16 +60,16 @@ function coach_ShowCity(ID)
 			listStr+='<dl>';
 			listStr+='<dt class="province_name">'+coach_hotData_[k].province+'</dt>';
 			listStr+='<span class="province_sub_division_area">';
-			var _hotData_cityList_length = coach_hotData_[k]['cityList'].length;
+			var _hotData_cityList_length = coach_hotData_[k]['city_list'].length;
 			for(j=0;j < _hotData_cityList_length;j++){
 
-				var sub_province_name = coach_hotData_[k]['cityList'][j].city.Region;
+				var sub_province_name = coach_hotData_[k]['city_list'][j].city_info.region_name;
 				listStr+='<span class="province_sub_division"><a class="province_sub_division_link" href="javascript:coach_GetValue_(\''+coach_InputID_+'\',\''+sub_province_name+'\');" title="' + sub_province_name + '">'+sub_province_name+'</a>';
-				var county_length = coach_hotData_[k]['cityList'][j]['countyList'].length;
+				var county_length = coach_hotData_[k]['city_list'][j].county_list.length;
 
 					listStr+='<span class="county_area">';
 					for (var m = 0; m < county_length; m++) {
-						var current_county_name = coach_hotData_[k]['cityList'][j]['countyList'][m].Region;
+						var current_county_name = coach_hotData_[k]['city_list'][j].county_list[m].region_name;
 						listStr+='<a class="county" href="javascript:coach_GetValue_(\''+coach_InputID_+'\',\''+current_county_name+'\');"  title="' + current_county_name + '">'+current_county_name+'</a>';
 					};
 					listStr+='</span>';
@@ -163,29 +163,31 @@ function validate_search_bus(){
 validate_search_bus();
 
 // 整理JSON数据
-var got_data;
+// var got_data;
 var prev_origin_input = "";
 $("body").on('focus', '#to_city', function (event) {
     event.preventDefault();
 
     var origin_name;
     origin_name = $("#from_city").val();
-    prev_origin_input = $("#from_city").val();
-    $.getJSON("./ashx/Fangbian_Windows_Service.ashx?optype=get_destination&destination=" + origin_name, function (data) {
-        if (data['list'].length !== 0) {
-            var data_length = data['list'].length;
-            var data_list = data['list'];
-            var parsed_data = [];
-            var regex_split = /\(|\)\||\||\)/;
-            for (var i = 0; i < data_length; i++) {
-                parsed_data.push(data_list[i].split("|"));
-            };
+    var origin_code = $("#from_city_code").val().toUpperCase();
+    // prev_origin_input = $("#from_city").val();
+    FBAPI.coach.query_specific_destinations(origin_code, origin_name);
+    // $.getJSON("./ashx/Fangbian_Windows_Service.ashx?optype=get_destination&destination=" + origin_name, function (data) {
+    //     if (data['list'].length !== 0) {
+    //         var data_length = data['list'].length;
+    //         var data_list = data['list'];
+    //         var parsed_data = [];
+    //         var regex_split = /\(|\)\||\||\)/;
+    //         for (var i = 0; i < data_length; i++) {
+    //             parsed_data.push(data_list[i].split("|"));
+    //         };
 
-            got_data = JSON.stringify(parsed_data);
-            coach_ListData_ = parsed_data;
-            coach_Show_subCity('to_city');
-        };
-    });
+    //         got_data = JSON.stringify(parsed_data);
+    //         coach_ListData_ = parsed_data;
+    //         coach_Show_subCity('to_city');
+    //     };
+    // });
 });
 
 
@@ -196,24 +198,24 @@ $("body").on('focus', '#from_city', function(event) {
 		var province_length = coach_from_list.length;
 		for (var i = 0; i < province_length; i++) {
 
-			var city_list_length = coach_from_list[i]['cityList'].length;
-			var $city_list = coach_from_list[i]['cityList'];
+			var city_list_length = coach_from_list[i]['city_list'].length;
+			var $city_list = coach_from_list[i]['city_list'];
 
 			for (var j = 0; j < city_list_length; j++) {
 				var city_node =[];
-				var node_region = $city_list[j].city.Region;
-				var node_region_code = $city_list[j].city.Region_Code;
+				var node_region = $city_list[j].city_info.region_name;
+				var node_region_code = $city_list[j].city_info.region_code;
 				city_node[0] = node_region;
 				city_node[1] = node_region_code.toLowerCase();
 				coach_from_list_array.push(city_node);
 
-				var $county_list = $city_list[j]['countyList'];
+				var $county_list = $city_list[j]['county_list'];
 				var county_list_length = $county_list.length;
 				if (county_list_length !== 0) {
 					for (var k = 0; k < county_list_length; k++) {
 						var county_node = [];
-						var county_node_region = $county_list[k].Region;
-						var county_node_region_code = $county_list[k].Region_Code;
+						var county_node_region = $county_list[k].region_name;
+						var county_node_region_code = $county_list[k].region_code;
 						county_node[0] = county_node_region;
 						county_node[1] = county_node_region_code.toLowerCase();
 						coach_from_list_array.push(county_node);
@@ -241,7 +243,6 @@ function coach_ListMove_(ID) {
         coach_ListSelectID_ = coach_ListSelectID_ + ID;
         document.getElementById("coach_ListID" + coach_ListSelectID_ + "_").style.backgroundColor = "#C5E7F6";
     }
-    console.log("ok");
 }
 
 function coach_UpdateList_() {

@@ -14,7 +14,7 @@
 	<script type="text/javascript" src="scripts/fbapi.js"></script>
 	<!-- add contact -->
 	<script>
-	// use user_id = 6
+	// user_id = 6
 	// FBAPI.add_contact("9", "何杰", "1", "二代身份证", "510823198908107970", "1", "1");
 	// FBAPI.get_contacts("6", FBAPI.get_contacts_complete);
 	//
@@ -50,6 +50,10 @@
 	// FBAPI.get_order_detail("2", "CSFBHC_20150313194141_10001_test");
 	// FBAPI.get_orders("4");
 	// FBAPI.code_to_name("GZG");
+	// FBAPI.coach.query_tickets("成都", "广元", "GY", "2015-04-22", 1, "CD");
+	// FBAPI.coach.query_specific_destinations("CD", "成都");
+	FBAPI.coach.book_tickets("641", "成都", "十陵车站", "广安", "广安", "2015-04-24", "18:00:00", "113.00", "1", "1CE57299-7DD6-45DF-A66C-939F4ACBC7CC", [{"contact_id": "87"}], "9", "9")
+	// order_id: fb20150421100027
 	</script>
 </body>
 </html>

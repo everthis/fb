@@ -236,3 +236,175 @@ FBAPI.login_complete = function (data){
 };
 
 
+
+/**
+ * coach API
+ */
+
+
+
+FBAPI.coach = {};
+
+FBAPI.coach.general_input = function(service_id, data, api_method, ajax_method, callb) {
+    this.ci = "fbp0101abcd00001",
+    this.ver = "1.0.0",
+    this.ts = Date.now(),
+    this.da = JSON.stringify(data),
+    // this.md5_private_key = md5("4C6EA522-9057"),
+    this.md5_private_key = md5("ES2s#kd&(js9}dks2"),
+    this.si = service_id,
+    this.md5_sign = md5(this.ci + this.si + this.ts + this.da + this.md5_private_key),
+
+    this.api_method = api_method,
+    this.ajax_method = ajax_method,
+    this.ajax_data = {
+        "merchant_code": this.ci,
+        "service_id": this.si,
+        "timestamp": this.ts,
+        "version": this.ver,
+        "sign": this.md5_sign,
+        "data": this.da
+    };
+    this.Ajax(callb);
+};
+FBAPI.coach.Ajax = function(callb) {
+    $.ajax({
+        url: "http://115.29.79.63:8080/BusTicketInterface/WebService/BusTicket.ashx?action=" + this.api_method,
+        method: this.ajax_method,
+        dataType: "json",
+        data: this.ajax_data,
+        success: callb,
+        error: function (ajaxContext) {
+            console.log(ajaxContext.responseText)
+        }
+    });
+};
+
+FBAPI.coach.query_origins = function(type) {
+    var query_data = {
+        "area_code": type
+    };
+    this.general_input("U0101", query_data, "Query", "GET", this.query_origins_complete);
+
+};
+
+
+FBAPI.coach.query_origins_complete = function(data) {
+    coach_from_list = data.data;
+    coach_hotData_ = data.data;
+    coach_ListFromData_ = data.data;
+    coach_ListToData_ = data.data;
+    // this.brief_codes = data.data || [];
+    // for(var per_item of data.data) {
+    //     var per_arr_item = [];
+    //     per_arr_item.push(per_item["station_name"]);
+    //     per_arr_item.push(per_item["brief_code"]);
+    //     per_arr_item.push(per_item["full_spell"]);
+    //     per_arr_item.push(per_item["first_letter"]);
+    //     _ListData_.push(per_arr_item);
+    // }
+};
+FBAPI.coach.query_specific_destinations = function(starting_code, starting_name) {
+    var query_data = {
+        "starting_code": starting_code,
+        "starting_name": starting_name
+    };
+    this.general_input("U0102", query_data, "Query", "POST", this.query_specific_destinations_complete);
+
+};
+FBAPI.coach.query_specific_destinations_complete = function(data) {
+    var data = data.data;
+    if (data['city_list'].length !== 0) {
+        var data_length = data['city_list'].length;
+        var data_list = data['city_list'];
+        var parsed_data = [];
+        var regex_split = /\(|\)\||\||\)/;
+        for (var i = 0; i < data_length; i++) {
+            var per_li = [];
+            per_li[0] = data_list[i].county_name;
+            per_li[1] = data_list[i].full_spell;
+            parsed_data.push(per_li);
+        };
+
+        var got_data = JSON.stringify(parsed_data);
+        coach_ListData_ = parsed_data;
+        coach_Show_subCity('to_city');
+    };
+};
+FBAPI.coach.get_orders = function(user_id) {
+    var query_data = {
+        "user_id": user_id
+    };
+    this.general_input("U0105", query_data, "Query", "POST", this.get_orders_complete);
+};
+FBAPI.coach.get_orders_complete = function(data) {};
+
+FBAPI.coach.query_tickets = function(origin_name, origin_code, destination_name, destination_code, date, query_type) {
+    var query_data = {
+        "departure_land": origin_name,
+        "destination_land": destination_name,
+        "departure_land_code": destination_code,
+        "departure_land_date": date,
+        "query_type": query_type,
+        "destination_land_code": origin_code
+    };
+    this.general_input("U0103", query_data, "Query", "POST", this.query_tickets_complete);
+
+};
+FBAPI.coach.query_tickets_complete = function(data) {
+    FBAPI.renderTemplate("cralist", data, "coach_query");
+    FBAPI.renderTemplate("coach_query_results_title", data, "train_query_title");
+};
+
+FBAPI.coach.book_tickets = function(train_number, departure_land, starting_station, destination_land, destination_station, riding_date, depart_time, the_ticket_price, operation_type, site_code, extend_data1, extend_data2, riding_user_list, collect_user_id, user_id) {
+    var query_data = {
+        "train_number": train_number,
+        "departure_land": departure_land,
+        "starting_station": starting_station,
+        "destination_land": destination_land,
+        "destination_station": destination_station,
+        "riding_date": riding_date,
+        "depart_time": depart_time,
+        "the_ticket_price": the_ticket_price,
+        "operation_type": operation_type,
+        "site_code": site_code,
+        "extend_data1": extend_data1,
+        "extend_data2": extend_data2,
+        "riding_user_list": riding_user_list,
+        "collect_user_id": collect_user_id,
+        "user_id": user_id
+    };
+    this.general_input("U0203", query_data, "Order", "POST", this.book_tickets_complete);
+};
+
+FBAPI.coach.book_tickets_complete = function(data) {
+    $('.popup_submit_order .content').text(data.message);
+    $('.popup_submit_order .content').append("<strong>order_id: " + data.data.order_id + "</strong>");
+};
+FBAPI.coach.query_specific = function() {
+    var index_query_params = tools.parseQueryString();
+    var data = {};
+        data.data = {
+        "depart_date": index_query_params.depart_date,
+        "depart_date_time": index_query_params.depart_date_time,
+        "depart_time": index_query_params.depart_time,
+        "departure_land": index_query_params.departure_land,
+        "destination_land": index_query_params.destination_land,
+        "destination_station": index_query_params.destination_station,
+        "extend_data1": index_query_params.extend_data1,
+        "extend_data2": index_query_params.extend_data2,
+        "is_bookable": index_query_params.is_bookable,
+        "motorcycle_type": index_query_params.motorcycle_type,
+        "operation_type": index_query_params.operation_type,
+        "site_code": index_query_params.site_code,
+        "starting_station": index_query_params.starting_station,
+        "ticket_price": index_query_params.ticket_price,
+        "train_number": index_query_params.train_number
+    };
+    FBAPI.renderTemplate("specific_coach", data, "coach_detail");
+
+    FBAPI.renderTemplate("adult_template", data, "coach_adult_passenger");
+    $("#adult_template .adult_body").clone().appendTo('#passenger_section');
+    FBAPI.renderTemplate("child_template", data, "coach_child_passenger");
+};
+

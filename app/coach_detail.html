@@ -71,8 +71,9 @@
                             <span class="sub_title">数据仅作参考，请以实际出票情况为准</span>
                             <span class="back_to_modify">修改车次</span>
                         </div>
-                        <div class="info_body">
-                            <div class="coach">
+                        <div id="specific_coach" class="info_body">
+
+<!--                             <div class="coach">
                                 <span class="date">2015-02-12（周四）</span>
                                 <span class="coach_num">K75 次</span>
                                 <span class="ends">上海南站（04:57开）→ 杭州东站（06:55到）</span>
@@ -98,7 +99,7 @@
                                     <span class="price">￥ 200.00</span>
                                     <span class="remaing">有票</span>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -108,16 +109,29 @@
                             <span class="sub_title">一个订单最多可代购5张票</span>
                         </div>
                         <div class="info_body">
-                            <div class="passenger_row">
-                                <span>常用乘客：</span>
+                            <div id="passenger_row" class="passenger_row">
+<!--                                 <span>常用乘客：</span>
                                 <span class="checkbox">
                                     <input type="checkbox">张三
                                 </span>
                                 <span class="checkbox">
                                     <input type="checkbox">张三
-                                </span>
+                                </span> -->
                             </div>
                             <div class="passenger_head">
+                                <span class="seat_type">席别</span>
+                                <span class="name">姓名</span>
+                                <span class="credential_type">证件类型</span>
+                                <span class="credential_num">证件号码</span>
+                                <span class="action"></span>
+                            </div>
+                            <div id="passenger_section"></div>
+                            <div id="passenger_template_section" class="hide">
+                                <div id="adult_template"></div>
+                                <div id="child_template"></div>
+                            </div>
+
+<!--                             <div class="passenger_head">
                                 <span class="seat_type">席别</span>
                                 <span class="name">姓名</span>
                                 <span class="credential_type">证件类型</span>
@@ -148,9 +162,9 @@
                                     <span class="add_child"><a href="">添加儿童</a></span>
                                     <span class="delete"></span>
                                 </span>
-                            </div>
+                            </div> -->
 
-                            <div class="child_body">
+<!--                             <div class="child_body">
                                 <span class="seat_type">
                                     <span class="text">儿童票</span>
                                     <span class="select">
@@ -179,7 +193,7 @@
                                 <span class="action">
                                     <span class="delete"></span>
                                 </span>
-                            </div>
+                            </div> -->
 
                             <div class="add_passenger">
                                 <span class="btn">
@@ -250,7 +264,7 @@
                             订单总价: <span class="orange twenty_four"> ¥ 68.0</span>
                         </span>
                         <span class="">
-                            <input type="button" class="submit_ticket_btn">
+                            <input type="button" class="coach submit_ticket_btn pop_btn">
                         </span>
                     </div>
 
@@ -300,6 +314,18 @@
 
                 </div>
             </div>
+
+
+            <div class="shadow hide"></div>
+            <div class="popup_submit_order hide">
+              <div class="header">
+                <span class='title'></span>
+                <span class='close'>X</span>
+              </div>
+              <div class="content"></div>
+
+            </div>
+
             <div class="root_footer"></div>
         </div>
         <div class="footer">
@@ -334,10 +360,20 @@
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script type="text/javascript" src="scripts/listcity.js"></script>
-        <script type="text/javascript" src="scripts/buscity.js"></script>
-        <script type="text/javascript" src="scripts/calendar.js"></script>
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
+
         <script src="scripts/main.js"></script>
+
+        <script>
+        var index_query_params = tools.parseQueryString();
+            FBAPI.coach.query_specific();
+        var query_specific_train_result;
+
+        FBAPI.get_contacts("2", FBAPI.preserve_get_contacts_complete);
+        </script>
         <!-- endbuild -->
     </body>
 </html>

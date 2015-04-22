@@ -525,19 +525,19 @@
 
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script type="text/javascript" src="scripts/md5.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
         <script type="text/javascript" src="scripts/fbapi.js"></script>
         <script type="text/javascript" src="scripts/listcity.js"></script>
-        <script type="text/javascript" src="scripts/buscity.js"></script>
-        <script type="text/javascript" src="scripts/calendar.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/partial_loader.js"></script>
 
         <script>
             FBAPI.get_brief_code();
             FBAPI.query_train_hots();
-
+            FBAPI.coach.query_origins("all");
         </script>
+        <script type="text/javascript" src="scripts/buscity.js"></script>
+        <script type="text/javascript" src="scripts/calendar.js"></script>
         <!-- endbuild -->
 </body>
 </html>

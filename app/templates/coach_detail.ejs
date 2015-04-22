@@ -1,0 +1,10 @@
+<div class="coach">
+    <span class="date"><%= index_query_params.date %>（周四）</span>
+    <span class="coach_num"><%= data.train_number %> 次</span>
+    <span class="ends"><%= decodeURIComponent(data.starting_station) %>（<%= data.depart_time %>开）→ <%= decodeURIComponent(data.destination_station) %></span>
+</div>
+<div class="type">
+    <span class="per_type">
+        <span class="price">￥ <%= data.ticket_price %></span>
+    </span>
+</div>

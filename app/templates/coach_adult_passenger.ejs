@@ -3,9 +3,7 @@
         <span class="text">成人票</span>
         <span class="select">
             <select name="" id="">
-            <% for(var i=0; i<data.listdata.length; i++) { %>
-                <option value="<%= tools.seatTypeCode(tools.seatCodeProcess(data.listdata[i].seat_type)) %>" ticket_price="<%= data.listdata[i].ticket_price %>"><%= data.listdata[i].seat_type %> ￥<%= data.listdata[i].ticket_price %></option>
-            <% } %>
+                <option value="" ticket_price="<%= data.ticket_price %>">成人票</option>
             </select>
         </span>
     </span>

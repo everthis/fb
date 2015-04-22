@@ -77,7 +77,7 @@ $('input[value="取消"]').click(function(event) {
 
         $("#btnsubmit").click(function(event) {
           var $ori_dest = $('#Form1 > .on');
-          var _origin_code, _dest_code, _origin_name, _dest_name, _date, str;
+          var _origin_code, _dest_code, _origin_name, _dest_name, _date, str, _query_type;
           if ($ori_dest.hasClass('train')) {
             _origin_code = $("#train_from_code").val();
             _origin_name = $("#train_from").val();
@@ -87,7 +87,14 @@ $('input[value="取消"]').click(function(event) {
             str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + _date;
             window.location.href ="train_query.html" + str;
           } else if($ori_dest.hasClass('coach')) {
-            window.location.href ="coach_query.html";
+            _origin_name = $("#from_city").val();
+            _origin_code = $("#from_city_code").val();
+            _dest_name = $("#to_city").val();
+            _dest_code = $("#to_city_code").val();
+            _date = $("#wangdate").val();
+            _query_type = 1;
+            str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + _date + "&query_type=" + _query_type;
+            window.location.href ="coach_query.html" + str;
 
           };
         });
