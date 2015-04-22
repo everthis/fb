@@ -244,6 +244,15 @@ FBAPI.login_complete = function (data){
 
 
 FBAPI.coach = {};
+FBAPI.coach.serviceIDs = {
+    "query_origins": "U0101",
+    "query_specific_destinations": "U0102",
+    "get_orders": "U0105",
+    "query_tickets": "U0103",
+    "book_tickets": "U0203",
+    "get_orders": "U0105",
+    "refund": "U0202"
+};
 
 FBAPI.coach.general_input = function(service_id, data, api_method, ajax_method, callb) {
     this.ci = "fbp0101abcd00001",
@@ -294,15 +303,6 @@ FBAPI.coach.query_origins_complete = function(data) {
     coach_hotData_ = data.data;
     coach_ListFromData_ = data.data;
     coach_ListToData_ = data.data;
-    // this.brief_codes = data.data || [];
-    // for(var per_item of data.data) {
-    //     var per_arr_item = [];
-    //     per_arr_item.push(per_item["station_name"]);
-    //     per_arr_item.push(per_item["brief_code"]);
-    //     per_arr_item.push(per_item["full_spell"]);
-    //     per_arr_item.push(per_item["first_letter"]);
-    //     _ListData_.push(per_arr_item);
-    // }
 };
 FBAPI.coach.query_specific_destinations = function(starting_code, starting_name) {
     var query_data = {
@@ -408,3 +408,34 @@ FBAPI.coach.query_specific = function() {
     FBAPI.renderTemplate("child_template", data, "coach_child_passenger");
 };
 
+FBAPI.coach.get_orders = function(user_id) {
+    var query_data = {
+        "user_id": user_id
+    };
+    this.general_input(FBAPI.coach.serviceIDs.get_orders, query_data, "Query", "POST", this.get_orders_complete);
+};
+FBAPI.coach.get_orders_complete = function(data) {
+    FBAPI.renderTemplate("order_lists_body", data, "coach_orders");
+};
+
+FBAPI.coach.refund = function(order_id) {
+    var query_data = {
+        "order_id": order_id
+    };
+
+    this.general_input(FBAPI.coach.serviceIDs.refund, query_data, "Query", "POST", this.refund_complete);
+};
+FBAPI.coach.refund_complete = function(data) {
+
+};
+
+FBAPI.coach.order_detail = function(user_id, order_id) {
+    var query_data = {
+        "user_id": user_id,
+        "order_id": order_id
+    };
+    this.general_input(FBAPI.coach.serviceIDs.get_orders, query_data, "Query", "POST", this.order_detail_complete);
+};
+FBAPI.coach.order_detail_complete = function(data) {
+    FBAPI.renderTemplate("order_details", data, "order_detail");
+};
