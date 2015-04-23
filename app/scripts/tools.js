@@ -14,7 +14,63 @@ tools.parseQueryString = function() {
     );
     return objURL;
 };
-
+tools.cookies = {
+  getItem: function (sKey) {
+    if (!sKey) { return null; }
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+  },
+  setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+    if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+    var sExpires = "";
+    if (vEnd) {
+      switch (vEnd.constructor) {
+        case Number:
+          sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+          break;
+        case String:
+          sExpires = "; expires=" + vEnd;
+          break;
+        case Date:
+          sExpires = "; expires=" + vEnd.toUTCString();
+          break;
+      }
+    }
+    document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+    return true;
+  },
+  removeItem: function (sKey, sPath, sDomain) {
+    if (!this.hasItem(sKey)) { return false; }
+    document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
+    return true;
+  },
+  hasItem: function (sKey) {
+    if (!sKey) { return false; }
+    return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+  },
+  keys: function () {
+    var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+    for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+    return aKeys;
+  }
+};
+tools.getGender = function(id) {
+    var sexno,sex
+    if(id.length==18){
+        sexno=id.substring(16,17)
+    }else if(id.length==15){
+        sexno=id.substring(14,15)
+    }else{
+        alert("错误的身份证号码，请核对！")
+        return false
+    }
+    var tempid=sexno%2;
+    if(tempid==0){
+        sex='F'
+    }else{
+        sex='M'
+    }
+    return sex
+};
 tools.getAllUsersID = function() {
 	var user_id,
 		id_range = 99;
@@ -299,15 +355,12 @@ tools.coach.submitPreservation = function() {
 	var index_query_params = tools.parseQueryString();
 
 	var riding_date = index_query_params.depart_date;
-	// var depart_date_time = index_query_params.depart_date_time;
 	var depart_time = index_query_params.depart_time;
 	var departure_land = decodeURIComponent(index_query_params.departure_land);
 	var destination_land = decodeURIComponent(index_query_params.destination_land);
 	var destination_station = decodeURIComponent(index_query_params.destination_station);
 	var extend_data1 = tools.nullToEmptyString(index_query_params.extend_data1);
 	var extend_data2 = tools.nullToEmptyString(index_query_params.extend_data2);
-	// var is_bookable = index_query_params.is_bookable;
-	// var motorcycle_type = index_query_params.motorcycle_type;
 	var operation_type = index_query_params.operation_type;
 	var site_code = index_query_params.site_code;
 	var starting_station = decodeURIComponent(index_query_params.starting_station);
@@ -327,4 +380,21 @@ $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 
 });
 
+$('body').on('click', '.add_passenger_btn', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	var user_id, real_name, id_type_code, id_type, id_number, mobile_phone, passenger_type, sex_code;
+		user_id = tools.cookies.getItem("user_id");
+		real_name = $('.realName').val();
+		id_type_code = $('.cre_type').val();
+		id_type = $(".cre_type option:selected").text();
+		id_number = $('.cre_id').val();
+		mobile_phone = $('.cellphone_num').val();
+		passenger_type = $('.passenger_type').val();
+		sex_code = $('input[name=sex]:checked').val();
 
+	// FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code);
+	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, passenger_type, sex_code);
+});
+
+tools.cookies.setItem("user_id", "2", Infinity);

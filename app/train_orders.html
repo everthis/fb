@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>fangbian_com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body style="background: #fcfcfc;">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="root">
+    <div id="header"></div>
+
+
+      <div class="user_section">
+        <span id="user_nav" class="user_nav"></span>
+
+        <span class="user_content">
+          <div class="tabs">
+            <span class="on">进行中的订单</span>
+            <span>已结束的订单</span>
+          </div>
+          <div class="order_lists">
+            <div class="lists_header">
+              <span class="number">订单号</span>
+              <span class="time">预订时间</span>
+              <span class="info">车次信息</span>
+              <span class="departure">出发时间</span>
+              <span class="price">价格</span>
+              <span class="status">订单状态</span>
+              <span class="action">订单操作</span>
+            </div>
+            <div id="order_lists_body"></div>
+
+          </div>
+
+          <div class="pagenation_section">
+              <div class="pagenation">
+                  <span class="pre">&lt; 上一页</span>
+                  <span class="page now">1</span>
+                  <span class="page">2</span>
+                  <span class="page">3</span>
+                  <span class="page">4</span>
+                  <span class="page">5</span>
+                  <span class="page">...</span>
+                  <span class="next">下一页 &gt;</span>
+                  <span class="total">共100页</span>
+                  <span class="page_input">
+                      <span>到</span>
+                      <span>
+                          <input type="text">
+                      </span>
+                      <span>页</span>
+                  </span>
+                  <span class="action">
+                      <input type="button" value="确 定">
+                  </span>
+              </div>
+          </div>
+
+        </span>
+      </div>
+
+
+
+      <div class="root_footer"></div>
+    </div>
+    <div id="footer" class="footer"></div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+        <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/partial_loader.js"></script>
+        <script>
+          FBAPI.get_orders("9");
+        </script>
+        <!-- endbuild -->
+</body>
+</html>
