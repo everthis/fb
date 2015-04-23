@@ -173,7 +173,7 @@
             <div class="input_row">
               <span class="text">邮箱</span>
               <span class="input">
-                <input type="text">
+                <input type="text" class="email_address">
               </span>
               <span class="hint"></span>
             </div>
@@ -245,6 +245,7 @@
         <script src="scripts/main.js"></script>
         <script>
             FBAPI.get_contacts(tools.cookies.getItem("user_id"), FBAPI.get_contacts_complete);
+            // FBAPI.delete_contact(tools.cookies.getItem("user_id"), "436")
         </script>
         <!-- endbuild -->
 </body>

@@ -383,18 +383,24 @@ $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 $('body').on('click', '.add_passenger_btn', function(event) {
 	event.preventDefault();
 	/* Act on the event */
-	var user_id, real_name, id_type_code, id_type, id_number, mobile_phone, passenger_type, sex_code;
+	var user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code;
 		user_id = tools.cookies.getItem("user_id");
 		real_name = $('.realName').val();
 		id_type_code = $('.cre_type').val();
 		id_type = $(".cre_type option:selected").text();
 		id_number = $('.cre_id').val();
 		mobile_phone = $('.cellphone_num').val();
+		email_address = $('.email_address').val();
 		passenger_type = $('.passenger_type').val();
 		sex_code = $('input[name=sex]:checked').val();
 
 	// FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code);
-	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, passenger_type, sex_code);
+	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code);
 });
 
 tools.cookies.setItem("user_id", "2", Infinity);
+$('body').on('click', '.per_passenger .delete', function(event) {
+	event.preventDefault();
+	FBAPI.delete_contact(tools.cookies.getItem("user_id"), $(this).attr('deletecontact'));
+	/* Act on the event */
+});

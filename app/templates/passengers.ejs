@@ -14,8 +14,8 @@
   <span class="email"></span>
   <span class="type"><%= data[i].passenger_type %></span>
   <span class="action">
-    <a class="edit" href="">编辑</a>
-    <a class="delete" href="">删除</a>
+    <a class="edit" href="javascript:;" editcontact="<%= data[i].contact_id %>">编辑</a>
+    <a class="delete" href="javascript:;" deletecontact="<%= data[i].contact_id %>">删除</a>
   </span>
 </div>
 <% } %>
