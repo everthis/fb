@@ -23,14 +23,14 @@ ui.tabSwitch = function(obj) {
 };
 
 ui.dateBarControl = {
-	init: function() {
+	init: function(selectedIndex, dateBarLen) {
 		this.halfDays = 3;
-		this.currentItem = parseInt('0'); //当前选择元素索引
+		this.currentItem = selectedIndex; //当前选择元素索引
 		if(this.currentItem < this.halfDays) {
 		    this.currentItem = this.halfDays;
 		}
-		if(parseInt('20') - this.currentItem < this.halfDays) {
-		    this.currentItem = parseInt('20') - this.halfDays;
+		if(parseInt(dateBarLen - 1) - this.currentItem < this.halfDays) {
+		    this.currentItem = parseInt(dateBarLen - 1) - this.halfDays;
 		}
 		this.canlenderArray = this.GetCanlenderLiArray01(); //所有日期元素数组
 
@@ -145,6 +145,7 @@ ui.generateDateBar = function(selected_date) {
               + "</span>";
 	str = pre_str + str + next_str;
 	document.getElementById('date_bar').innerHTML = str;
+	this.dateBarControl.init(selectedIndex, dateBarLen);
 };
 
 
