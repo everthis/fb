@@ -21,7 +21,7 @@ function _ListMove_(ID) {
         }
         document.getElementById("_ListID" + _ListSelectID_ + "_").style.backgroundColor = "";
         _ListSelectID_ = _ListSelectID_ + ID;
-        document.getElementById("_ListID" + _ListSelectID_ + "_").style.backgroundColor = "#C5E7F6";
+        document.getElementById("_ListID" + _ListSelectID_ + "_").style.backgroundColor = "#CFE2C4";
     }
 }
 
@@ -43,10 +43,10 @@ function _UpdateList_() {
         selectAllListData.sort(function compare(a, b) { return parseInt(a[3]) - parseInt(b[3]); })
         for (var j = 0; j < selectAllListData.length; j++) {
             if (i == 0) {
-                ListStr = ListStr + '<tr height="20" onMouseOver="this.style.backgroundColor=\'#C5E7F6\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer;background-color:#C5E7F6" onClick="JavaScript:_GetValue_(\'' + _InputID_ + '\',\'' + selectAllListData[j][0] + '\')" id="_ListID' + i + '_"><td>&nbsp;&nbsp;' + selectAllListData[j][0] + '(' + selectAllListData[j][1].toUpperCase() + ')</td><td align="right">' + selectAllListData[j][2] + '&nbsp;&nbsp;</td></tr>';
+                ListStr = ListStr + '<tr height="20" onMouseOver="this.style.backgroundColor=\'#CFE2C4\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer;background-color:#CFE2C4" onClick="JavaScript:_GetValue_(\'' + _InputID_ + '\',\'' + selectAllListData[j][0] + '\')" id="_ListID' + i + '_"><td>&nbsp;&nbsp;' + selectAllListData[j][0] + '(' + selectAllListData[j][1].toUpperCase() + ')</td><td align="right">' + selectAllListData[j][2] + '&nbsp;&nbsp;</td></tr>';
             }
             else {
-                ListStr = ListStr + '<tr height="20" onMouseOver="this.style.backgroundColor=\'#C5E7F6\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer" onClick="JavaScript:_GetValue_(\'' + _InputID_ + '\',\'' + selectAllListData[j][0] + '\')" id="_ListID' + i + '_"><td>&nbsp;&nbsp;' + selectAllListData[j][0] + '(' + selectAllListData[j][1].toUpperCase() + ')</td><td align="right">' + selectAllListData[j][2] + '&nbsp;&nbsp;</td></tr>';
+                ListStr = ListStr + '<tr height="20" onMouseOver="this.style.backgroundColor=\'#CFE2C4\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer" onClick="JavaScript:_GetValue_(\'' + _InputID_ + '\',\'' + selectAllListData[j][0] + '\')" id="_ListID' + i + '_"><td>&nbsp;&nbsp;' + selectAllListData[j][0] + '(' + selectAllListData[j][1].toUpperCase() + ')</td><td align="right">' + selectAllListData[j][2] + '&nbsp;&nbsp;</td></tr>';
             }
             _ListSelectStr_ = _ListSelectStr_ + selectAllListData[j][0] + ',';
             if (i >= 11) //提示12个
@@ -89,7 +89,7 @@ function showCity(ID) {
             if (i != 0 && i % 5 == 0) {
                 ListStr = ListStr + '</tr><tr>';
             }
-            ListStr = ListStr + '<td  height="25" width="70" onMouseOver="this.style.backgroundColor=\'#C5E7F6\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer; color:#666;text-decoration: none;font-size: 12px;text-align:center;"onClick="JavaScript:_GetValue_(\'' + ID + '\',\'' + StrArray[i] + '\')">' + StrArray[i] + '</td>';
+            ListStr = ListStr + '<td  height="25" width="70" onMouseOver="this.style.backgroundColor=\'#CFE2C4\'" onMouseOut="this.style.backgroundColor=\'\'" style="cursor:pointer; color:#666;text-decoration: none;font-size: 12px;text-align:center;"onClick="JavaScript:_GetValue_(\'' + ID + '\',\'' + StrArray[i] + '\')">' + StrArray[i] + '</td>';
         }
         ListStr = ListStr + '</table>';
         var ListObj = document.getElementById("cityList");

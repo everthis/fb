@@ -66,26 +66,31 @@
     </div> -->
 
         <div class="root_container">
+            <input type="hidden" class="wangfan" />
+            <span id="fan_span" style="display:none;">
+                <label>返回日期</label>
+                <input id="fandate" style="color:black;" class="trainfanCalendar" type="text" value=""/>
+            </span>
             <form id="CarFrom" action="">
                 <div class="search_box">
                     <span class="note">出发地</span>
                     <span class="input_box">
-                     <input name="from_city" type="text" value="请输入出发城市" id="from_city" autoComplete="Off" onblur="coach_hide_city();" onfocus="coach_ShowCity('from_city');"/>
-                     <input name="from_city_code" type="hidden" id="from_city_code" value="null"/>
-                     <span class="city_ico" onclick="coach_ShowCity('from_city');"></span>
+                     <input name="train_from" type="text" value="请输入出发城市" id="train_from" autoComplete="Off" onblur="hideCity();" onfocus="showCity('train_from');"/>
+                     <input name="train_from_code" type="hidden" id="train_from_code" value="null"/>
+                     <span class="city_ico" onclick="showCity('train_from');"></span>
                     </span>
                     <span>
-                        <img id="swap_destination" src="../images/dest_swap.jpg" alt="" style="margin-left: -1.6em;vertical-align: text-bottom;" />
+                        <img id="swap_destination" src="../images/query_swap.png" alt="" style="margin-left: -1.6em;vertical-align: text-bottom;" />
                    </span>
                     <span class="note">目的地</span>
                     <span class="input_box">
-                     <input name="to_city" type="text" value="请输入到达城市" id="to_city" autoComplete="Off" onblur="coach_hide_city();" onfocus="coach_Show_subCity('to_city');"/>
-                     <input name="to_city_code" type="hidden" id="to_city_code" value="null"/>
-                     <span class="city_ico" onclick="coach_Show_subCity('to_city');"></span>
+                     <input name="train_to" type="text" value="请输入到达城市" id="train_to" autoComplete="Off" onblur="hideCity();" onfocus="showCity('train_to');"/>
+                     <input name="train_to_code" type="hidden" id="train_to_code" value="null"/>
+                     <span class="city_ico" onclick="showCity('to_city');"></span>
                     </span>
                     <span class="note">出发日期</span>
                     <span class="input_box">
-                     <input name="from_date" id="from_date" type="text" value="" class="txt trainCalendar" readonly="readonly" />
+                     <input id="wangdate" name='wangdate' type="text" value="" class="txt trainCalendar trainWangCalendar" readonly="readonly" style="cursor:pointer;"/>
                      <em class="date_ico" onclick="$('#from_date').focus();"></em>
                    </span>
                     <span class="input_box">
@@ -94,41 +99,44 @@
                 </div>
                 <input id="txtchannelid" type="hidden" />
             </form>
-            <div class="time_bar train">
-                <span class="previous_day">
+            <div id="date_bar" class="time_bar train">
+<!--                 <span class="previous_day" id="canlenderleftbutton01">
                    <div class="icon"></div>
                  </span>
-                <span class="day now" val="">
-                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12&nbsp;&nbsp;今天</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="day" val="">
-                   <div class="detail">01-12</div>
-                   <div class="isreservable">周日</div>
-                 </span>
-                <span class="next_day">
+                 <span class="middle" id="middle_datebar"></span> -->
+
+<!--                  <span class="day now" val="">
+                    <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12&nbsp;&nbsp;今天</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12</div>
+                    <div class="isreservable">周日</div>
+                  </span>
+                 <span class="day" val="">
+                    <div class="detail">01-12</div>
+                    <div class="isreservable">周日</div>
+                  </span> -->
+
+<!--                 <span class="next_day" id="canlenderrightbutton01">
                    <div class="icon"></div>
-                 </span>
+                 </span> -->
             </div>
 
             <div class="filter_section">
@@ -369,16 +377,28 @@
 
     <script type="text/javascript" src="scripts/listcity.js"></script>
     <script type="text/javascript" src="scripts/calendar.js"></script>
+    <script type="text/javascript" src="scripts/ui.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/partial_loader.js"></script>
     <script>
 
+        FBAPI.get_brief_code();
+        FBAPI.query_train_hots();
 
         //Example how to use it:
         var index_query_params = tools.parseQueryString();
         FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin_code, index_query_params.dest_code, "ADULT");
+        document.getElementById('train_from').value = decodeURIComponent(index_query_params.origin_name);
+        document.getElementById('train_to').value = decodeURIComponent(index_query_params.dest_name);
+        document.getElementById('train_from_code').value = index_query_params.origin_code;
+        document.getElementById('train_to_code').value = index_query_params.dest_code;
+        document.getElementById('wangdate').value = index_query_params.date;
+
+        ui.generateDateBar(index_query_params.date);
+        ui.dateBarControl.init();
     </script>
     <!-- endbuild -->
+
 </body>
 
 </html>

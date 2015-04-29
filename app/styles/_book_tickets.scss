@@ -121,7 +121,7 @@
                 line-height: 24px;
             }
             .text {
-                margin-right: 10px;
+                margin-right: 6px;
             }
         }
         .name {
@@ -143,6 +143,7 @@
             .delete {
                 width: 14px;
                 height: 24px;
+                cursor: pointer;
                 background: url('../images/delete.png') center no-repeat;
             }
         }
@@ -215,7 +216,7 @@
             width: 130px;
             height: 30px;
             border: none;
-            background: url('../images/add_passenger.png') center no-repeat;
+            background: url('../images/add_pass.png') center no-repeat;
 
         }
         .insurance {

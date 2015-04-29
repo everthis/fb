@@ -48,7 +48,7 @@ $(document).ready(function(){
 		trainfanCalendar.start();
 	}
 
-	$('#wangdate').val(GetDate());
+	// $('#wangdate').val(GetDate());
 	// $(".hotcity_ico").live("click", function(){
 	// 	$(this).prev("input").focus();
 	// });

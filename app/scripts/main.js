@@ -124,3 +124,57 @@ $('input[value="取消"]').click(function(event) {
             // $(".shadow").addClass('hide');
             $(this).parent().parent('div[class^="popup_"]').addClass('hide');
         });
+
+document.onkeydown = function (event) {
+    event = (event) ? event : window.event; //Mozilla浏览器中没有默认的event对象，只能在事件发生的现场使用。
+    var target = event.target || event.srcElement;
+    var current_id = target.id;
+    coach_InputID_ = "";
+    TrainNumber_InputID_ = "";
+    if (current_id == "train_from" || current_id == "train_to") {
+        TrainNumber_InputID_ = current_id;
+    } else if (current_id == "from_city" || current_id == "to_city") {
+        coach_InputID_ = current_id;
+    };
+    var key_code = event.keyCode;
+    if (coach_InputID_ != "") {
+        switch (key_code)//火狐2.0版本未考虑
+        {
+            case 38: coach_ListMove_(-1); break; //↑
+            case 40: coach_ListMove_(1); break; //↓
+            case 13: coach_GetValue_(coach_InputID_, coach_ListSelectStr_.split(",")[coach_ListSelectID_]); return false; break; //Enter
+            default: setTimeout("coach_UpdateList_()", 50);
+        }
+    }
+    else {
+        if (TrainNumber_InputID_ != "") {
+            switch (key_code)//火狐2.0版本未考虑
+            {
+                case 38: _ListMove_(-1); break; //↑
+                case 40: _ListMove_(1); break; //↓
+                case 13: _GetValue_(_InputID_, _ListSelectStr_.split(",")[_ListSelectID_]); return false; break; //Enter
+                default: setTimeout("_UpdateList_()", 50);
+            }
+        }
+    }
+}
+
+$('body').on('click', '.train_search_btn', function(event) {
+    event.preventDefault();
+    var _origin_code = $("#train_from_code").val();
+    var _origin_name = $("#train_from").val();
+    var _dest_code = $("#train_to_code").val();
+    var _dest_name = $("#train_to").val();
+    var _date = $("#wangdate").val();
+    str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + _date;
+    window.location.href ="train_query.html" + str;
+});
+
+$('body').on('click', '.next_day', function(event) {
+    event.preventDefault();
+    ui.dateBarControl.RightButtonClick();
+});
+$('body').on('click', '.previous_day', function(event) {
+    event.preventDefault();
+    ui.dateBarControl.LeftButtonClick();
+});

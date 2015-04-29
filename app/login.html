@@ -60,12 +60,12 @@
                   <div class="user_name">
                     <span class="text"></span>
                     <span class="input">
-                      <input type="text" placeholder="手机号">
+                      <input type="text" class="cellphone_num_input" placeholder="手机号">
                     </span>
                   </div>
                   <div class="sms_val">
-                      <span class="sms_box"><input type="text" placeholder="手机验证码"></span>
-                      <span class="sms_btn_box"><input type="button" value="60秒后重新获取"></span>
+                      <span class="sms_box"><input id="cellphone_val_code" type="text" placeholder="手机验证码"></span>
+                      <span class="sms_btn_box"><input type="button" id="get_cellphone_val_code_btn" value="获取验证码"></span>
                   </div>
                   <div class="captcha_val">
                     <span class="captcha_box"><input type="text" placeholder="验证码"></span>
@@ -83,7 +83,7 @@
                   </span>
                 </div>
                 <div class="login_btn">
-                  <input type="button">
+                  <input id="login_btn" type="button">
                 </div>
                 <div class="hint">
                   <p>还不是方便网会员？<a href="signup.html">免费注册</a></p>

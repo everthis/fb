@@ -124,24 +124,26 @@ tools.batchBookTicketsCallback = function(data) {
 };
 
 tools.removeAddedPassenger = function(obj) {
-	var contact_id = obj.attr('contact_id');
+	var contact_id = obj.attr('contact_id') || '';
 	var _bodies = $("#passenger_section > .adult_body");
 	var _bodies_length = _bodies.length;
 
 	if (_bodies_length === 1) {
-		_bodies.find(".name input[type='text']").val('');
-		_bodies.find(".credential_num input[type='text']").val('');
+		_bodies.find(".name input[type='text']").val('').prop("disabled", false);
+		_bodies.find(".credential_num input[type='text']").val('').prop("disabled", false);
+		_bodies.find(".credential_type select").prop("disabled", false);
 		_bodies.removeAttr('contact_id');
 	} else{
-		$("#passenger_section > div[contact_id=" + contact_id + "]").remove();
+		if (contact_id === '') {
+			obj.remove();
+		} else{
+			$("#passenger_section > div[contact_id=" + contact_id + "]").remove();
+		};
 	};
 };
-tools.addExtraAdult = function(obj, contact_id, name, number) {
+tools.addExtraAdult = function(obj, contact_id, name, number, card_type_code) {
 	var extraAdult = $("#adult_template .adult_body").clone();
-	extraAdult.attr('contact_id', contact_id)
-			  .find(".name input[type='text']").val(name)
-			  .end()
-			  .find(".credential_num input[type='text']").val(number);
+	this.operatePassengerData(extraAdult, contact_id, name, number, card_type_code);
 	$('#passenger_section').append(extraAdult);
 };
 tools.addExistingPassenger = function(obj) {
@@ -149,17 +151,35 @@ tools.addExistingPassenger = function(obj) {
 	var contact_id = obj.attr('contact_id');
 	var name = obj.attr('passenger_name');
 	var number = obj.attr('passenger_card_no');
+	var card_type_code = obj.attr('card_type_code');
 
 	var _bodies = $("#passenger_section > .adult_body");
 	var _bodies_length = _bodies.length;
-	if ($(_bodies[_bodies_length - 1]).find(".name input[type='text']").val() !== '' ||
-		$(_bodies[_bodies_length - 1]).find(".credential_num input[type='text']").val() !== '' ) {
-		tools.addExtraAdult(obj, contact_id, name, number);
+	var findResult = this.findFirstEmptyRow();
+	if (findResult === 'not found' ) {
+		tools.addExtraAdult(obj, contact_id, name, number, card_type_code);
 	} else{
-		$(_bodies[_bodies_length - 1]).attr('contact_id', contact_id);
-		$(_bodies[_bodies_length - 1]).find(".name input[type='text']").val(name);
-		$(_bodies[_bodies_length - 1]).find(".credential_num input[type='text']").val(number);
+		this.operatePassengerData(findResult, contact_id, name, number, card_type_code);
 	};
+};
+tools.operatePassengerData = function(obj, contact_id, name, number, card_type_code) {
+	$(obj).attr('contact_id', contact_id);
+	$(obj).find(".name input[type='text']").val(name).prop("disabled", true);
+	$(obj).find(".credential_num input[type='text']").val(number).prop("disabled", true);
+	$(obj).find(".credential_type select option").filter(function() {
+									    return $(this).prop("value") === card_type_code;
+									}).prop('selected', true);
+	$(obj).find(".credential_type select").prop("disabled", true);
+};
+tools.findFirstEmptyRow = function() {
+	var _bodies = $("#passenger_section > .adult_body");
+	var _bodies_length = _bodies.length;
+	for(var i = 0; i < _bodies_length; i++) {
+		if ($(_bodies[i]).find(".name input[type='text']").val() === '' && $(_bodies[i]).find(".credential_num input[type='text']").val() === '') {
+			break;
+		};
+	}
+	return _bodies[i] || 'not found';
 };
 
 tools.generatePassengers = function() {
@@ -299,6 +319,74 @@ tools.codeToSeatType = function(code) {
 	return seat_type;
 };
 
+
+tools.isTrainOrderComplete = function(code) {
+	var isComplete = false;
+	switch (code) {
+		case 7:
+		case 8:
+		  isComplete = true;
+		  break;
+		default:
+		  isComplete = false;
+	}
+	return isComplete;
+};
+
+tools.isCoachOrderComplete = function(code) {
+	var isComplete = false;
+	switch (code) {
+		case 1:
+		case 8:
+		case 11:
+		  isComplete = true;
+		  break;
+		default:
+		  isComplete = false;
+	}
+	return isComplete;
+};
+
+tools.generateContactsToAdd = function() {
+	var bodies = $("#passenger_section > .adult_body");
+	var bodies_length = bodies.length;
+	var toAddArray = [];
+	for (var i = 0; i < bodies_length; i++) {
+		var attr = $(bodies[i]).attr('contact_id');
+		// For some browsers, `attr` is undefined; for others,
+		// `attr` is false.  Check for both.
+		if (typeof attr === typeof undefined || attr === false) {
+			 toAddArray.push(bodies[i]);
+		}
+	};
+	return toAddArray;
+};
+tools.generateContactAddition = function() {
+	var add_array = this.generateContactsToAdd();
+	var add_array_length =  add_array.length;
+	for (var i = 0; i < add_array_length; i++) {
+		var real_name = $(add_array[i]).find('.name input').val(),
+			id_type_code = $(add_array[i]).find('.credential_type select').val(),
+			id_type = $(add_array[i]).find('.credential_type select option:selected').text(),
+			id_number = $(add_array[i]).find('.credential_num input').val(),
+			mobile_phone = '',
+			email = '',
+			passenger_type = $(add_array[i]).prop('type'),
+			sex_code = this.getGender(id_number) === 'M' ? 1 : 2;
+	FBAPI.add_contact(tools.cookies.getItem("user_id"), real_name, id_type_code, id_type, id_number, mobile_phone, email, passenger_type, sex_code);
+	};
+
+};
+
+tools.getSpecificCheckbox = function(contact_id) {
+	var pass_area = $('.pass_area input[type="checkbox"]:checked');
+	for (var i = 0; i < pass_area.length; i++) {
+		if ($(pass_area[i]).attr('contact_id') === contact_id) {
+			$(pass_area[i]).prop('checked', false)
+		};
+	};
+};
+
 $('body').on('click', '.per_pass input[type="checkbox"]', function(event) {
 	event.stopPropagation();
 	/* Act on the event */
@@ -373,6 +461,63 @@ tools.coach.submitPreservation = function() {
 	FBAPI.coach.book_tickets(train_number, departure_land, starting_station, destination_land, destination_station, riding_date, depart_time, the_ticket_price, operation_type, site_code, extend_data1, extend_data2, riding_user_list, collect_user_id, user_id);
 };
 
+tools.isLoggedIn = function() {
+	if (tools.cookies.hasItem("user_id")) {
+
+	} else{
+
+	};
+};
+
+/**
+ * [countDown description]
+ * @param  {[type]} duration [seconds]
+ * @param  {[type]} display  [element object]
+ * @return {[type]}          [description]
+ */
+tools.countDown = function(duration, display) {
+	    var start = Date.now(),
+	        diff,
+	        interval,
+	        hours,
+	        minutes,
+	        seconds;
+	    display.disabled = true;
+	    function timer() {
+	        // get the number of seconds that have elapsed since
+	        // startTimer() was called
+	        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+	        // does the same job as parseInt truncates the float
+	        hours   = (diff / 3600) | 0;
+	        minutes = ((diff - hours * 60 * 60) / 60)   | 0;
+	        seconds = (diff % 60)   | 0;
+
+	        hours   = hours   < 10 ? "0" + hours   : hours;
+	        minutes = minutes < 10 ? "0" + minutes : minutes;
+	        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+	        // display.textContent = hours + minutes + seconds;
+	        var tmp = hours + minutes + seconds,
+	            tmp_string = tmp.toString();
+	        display.value = tmp_string.slice(4) + "秒后重新获取";
+
+	        if (diff <= 0) {
+	            // add one second so that the count down starts at the full duration
+	            // example 05:00 not 04:59
+	            // start = Date.now() + 1000;
+	            clearInterval(interval);
+		        display.value = "重新获取验证码";
+			    display.disabled = false;
+	        }
+	    };
+	    // do not wait a full second before the timer starts
+	    timer();
+	    interval = setInterval(timer, 1000);
+};
+
+
+
 $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 	event.stopPropagation();
 	/* Act on the event */
@@ -398,9 +543,56 @@ $('body').on('click', '.add_passenger_btn', function(event) {
 	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code);
 });
 
-tools.cookies.setItem("user_id", "2", Infinity);
+
 $('body').on('click', '.per_passenger .delete', function(event) {
-	event.preventDefault();
+	event.stopPropagation();
 	FBAPI.delete_contact(tools.cookies.getItem("user_id"), $(this).attr('deletecontact'));
 	/* Act on the event */
+});
+
+$('body').on('click', '#get_cellphone_val_code_btn', function(event) {
+	event.stopPropagation();
+	tools.countDown(10, this);
+	var cellphone_number = $(".cellphone_num_input").val().trim();
+	FBAPI.cellphone_val(cellphone_number, "2");
+	/* Act on the event */
+});
+
+$('body').on('click', '#login_btn', function(event) {
+	event.stopPropagation();
+	var cellphone_number = $(".cellphone_num_input").val().trim();
+	var val_code = $("#cellphone_val_code").val().trim();
+	FBAPI.signup_firstLogin(cellphone_number, val_code, "2");
+	/* Act on the event */
+});
+
+$('body').on('click', '.add_passenger_btn', function(event) {
+	event.stopPropagation();
+	var extraAdult = $("#adult_template .adult_body").clone();
+	$('#passenger_section').append(extraAdult);
+});
+
+$('body').on('click', '.action .delete', function(event) {
+	event.stopPropagation();
+	var passenger_body = $(this).closest("[class$='_body']");
+	var attr = $(passenger_body).attr('contact_id');
+	// For some browsers, `attr` is undefined; for others,
+	// `attr` is false.  Check for both.
+	if (typeof attr !== typeof undefined && attr !== false) {
+		 tools.getSpecificCheckbox(attr);
+	}
+	tools.removeAddedPassenger(passenger_body);
+
+});
+
+$('body').on('click', '.add_child_link', function(event) {
+	event.stopPropagation();
+	var adult_body = $(this).closest('.adult_body');
+	var extraChild = $("#child_template .child_body").clone();
+	adult_body.after(extraChild);
+});
+
+$('body').on('click', '.per_tab', function(event) {
+	event.stopPropagation();
+	ui.tabSwitch($(this));
 });

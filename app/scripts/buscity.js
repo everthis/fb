@@ -381,37 +381,4 @@ function coach_hide_city()
 	setTimeout("coach_HideList_()",200);
 }
 
-document.onkeydown = function (event) {
-    event = (event) ? event : window.event; //Mozilla浏览器中没有默认的event对象，只能在事件发生的现场使用。
-    var target = event.target || event.srcElement;
-    var current_id = target.id;
-    coach_InputID_ = "";
-    TrainNumber_InputID_ = "";
-    if (current_id == "train_from" || current_id == "train_to") {
-    	TrainNumber_InputID_ = current_id;
-    } else if (current_id == "from_city" || current_id == "to_city") {
-    	coach_InputID_ = current_id;
-    };
-    var key_code = event.keyCode;
-    if (coach_InputID_ != "") {
-        switch (key_code)//火狐2.0版本未考虑
-        {
-            case 38: coach_ListMove_(-1); break; //↑
-            case 40: coach_ListMove_(1); break; //↓
-            case 13: coach_GetValue_(coach_InputID_, coach_ListSelectStr_.split(",")[coach_ListSelectID_]); return false; break; //Enter
-            default: setTimeout("coach_UpdateList_()", 50);
-        }
-    }
-    else {
-        if (TrainNumber_InputID_ != "") {
-            switch (key_code)//火狐2.0版本未考虑
-            {
-                case 38: _ListMove_(-1); break; //↑
-                case 40: _ListMove_(1); break; //↓
-                case 13: _GetValue_(_InputID_, _ListSelectStr_.split(",")[_ListSelectID_]); return false; break; //Enter
-                default: setTimeout("_UpdateList_()", 50);
-            }
-        }
-    }
-}
 

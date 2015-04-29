@@ -1,5 +1,5 @@
 <% for(var i=0; i<data.length; i++) { %>
-<div class="per_list">
+<div class="per_list <%= tools.isCoachOrderComplete(data[i].order_status_code) ? 'hide' : '' %>" iscomplete="<%= tools.isCoachOrderComplete(data[i].order_status_code) ? 'true' : 'false' %>">
   <span class="number">
     <div><%= data[i].order_id %></div>
     <div><a href="order_details.html?order_id=<%= data[i].order_id %>">订单详情</a></div>

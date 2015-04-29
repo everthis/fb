@@ -175,8 +175,8 @@ FBAPI.update_contact_complete = function(data) {
 };
 FBAPI.delete_contact = function(user_id, contact_ids) {
     var query_data = {
-        "user_id": user_id,
-        "contact_ids": contact_ids
+        "user_id": +user_id,
+        "contact_ids": +contact_ids
     };
     this.general_input("U0207", query_data, "Order", "POST", this.update_contact_complete);
 };
@@ -232,6 +232,7 @@ FBAPI.get_order_detail_complete = function(data) {
     this.renderTemplate("order_details", data, "order_detail");
 };
 
+// code_scope: 1, signup; 2, login
 FBAPI.cellphone_val = function (phone, code_scope){
     var query_data = {
         "phone": phone,
@@ -251,8 +252,11 @@ FBAPI.signup_firstLogin = function(phone, code, code_scope){
     this.general_input("U0104", query_data, "Query", "POST", this.signup_firstLogin_complete);
 
 };
-FBAPI.signup_firstLogin_complete = function() {
-
+FBAPI.signup_firstLogin_complete = function(data) {
+    if (data.message.indexOf("成功") !== -1) {
+        tools.cookies.setItem("user_id", data.data.user_id, Infinity);
+        window.location.href = "user.html";
+    };
 };
 FBAPI.login = function(session_key, code_scope) {
     var query_data = {
@@ -265,6 +269,58 @@ FBAPI.login_complete = function (data){
 
 };
 
+
+FBAPI.pay = {};
+
+FBAPI.pay.general_input = function(service_id, data, api_method, ajax_method, callb) {
+    this.ci = "fbp0101abcd00001",
+    this.ver = "1.0.0",
+    this.ts = Date.now(),
+    this.da = JSON.stringify(data),
+    // this.md5_private_key = md5("4C6EA522-9057"),
+    this.md5_private_key = md5("ES2s#kd&(js9}dks2"),
+    this.si = service_id,
+    this.md5_sign = md5(this.ci + this.si + this.ts + this.da + this.md5_private_key),
+
+    this.api_method = api_method,
+    this.ajax_method = ajax_method,
+    this.ajax_data = {
+        "client_id": this.ci,
+        "service_id": this.si,
+        "timestamp": this.ts,
+        "version": this.ver,
+        "sign": this.md5_sign,
+        "data": this.da
+    };
+    this.Ajax(callb);
+};
+FBAPI.pay.Ajax = function(callb) {
+    $.ajax({
+        url: "http://115.29.79.63:8080/ApiPostBack/WebService/PostBackService.ashx" + this.api_method,
+        method: this.ajax_method,
+        dataType: "json",
+        data: this.ajax_data,
+        success: callb,
+        error: function (ajaxContext) {
+            console.log(ajaxContext.responseText)
+        }
+    });
+};
+
+FBAPI.pay.submit = function(user_id, order_id, client_source, trade_type, payment_type) {
+    var query_data = {
+        "user_id": user_id,
+        "order_id": order_id,
+        "client_source": client_source,
+        "trade_type": trade_type,
+        "payment_type": payment_type
+    };
+    this.general_input("U0209", query_data, "Order", "POST", this.submit_complete);
+};
+
+FBAPI.pay.submit_complete = function(data) {
+
+};
 
 
 /**

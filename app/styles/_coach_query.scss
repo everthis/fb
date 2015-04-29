@@ -60,17 +60,21 @@
             margin: 0 auto;
         }
     }
+    .middle {
+        width: 87.5%;
+        @extend %inline-block-fix;
+    }
     .previous_day {
        &.disabled .icon {
             background: url(../images/left_disable.jpg) center no-repeat;
         }
         .icon {
-            background: url(../images/left_disable.jpg) center no-repeat;
+            background: url(../images/left_enable.jpg) center no-repeat;
         }
     }
     .next_day {
         &.disabled .icon {
-            background: url(../images/right_enable.jpg) center no-repeat;
+            background: url(../images/right_disable.jpg) center no-repeat;
         }
         .icon {
             background: url(../images/right_enable.jpg) center no-repeat;
@@ -90,7 +94,7 @@
         }
     }
     .day {
-        width: 12.5%;
+        width: 14.285%;
         text-align: center;
         padding: 7px 10px 8px;
         cursor: pointer;
