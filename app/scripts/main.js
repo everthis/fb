@@ -178,3 +178,14 @@ $('body').on('click', '.previous_day', function(event) {
     event.preventDefault();
     ui.dateBarControl.LeftButtonClick();
 });
+$('body').on('click', '#date_bar .day', function(event) {
+    event.preventDefault();
+    var _origin_code = $("#train_from_code").val();
+    var _origin_name = $("#train_from").val();
+    var _dest_code = $("#train_to_code").val();
+    var _dest_name = $("#train_to").val();
+    var _date = $("#wangdate").val();
+    var ymd = $(this).attr('ymd');
+    str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + ymd;
+    window.location.href ="train_query.html" + str;
+});

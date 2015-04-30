@@ -117,7 +117,7 @@ ui.generateDateBar = function(selected_date) {
 	};
 	for (var i = 0; i < dateObjArr.length; i++) {
 		var isNow = false, isHide = false;
-		if ((i < halfDays * 2 + 1) && dateObjArr[i].ymd === String(selected_date)) {
+		if ((i < halfDays + 1) && dateObjArr[i].ymd === String(selected_date)) {
 			isCurrentFirst = 'disabled';
 		};
 		if ((i > dateObjArr.length - (halfDays * 2 + 1)) && dateObjArr[i].ymd === String(selected_date)) {
@@ -128,7 +128,7 @@ ui.generateDateBar = function(selected_date) {
 		};
 		isNow = selectedIndex === i ? 'now' : '';
 		isHide = isHide ? 'display: none;' : '';
-		var tmp_str = "<span class='day " + isNow + "' style='" + isHide + "' val=''>"
+		var tmp_str = "<span class='day " + isNow + "' style='" + isHide + "' ymd='" + dateObjArr[i]['ymd'] + "'>"
                     +    "<div class='detail'>" + dateObjArr[i]['month'] + "-" + dateObjArr[i]['date'] + "</div>"
                     +    "<div class='isreservable'>" + dateObjArr[i]['weekday'] + "</div>"
                     + "</span>";
