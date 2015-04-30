@@ -189,3 +189,8 @@ $('body').on('click', '#date_bar .day', function(event) {
     str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + ymd;
     window.location.href ="train_query.html" + str;
 });
+$('body').on('click', '.result_section .duration em', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    ui.hii();
+});

@@ -178,7 +178,49 @@ ui.date.convert = function(weekday) {
 	return wd;
 };
 
+ui.filter = {};
+ui.filter.check = function() {
 
+};
+ui.hii = function() {
+	var nl = document.getElementsByClassName('per_list');
+	var attr = 'run_time';
+	var reverse = true;
+	this.sort(nl, attr, reverse);
+};
+
+ui.sort = function(nl, attr, reverse) {
+		var arr = [];
+		for (var i = 0, ref = arr.length = nl.length; i < ref; i++) {
+		 arr[i] = nl[i];
+		};
+		var return_val = this.quickSort(arr, attr, reverse);
+		document.getElementById('trainList').innerHTML = '';
+		var fragment = document.createDocumentFragment();
+		for (var i = 0; i < return_val.length; i++) {
+			fragment.appendChild(return_val[i]);
+		};
+		document.getElementById('trainList').appendChild(fragment);
+};
+ui.quickSort = function(arr, attr, reverse) {
+	if(arr.length <= 1){
+		return arr;
+	} else {
+		var pivotIndex = Math.floor(arr.length / 2),
+		    pivot = arr.splice(pivotIndex, 1),
+		    leftArray = [],
+		    rightArray = [],
+			pivot_attr = pivot[0].getAttribute(attr);
+		for(var i = 0, len = arr.length; i < len; i++){
+			if(arr[i].getAttribute(attr) < pivot_attr){
+				leftArray.push(arr[i]);
+			} else {
+				rightArray.push(arr[i]);
+			}
+		}
+		return this.quickSort(leftArray, attr).concat(pivot[0], this.quickSort(rightArray, attr));
+	}
+};
 
 
 

@@ -76,8 +76,8 @@ function showCity(ID) {
         _InputID_ = ID;
         var ListStr = '<table width="350" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #E0E2F0;background: #fff;color: #353535;position: relative;text-align: center;padding-bottom:3px;">'
 							+ '<tr>'
-						    + '<th colspan="5"><h4 style="font-size:12px;margin-bottom: 5px;background: #EEF1F4;padding: 0 10px;line-height: 2.0em;text-align:left">热门城市<span style="font-weight: normal;margin-left: 10px;color: #999">可直接选择城市或输入城市全拼、简拼、中文</span></h4>'
-						    + '<a href="javascript:void(0);" onClick="JavaScript:_HideList_();" style="position: absolute;right:4px;top:3px;width:13px;height:13px;background: url(http://img3.tieyou.com/images/header.gif) -372px -128px; text-indent: -9999px;">关闭</a>'
+						    + '<th colspan="5"><h4 style="font-size:12px;margin-bottom: 5px;background: #F0F4EE;padding: 0 10px;line-height: 2.0em;text-align:left">热门城市<span style="font-weight: normal;margin-left: 10px;color: #999">可直接选择城市或输入城市全拼、简拼、中文</span></h4>'
+						    + '<a href="javascript:void(0);" onClick="JavaScript:_HideList_();" style="position: absolute;right:4px;top:9px;width:13px;height:13px;background: url(../images/close.png) no-repeat; text-indent: -9999px;">关闭</a>'
 						    + '</th>'
 						    + '</tr>'
         //+'<td align="right"><span style="cursor:pointer" onClick="JavaScript:_HideList_()"><img border="0" title="关闭窗口" src="http://img3.tieyou.com/images/close.gif" width="8" height="8"></span>&nbsp;&nbsp;&nbsp;</td></tr>';
