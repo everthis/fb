@@ -183,7 +183,84 @@ ui.filter.check = function() {
 
 };
 
+/*-----------------------------------------------过滤模块---------------------------------------------------*/
+SEARCH_CATE_LIST_No.each(function (item) {
+    //找到过滤模块
+    var cate = $("#" + SEARCH_CATE_LIST + item); //SEARCH_CATE_LIST=resultFilters
 
+    var RESULT_TABLE = $('#resultTable' + item), //找到结果列表
+    NO_FILTER_RESULT = $('#noneFilterResult' + item),
+    TOTAL_RESULT = $('#totalResult' + item);
+
+    //找到过滤器下面所有的A标签，并绑定点击事件
+    $(cate).find('a').each(function (A) {
+        $(A).bind('click', function (e) {
+
+            var target = A[0];
+
+            if (target.id == FILTER_CONTROLLER + item) {
+                return;
+            }
+
+            //取消过滤的非全部项的选择（控制样式）
+            if (target.className == "show_all" || target.className == "show_all selected") {
+                //清除勾样式
+                A.parentNode().parentNode().find('a').each(function (o) {
+                    if (o[0].className != "show_all" && o[0].className != "show_all selected") {
+                        o[0].className = "";
+                    }
+                });
+                //全部选中样式
+                target.className = "show_all selected";
+            }
+            else {
+                if (target.className == "") {
+                    target.className = "selected";
+                }
+                else {
+                    target.className = "";
+                }
+
+                var flag = true;
+
+                A.parentNode().parentNode().find('a').each(function (o) {
+                    if (o[0].className != "show_all" && o[0].className != "show_all selected") {
+                        if (o[0].className == "selected") {
+                            flag = false;
+                        }
+                    }
+                });
+
+                A.parentNode().parentNode().find('a').each(function (o) {
+                    if ((o[0].className == "show_all" || o[0].className == "show_all selected") && flag) {
+                        o[0].className = "show_all selected";
+                    }
+                    if ((o[0].className == "show_all" || o[0].className == "show_all selected") && !flag) {
+                        o[0].className = "show_all";
+                    }
+                });
+
+            }
+
+            //获取过滤值
+            filterBinary = getFiltersBinary(cate);
+            //启动过滤程序
+            filterResult(RESULT_TABLE, NO_FILTER_RESULT, TOTAL_RESULT, item);
+
+
+        })
+    })
+
+    if (FILTER_HIDDEN != "") {//第一次加载，可能是高铁或者动车，要过滤
+        filterBinary = parseInt(FILTER_HIDDEN);
+    }
+    //启动过滤程序
+    restoreFiltersInputsWithBinary(filterBinary, item);
+    filterResult(RESULT_TABLE, NO_FILTER_RESULT, TOTAL_RESULT, item);
+
+    //控制收起还是更多
+    //filterShowAlternate(item);
+})
 
 
 ui.sort = function(nl, attr, reverse) {
