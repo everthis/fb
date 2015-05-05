@@ -148,13 +148,22 @@
                     </span>
                     <span class="time_array">
                      <span class="time_range">
-                       <input type="checkbox" class="" value="1"/>G/C-高铁
+                       <input type="checkbox" class="train_type" value="G"/>G/C-高铁
                      </span>
                     <span class="time_range">
-                       <input type="checkbox" class="" value="2"/>D-动车
+                       <input type="checkbox" class="train_type" value="D"/>D-动车
                      </span>
                     <span class="time_range">
-                       <input type="checkbox" class="" value="0"/>普通车型
+                       <input type="checkbox" class="train_type" value="Z"/>Z-直达
+                     </span>
+                     <span class="time_range">
+                        <input type="checkbox" class="train_type" value="T"/>T-特快
+                      </span>
+                    <span class="time_range">
+                       <input type="checkbox" class="train_type" value="K"/>K-快速
+                     </span>
+                     <span class="time_range">
+                       <input type="checkbox" class="train_type" value="QT"/>其他
                      </span>
                     <span class="time_range" style="width: 200px;">
                       <strong id="total_number" style="color:#DE5900"></strong>
@@ -169,14 +178,17 @@
                     <span class="select_all">全选</span>
                     </span>
                     <span class="time_array">
+                      <span class="time_range">
+                        <input type="checkbox" class="depart_time" value="00000600"/>早上(00:00-06:00)
+                      </span>
                      <span class="time_range">
-                       <input type="checkbox" class="" value="1"/>上午(06:00-12:00)
+                       <input type="checkbox" class="depart_time" value="06001200"/>上午(06:00-12:00)
                      </span>
                     <span class="time_range">
-                       <input type="checkbox" class="" value="2"/>下午(12:00-18:00)
+                       <input type="checkbox" class="depart_time" value="12001800"/>下午(12:00-18:00)
                      </span>
                     <span class="time_range">
-                       <input type="checkbox" class="" value="0"/>晚上(18:00-06:00)
+                       <input type="checkbox" class="depart_time" value="18002400"/>晚上(18:00-24:00)
                      </span>
                     <span class="time_range" style="width: 200px;">
                       <strong id="total_number" style="color:#DE5900"></strong>

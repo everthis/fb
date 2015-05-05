@@ -178,7 +178,84 @@ ui.date.convert = function(weekday) {
 	return wd;
 };
 
+ui.getQueryResultArr = function() {
+	var resultArr = [];
+	var queryResult = $("#trainList .per_list");
+	for (var i = 0, ref = resultArr.length = queryResult.length; i < ref; i++) {
+	 resultArr[i] = queryResult[i];
+	};
+	return resultArr;
+};
+
 ui.filter = {};
+ui.filter.getChecked = function() {
+	var train_type = [],
+		nodeListArr = [],
+		filterResult = [],
+		depart_time = [];
+	$(".filter_section input[class='train_type']").each(function() {
+	    if (this.checked === true) {
+	        train_type.push($(this).val())
+	    }
+	});
+	$(".filter_section input[class='depart_time']").each(function() {
+	    if (this.checked === true) {
+	        depart_time.push($(this).val())
+	    }
+	});
+	nodeListArr = ui.getQueryResultArr();
+	if (train_type.length > 0 || depart_time.length > 0 || nodeListArr.length > 0 ) {
+	    for (var f = 0; f < nodeListArr.length; f++) {
+	        var b = nodeListArr[f];
+	        if (!this.trainType(b, train_type)) {
+	            continue
+	        }
+	        if (!this.departTime(b, depart_time)) {
+	            continue
+	        }
+            filterResult.push(b)
+	    }
+	}
+	return filterResult;
+};
+
+ui.filter.trainType = function(b, c) {
+    if (c.length == 0) {
+        return true
+    }
+    for (var a = 0; a < c.length; a++) {
+        if (b.getAttribute('train_code').substring(0, 1) == c[a]) {
+            return true
+        }
+        if (c[a] == "QT") {
+            if (b.getAttribute('train_code').substring(0, 1) != "G" && b.getAttribute('train_code').substring(0, 1) != "D" && b.getAttribute('train_code').substring(0, 1) != "C" && b.getAttribute('train_code').substring(0, 1) != "T" && b.getAttribute('train_code').substring(0, 1) != "K" && b.getAttribute('train_code').substring(0, 1) != "Z") {
+                return true
+            }
+        }
+        if (c[a] == "G") {
+            if (b.getAttribute('train_code').substring(0, 1) == "C" || b.getAttribute('train_code').substring(0, 1) == "G") {
+                return true
+            }
+        }
+    }
+    return false
+};
+
+ui.filter.departTime = function(a, e) {
+    if (e.length == 0) {
+        return true
+    }
+    for (var d = 0; d < e.length; d++) {
+        var f = (a.getAttribute('start_time').replace(":", ""));
+        var c = Number(e[d].substring(0, 4));
+        var b = Number(e[d].substring(4, 8));
+        if (f >= c && f <= b) {
+            return true
+        }
+    }
+    return false
+};
+
 ui.filter.check = function() {
 
 };
