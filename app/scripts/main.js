@@ -207,5 +207,20 @@ $('body').on('click', '.result_section .time em', function(event) {
     var nl = document.getElementsByClassName('per_list');
     var attr = 'start_time';
     var reverse = $(this).hasClass('reverse');
-    ui.sort(nl, attr, reverse);
+    ui.sort(nl, attr, !reverse);
+});
+$('body').on('change', '.filter_section input[type="checkbox"]', function(event) {
+    event.preventDefault();
+    ui.filter.getChecked();
+});
+$('body').on('click', '.select_all', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    if ($(this).hasClass('selected')) {
+        $(this).closest('.time').find('input[type="checkbox"]').prop('checked', false);
+        $(this).removeClass('selected').text('全选');
+    } else{
+        $(this).closest('.time').find('input[type="checkbox"]').prop('checked', true);
+        $(this).addClass('selected').text('取消全选');
+    };
 });

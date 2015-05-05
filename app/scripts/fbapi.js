@@ -77,6 +77,7 @@ FBAPI.query_train_tickets = function(date, origin, destination, passenger_type) 
 FBAPI.query_train_tickets_complete = function(data) {
     this.renderTemplate("trainList", data, "train_query");
     this.renderTemplate("train_query_results_title", data, "train_query_title");
+    ui.filter.nodeListArr = ui.getQueryResultArr();
 };
 FBAPI.code_to_name = function(code) {
     if (this.brief_codes && this.brief_codes.length > 0) {

@@ -188,6 +188,7 @@ ui.getQueryResultArr = function() {
 };
 
 ui.filter = {};
+ui.filter.nodeListArr = [];
 ui.filter.getChecked = function() {
 	var train_type = [],
 		nodeListArr = [],
@@ -203,10 +204,10 @@ ui.filter.getChecked = function() {
 	        depart_time.push($(this).val())
 	    }
 	});
-	nodeListArr = ui.getQueryResultArr();
-	if (train_type.length > 0 || depart_time.length > 0 || nodeListArr.length > 0 ) {
-	    for (var f = 0; f < nodeListArr.length; f++) {
-	        var b = nodeListArr[f];
+
+	if (train_type.length > 0 || depart_time.length > 0 || this.nodeListArr.length > 0 ) {
+	    for (var f = 0; f < this.nodeListArr.length; f++) {
+	        var b = this.nodeListArr[f];
 	        if (!this.trainType(b, train_type)) {
 	            continue
 	        }
@@ -216,7 +217,13 @@ ui.filter.getChecked = function() {
             filterResult.push(b)
 	    }
 	}
-	return filterResult;
+	// return filterResult;
+	document.getElementById('trainList').innerHTML = '';
+	var fragment = document.createDocumentFragment();
+	for (var i = 0; i < filterResult.length; i++) {
+		fragment.appendChild(filterResult[i]);
+	};
+	document.getElementById('trainList').appendChild(fragment);
 };
 
 ui.filter.trainType = function(b, c) {
