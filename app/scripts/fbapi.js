@@ -123,8 +123,11 @@ FBAPI.query_specific_train_complete = function (data){
     query_specific_train_result = data;
     this.renderTemplate("specific_train", data, "train_detail");
     this.renderTemplate("adult_template", data, "adult_passenger");
-    $("#adult_template .adult_body").clone().appendTo('#passenger_section');
     this.renderTemplate("child_template", data, "child_passenger");
+    $('#passenger_template_section .seat_type select').val(tools.seatTypeCode(decodeURIComponent(tools.parseQueryString().seat_type) ) );
+    $("#adult_template .adult_body").clone(true, true).appendTo('#passenger_section');
+
+    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
 };
 FBAPI.get_contacts = function(user_id, callback) {
     var query_data = {

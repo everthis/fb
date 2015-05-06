@@ -71,6 +71,12 @@ tools.getGender = function(id) {
     }
     return sex
 };
+
+tools.getQuerySeatType = function() {
+	var index_query_params = tools.parseQueryString();
+	var seat_type = this.seatTypeCode(decodeURIComponent(index_query_params.seat_type));
+	return seat_type;
+};
 tools.getAllUsersID = function() {
 	var user_id,
 		id_range = 99;
@@ -79,6 +85,7 @@ tools.getAllUsersID = function() {
 		FBAPI.get_contacts(i, tools.getAllUsersIDCallback(i));
 	};
 };
+
 
 
 tools.getAllUsersIDCallback = function(user_id, passenger_name) {
@@ -145,6 +152,7 @@ tools.addExtraAdult = function(obj, contact_id, name, number, card_type_code) {
 	var extraAdult = $("#adult_template .adult_body").clone();
 	this.operatePassengerData(extraAdult, contact_id, name, number, card_type_code);
 	$('#passenger_section').append(extraAdult);
+	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
 };
 tools.addExistingPassenger = function(obj) {
 
@@ -525,7 +533,7 @@ $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 
 });
 
-$('body').on('click', '.add_passenger_btn', function(event) {
+$('body').on('click', '.user_section.add_passenger_btn', function(event) {
 	event.preventDefault();
 	/* Act on the event */
 	var user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code;
@@ -566,10 +574,11 @@ $('body').on('click', '#login_btn', function(event) {
 	/* Act on the event */
 });
 
-$('body').on('click', '.add_passenger_btn', function(event) {
+$('body').on('click', '.detail.add_passenger_btn', function(event) {
 	event.stopPropagation();
-	var extraAdult = $("#adult_template .adult_body").clone();
+	var extraAdult = $("#adult_template .adult_body").clone(true, true);
 	$('#passenger_section').append(extraAdult);
+	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
 });
 
 $('body').on('click', '.action .delete', function(event) {
@@ -590,6 +599,7 @@ $('body').on('click', '.add_child_link', function(event) {
 	var adult_body = $(this).closest('.adult_body');
 	var extraChild = $("#child_template .child_body").clone();
 	adult_body.after(extraChild);
+	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
 });
 
 $('body').on('click', '.per_tab', function(event) {
