@@ -180,7 +180,7 @@ ui.date.convert = function(weekday) {
 
 ui.getQueryResultArr = function() {
 	var resultArr = [];
-	var queryResult = $("#trainList .per_list");
+	var queryResult = $("#query_result_list .per_list");
 	for (var i = 0, ref = resultArr.length = queryResult.length; i < ref; i++) {
 	 resultArr[i] = queryResult[i];
 	};
@@ -193,6 +193,7 @@ ui.filter.getChecked = function() {
 	var train_type = [],
 		nodeListArr = [],
 		filterResult = [],
+		origin_station = [],
 		depart_time = [];
 	$(".filter_section input[class='train_type']").each(function() {
 	    if (this.checked === true) {
@@ -202,6 +203,11 @@ ui.filter.getChecked = function() {
 	$(".filter_section input[class='depart_time']").each(function() {
 	    if (this.checked === true) {
 	        depart_time.push($(this).val())
+	    }
+	});
+	$(".filter_section input[class='origin_station']").each(function() {
+	    if (this.checked === true) {
+	        origin_station.push($(this).val())
 	    }
 	});
 
@@ -214,16 +220,19 @@ ui.filter.getChecked = function() {
 	        if (!this.departTime(b, depart_time)) {
 	            continue
 	        }
+	        if (!this.originStation(b, origin_station)) {
+	            continue
+	        }
             filterResult.push(b)
 	    }
 	}
 	// return filterResult;
-	document.getElementById('trainList').innerHTML = '';
+	document.getElementById('query_result_list').innerHTML = '';
 	var fragment = document.createDocumentFragment();
 	for (var i = 0; i < filterResult.length; i++) {
 		fragment.appendChild(filterResult[i]);
 	};
-	document.getElementById('trainList').appendChild(fragment);
+	document.getElementById('query_result_list').appendChild(fragment);
 };
 
 ui.filter.trainType = function(b, c) {
@@ -257,6 +266,18 @@ ui.filter.departTime = function(a, e) {
         var c = Number(e[d].substring(0, 4));
         var b = Number(e[d].substring(4, 8));
         if (f >= c && f <= b) {
+            return true
+        }
+    }
+    return false
+};
+
+ui.filter.originStation = function(bY, bX) {
+    if (bX.length == 0) {
+        return true
+    }
+    for (var bZ = 0; bZ < bX.length; bZ++) {
+        if (bX[bZ] == bY.getAttribute('origin_station')) {
             return true
         }
     }

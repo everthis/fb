@@ -157,12 +157,16 @@
     .station {
         position: relative;
         // margin-bottom: 12px !important;
+         @extend %inline-block-fix;
     }
     .origin_array {
         margin-left: 120px;
         width: 816px;
+        @extend %inline-block-fix;
     }
+
     .time_array {
+        @extend %inline-block-fix;
         margin-left: 120px;
         width: 816px;
         font-size: 0;
@@ -176,14 +180,12 @@
           border-bottom: 1px dashed #DDD;
           margin-bottom: 10px;
     }
-    .station {
-        padding-top: 10px;
-    }
+
     .time {
         font-size: 0;
 
     }
-    .time_range, .origin_station {
+    .time_range, .per_origin {
         width: 16%;
         font-size: 12px;
     }

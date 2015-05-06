@@ -75,7 +75,7 @@ FBAPI.query_train_tickets = function(date, origin, destination, passenger_type) 
     this.general_input("U0109", query_train_data, "Query", "POST", this.query_train_tickets_complete.bind(this));
 };
 FBAPI.query_train_tickets_complete = function(data) {
-    this.renderTemplate("trainList", data, "train_query");
+    this.renderTemplate("query_result_list", data, "train_query");
     this.renderTemplate("train_query_results_title", data, "train_query_title");
     ui.filter.nodeListArr = ui.getQueryResultArr();
 };
@@ -439,8 +439,19 @@ FBAPI.coach.query_tickets = function(origin_name, origin_code, destination_name,
 
 };
 FBAPI.coach.query_tickets_complete = function(data) {
-    FBAPI.renderTemplate("cralist", data, "coach_query");
+    FBAPI.renderTemplate("query_result_list", data, "coach_query");
     FBAPI.renderTemplate("coach_query_results_title", data, "train_query_title");
+    var origin_array = operations.getCoachOrigins(data);
+    var unique_array = operations.uniqueArray(origin_array);
+    var str = "";
+    for (var i = 0; i < unique_array.length; i++) {
+        var tmp = '<span class="per_origin">'
+                +  '<input type="checkbox" class="origin_station" value="' +  unique_array[i] + '"/>' + unique_array[i]
+                + '</span>';
+            str += tmp;
+    };
+    document.getElementsByClassName('origin_array')[0].innerHTML = str;
+    ui.filter.nodeListArr = ui.getQueryResultArr();
 };
 
 FBAPI.coach.book_tickets = function(train_number, departure_land, starting_station, destination_land, destination_station, riding_date, depart_time, the_ticket_price, operation_type, site_code, extend_data1, extend_data2, riding_user_list, collect_user_id, user_id) {

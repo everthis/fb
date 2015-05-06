@@ -1,5 +1,5 @@
 <% for(var i=0; i<data.length; i++) { %>
-<div class="list" leave_time="<%= data[i].depart_time.slice(0, 5)%>" leave_time_type="2" origin_station="<%= data[i].starting_station %>" price="<%= data[i].ticket_price %>">
+<div class="list per_list" start_time="<%= data[i].depart_time.slice(0, 5)%>" leave_time_type="2" origin_station="<%= data[i].starting_station %>" price="<%= data[i].ticket_price %>">
     <span id="s_origin_station" class="hide"></span>
     <span class="time"><%= data[i].depart_time.slice(0, 5)%></span>
     <span class="station">

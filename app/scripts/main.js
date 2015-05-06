@@ -178,7 +178,7 @@ $('body').on('click', '.previous_day', function(event) {
     event.preventDefault();
     ui.dateBarControl.LeftButtonClick();
 });
-$('body').on('click', '#date_bar .day', function(event) {
+$('body').on('click', '.train .day', function(event) {
     event.preventDefault();
     var _origin_code = $("#train_from_code").val();
     var _origin_name = $("#train_from").val();
@@ -188,6 +188,14 @@ $('body').on('click', '#date_bar .day', function(event) {
     var ymd = $(this).attr('ymd');
     str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + ymd;
     window.location.href ="train_query.html" + str;
+});
+$('body').on('click', '.coach .day', function(event) {
+    event.preventDefault();
+    operations.coach_query.call($(this));
+});
+$('body').on('click', '.coach_search_btn', function(event) {
+    event.preventDefault();
+    operations.coach_query.call($(this));
 });
 $('body').on('click', '.result_section .duration em', function(event) {
     event.preventDefault();
