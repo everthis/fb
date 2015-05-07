@@ -146,6 +146,7 @@ tools.removeAddedPassenger = function(obj) {
 		} else{
 			$("#passenger_section > div[contact_id=" + contact_id + "]").remove();
 		};
+		operations.calculatePrice();
 	};
 };
 tools.addExtraAdult = function(obj, contact_id, name, number, card_type_code) {
@@ -153,6 +154,7 @@ tools.addExtraAdult = function(obj, contact_id, name, number, card_type_code) {
 	this.operatePassengerData(extraAdult, contact_id, name, number, card_type_code);
 	$('#passenger_section').append(extraAdult);
 	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
+	    operations.calculatePrice();
 };
 tools.addExistingPassenger = function(obj) {
 
@@ -331,10 +333,18 @@ tools.codeToSeatType = function(code) {
 tools.isTrainOrderComplete = function(code) {
 	var isComplete = false;
 	switch (code) {
+		case 5:
 		case 7:
 		case 8:
 		  isComplete = true;
 		  break;
+		case 0:
+		case 1:
+		case 3:
+		case 4:
+		case 9:
+		case 10:
+		  isComplete = false;
 		default:
 		  isComplete = false;
 	}
@@ -579,6 +589,7 @@ $('body').on('click', '.detail.add_passenger_btn', function(event) {
 	var extraAdult = $("#adult_template .adult_body").clone(true, true);
 	$('#passenger_section').append(extraAdult);
 	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
+	    operations.calculatePrice();
 });
 
 $('body').on('click', '.action .delete', function(event) {

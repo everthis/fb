@@ -9,17 +9,24 @@
 		line-height: 36px;
 	}
 	.login_signup {
-		a {
-			display: inline-block;
-			width: 30px;
-			height: 100%;
-			color: $top-nav-green;
-			text-align: center;
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
+		.login,
+		.signup {
+			a {
+				display: inline-block;
+				width: 30px;
+				height: 100%;
+				color: $top-nav-green;
+				text-align: center;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
 			}
 		}
+		.uid {
+			text-decoration: underline;
+		}
+
 	}
 	.order_menu {
 		// @extend %inline-block-fix;

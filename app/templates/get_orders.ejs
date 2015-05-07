@@ -18,7 +18,7 @@
   </span>
   <span class="price">￥ <%= data[i].order_ticket.ticket_price %></span>
   <span class="status"><%= data[i].order_status_desc %></span>
-  <span class="action">
+  <span class="action <%= tools.isTrainOrderComplete(data[i].order_status) ? 'hide' : '' %>">
     <div class="wait"><input type="button" class="wait_to_pay_btn" value=""></div>
     <div class="remaining">剩余时间：00:25:00</div>
   </span>

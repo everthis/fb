@@ -128,6 +128,7 @@ FBAPI.query_specific_train_complete = function (data){
     $("#adult_template .adult_body").clone(true, true).appendTo('#passenger_section');
 
     $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
+    operations.calculatePrice();
 };
 FBAPI.get_contacts = function(user_id, callback) {
     var query_data = {
