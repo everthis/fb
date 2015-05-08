@@ -144,7 +144,7 @@ FBAPI.preserve_get_contacts_complete = function(data) {
     this.renderTemplate("passenger_row", data, "order_passengers");
 };
 
-FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email, passenger_type, sex_code) {
+FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email, passenger_type, sex_code, callback) {
     var query_data = {
         "user_id": user_id,
         "real_name": real_name,
@@ -156,10 +156,10 @@ FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_numbe
         "passenger_type": passenger_type,
         "sex_code": sex_code
     };
-    this.general_input("U0202", query_data, "Order", "POST", this.add_contact_complete);
+    this.general_input("U0202", query_data, "Order", "POST", callback.bind(this));
 };
 FBAPI.add_contact_complete = function() {
-
+    $('div[class^="popup_"] .content').append("<p>" + data.message + "</p>");
 };
 FBAPI.update_contact = function(contact_id, user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code) {
     var query_data = {
@@ -203,7 +203,7 @@ FBAPI.book_train_tickets = function(user_id, train_number, from_station_code, to
     this.general_input("U0203", query_data, "Order", "POST", this.book_train_tickets_complete);
 };
 FBAPI.book_train_tickets_complete = function(data){
-    $('.popup_submit_order .content').text(data.message);
+    $('.popup_submit_order .content').append("<p>" + data.message + "</p>");
 };
 
 FBAPI.get_order_status = function(order_id) {

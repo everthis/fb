@@ -359,9 +359,24 @@
     width: 400px;
     height: 220px;
     margin: -110px 0 0 -200px;
+    padding: 0 12px 12px 12px;
+    .header {
+        width: 100%;
+        border-bottom: 1px solid #DADADA;
+        margin: 0 0 12px 0;
+        .title {
+            height: 47px;
+            font-size: 14px;
+            line-height: 47px;
+        }
+    }
     .close {
         display: inline-block;
         cursor: pointer;
-        width: 36px;
+        background: url("../images/close_popup.png") center no-repeat;
+        width: 24px;
+        height: 24px;
+        float: right;
+        margin: 12px 0 0 0;
     }
 }

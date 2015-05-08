@@ -60,7 +60,8 @@ tools.getGender = function(id) {
     }else if(id.length==15){
         sexno=id.substring(14,15)
     }else{
-        alert("错误的身份证号码，请核对！")
+        // alert("错误的身份证号码，请核对！")
+        $('div[class^="popup_"] .content').append("<p>错误的身份证号码，请核对！</p>");
         return false
     }
     var tempid=sexno%2;
@@ -217,8 +218,10 @@ tools.submitPreservation = function() {
 
 	var index_query_params = tools.parseQueryString();
 
-
-	user_id = "2";
+	if (tools.cookies.hasItem("user_id")) {
+		user_id = tools.cookies.getItem("user_id");
+	}
+	// user_id = uid;
 	train_number = index_query_params.train_code;
 	from_station_code = index_query_params.origin_code;
 	to_station_code = index_query_params.dest_code;
@@ -371,9 +374,11 @@ tools.generateContactsToAdd = function() {
 	var toAddArray = [];
 	for (var i = 0; i < bodies_length; i++) {
 		var attr = $(bodies[i]).attr('contact_id');
+		var isNameNull = $(bodies[i]).find('.name input').val() === ''? true : false;
+		var isCreNull = $(bodies[i]).find('.credential_num input').val() === ''? true : false;
 		// For some browsers, `attr` is undefined; for others,
 		// `attr` is false.  Check for both.
-		if (typeof attr === typeof undefined || attr === false) {
+		if ( (typeof attr === typeof undefined || attr === false) && (!isNameNull) && (!isCreNull) ) {
 			 toAddArray.push(bodies[i]);
 		}
 	};
@@ -382,18 +387,32 @@ tools.generateContactsToAdd = function() {
 tools.generateContactAddition = function() {
 	var add_array = this.generateContactsToAdd();
 	var add_array_length =  add_array.length;
-	for (var i = 0; i < add_array_length; i++) {
-		var real_name = $(add_array[i]).find('.name input').val(),
-			id_type_code = $(add_array[i]).find('.credential_type select').val(),
-			id_type = $(add_array[i]).find('.credential_type select option:selected').text(),
-			id_number = $(add_array[i]).find('.credential_num input').val(),
-			mobile_phone = '',
-			email = '',
-			passenger_type = $(add_array[i]).prop('type'),
-			sex_code = this.getGender(id_number) === 'M' ? 1 : 2;
-	FBAPI.add_contact(tools.cookies.getItem("user_id"), real_name, id_type_code, id_type, id_number, mobile_phone, email, passenger_type, sex_code);
+	var exsitingIds = tools.generatePassengers();
+	if (add_array_length === 0 && exsitingIds.length > 0) {
+		tools.submitPreservation();
+	} else{
+		for (var i = 0; i < add_array_length; i++) {
+			var real_name = $(add_array[i]).find('.name input').val(),
+				id_type_code = $(add_array[i]).find('.credential_type select').val(),
+				id_type = $(add_array[i]).find('.credential_type select option:selected').text(),
+				id_number = $(add_array[i]).find('.credential_num input').val(),
+				mobile_phone = '',
+				email = '',
+				passenger_type = $(add_array[i]).prop('type'),
+				sex_code = this.getGender(id_number) === 'M' ? 1 : 2;
+		FBAPI.add_contact(tools.cookies.getItem("user_id"), real_name, id_type_code, id_type, id_number, mobile_phone, email, passenger_type, sex_code, tools.add_contact_complete);
+		};
 	};
 
+
+};
+
+tools.add_contact_complete = function(data) {
+	if (data.message.indexOf("成功") !== -1) {
+		tools.submitPreservation();
+	} else {
+		$('div[class^="popup_"] .content')[0].innerHTML = '' + data.message;
+	};
 };
 
 tools.getSpecificCheckbox = function(contact_id) {
@@ -422,7 +441,9 @@ $('body').on('click', '.per_pass input[type="checkbox"]', function(event) {
 $('body').on('click', '.train.submit_ticket_btn', function(event) {
 	event.stopPropagation();
 	/* Act on the event */
-	tools.submitPreservation();
+	$('div[class^="popup_"] .content')[0].innerHTML = '';
+	tools.generateContactAddition();
+
 
 });
 
@@ -558,7 +579,7 @@ $('body').on('click', '.user_section.add_passenger_btn', function(event) {
 		sex_code = $('input[name=sex]:checked').val();
 
 	// FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code);
-	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code);
+	FBAPI.add_contact(user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code, FBAPI.add_contact_complete);
 });
 
 
