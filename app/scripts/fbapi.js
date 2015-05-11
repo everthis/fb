@@ -271,7 +271,7 @@ FBAPI.signup_firstLogin = function(phone, code, code_scope){
 FBAPI.signup_firstLogin_complete = function(data) {
     if (data.message.indexOf("成功") !== -1) {
         tools.cookies.setItem("user_id", data.data.user_id, Infinity);
-        window.location.href = "user.html";
+        window.location.href = "index.html";
     };
 };
 FBAPI.login = function(session_key, code_scope) {

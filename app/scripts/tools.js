@@ -142,14 +142,17 @@ tools.removeAddedPassenger = function(obj) {
 		_bodies.find(".credential_num input[type='text']").val('').prop("disabled", false);
 		_bodies.find(".credential_type select").prop("disabled", false);
 		_bodies.removeAttr('contact_id');
+		if (obj.hasClass('child_body')) {
+			obj.remove();
+		};
 	} else{
 		if (contact_id === '') {
 			obj.remove();
 		} else{
 			$("#passenger_section > div[contact_id=" + contact_id + "]").remove();
 		};
-		operations.calculatePrice();
 	};
+		operations.calculatePrice();
 };
 tools.addExtraAdult = function(obj, contact_id, name, number, card_type_code) {
 	var extraAdult = $("#adult_template .adult_body").clone();
@@ -369,6 +372,12 @@ tools.isCoachOrderComplete = function(code) {
 	return isComplete;
 };
 
+tools.childPassengers = function() {
+	var _child_bodies = $('#passenger_section > .child_body');
+	var _child_bodies_len = _child_bodies.length;
+	return _child_bodies_len;
+};
+
 tools.generateContactsToAdd = function() {
 	var bodies = $("#passenger_section > .adult_body");
 	var bodies_length = bodies.length;
@@ -558,6 +567,7 @@ tools.countDown = function(duration, display) {
 
 
 
+
 $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 	event.stopPropagation();
 	/* Act on the event */
@@ -632,7 +642,9 @@ $('body').on('click', '.add_child_link', function(event) {
 	var adult_body = $(this).closest('.adult_body');
 	var extraChild = $("#child_template .child_body").clone();
 	adult_body.after(extraChild);
-	    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
+    $('#passenger_section .seat_type select').val(tools.getQuerySeatType());
+    operations.processHalfPrice();
+    operations.calculatePrice();
 });
 
 $('body').on('click', '.per_tab', function(event) {

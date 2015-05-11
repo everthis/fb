@@ -251,7 +251,7 @@
                             <input type="checkbox">我已阅读并同意<a href="">《方便网服务协议》</a>
                         </span>
                         <span class="">
-                            共 <span class="orange passenger_quantity"></span><span class="orange">名</span> 乘车人
+                            共 <span class="orange total_passenger_quantity"></span><span class="orange">名</span> 乘车人
                         </span>
                         <span class="price">
                             订单总价: <span class="orange twenty_four"> ¥ </span><span class="orange twenty_four total_ticket_price"></span>
@@ -273,7 +273,12 @@
                             <div class="ticket_price">
                                 <span class="left">票价</span>
                                 <span class="middle"></span>
-                                <span class="right"><span>￥</span><span class="per_price"></span><span>*</span><span class="passenger_quantity"></span></span>
+                                <span class="right"><span>￥</span><span class="full_per_price"></span><span>*</span><span class="full_price_quantity"></span></span>
+                            </div>
+                            <div class="child_ticket_price hide">
+                                <span class="left"></span>
+                                <span class="middle"></span>
+                                <span class="right"><span>￥</span><span class="half_per_price"></span><span>*</span><span class="half_price_quantity"></span></span>
                             </div>
                             <div class="insurance_price">
                                 <span class="left">保险费用</span>
@@ -370,7 +375,11 @@
             // FBAPI.query_train_tickets(index_query_params.date, index_query_params.origin, index_query_params.dest, "ADULT");
             // FBAPI.query_specific_train("2015-04-09", "CSQ", "KFF", "ADULT", "T370");
             FBAPI.query_specific_train(index_query_params.date, index_query_params.origin_code, index_query_params.dest_code, "ADULT", index_query_params.train_code);
-            FBAPI.get_contacts("2", FBAPI.preserve_get_contacts_complete);
+            if (tools.cookies.hasItem("user_id")) {
+                var uid = tools.cookies.getItem("user_id");
+
+                FBAPI.get_contacts(uid, FBAPI.preserve_get_contacts_complete);
+            };
         </script>
         <!-- endbuild -->
     </body>

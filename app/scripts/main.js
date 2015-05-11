@@ -232,3 +232,11 @@ $('body').on('click', '.select_all', function(event) {
         $(this).addClass('selected').text('取消全选');
     };
 });
+
+$('body').on('click', '.login_signup .logout', function(event) {
+    event.preventDefault();
+    if (tools.cookies.hasItem("user_id")) {
+       tools.cookies.removeItem("user_id");
+        location.reload();
+    };
+});

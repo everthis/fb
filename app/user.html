@@ -205,7 +205,11 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/partial_loader.js"></script>
         <script>
-          FBAPI.get_orders("2");
+          if (tools.cookies.hasItem("user_id")) {
+              var uid = tools.cookies.getItem("user_id");
+
+              FBAPI.get_orders(uid);
+          };
         </script>
         <!-- endbuild -->
 </body>

@@ -6,6 +6,9 @@ auth.check = function() {
 		var _uid = document.getElementsByClassName("uid")[0];
 		_uid.innerHTML =  " " + uid + " ";
 		$('.login_signup .login, .login_signup .signup').addClass('hide');
+	} else {
+		$('.login_signup .login, .login_signup .login').removeClass('hide');
+		$('.login_signup .logout').addClass('hide');
 	};
 };
 
@@ -42,15 +45,39 @@ operations.uniqueArray = function(arr) {
 	};
 	return uniArr;
 };
-operations.calculatePrice = function() {
+operations.fullTicketsPrice = function() {
+	var adult_bodies = $('#passenger_section .adult_body');
+	var adults_len = adult_bodies.length;
 	var selected = $('#passenger_section .seat_type option:selected');
-	var total_price = 0;
-	var selected_len = selected.length;
 	var full_ticket_price = +($(selected[0]).attr('ticket_price'));
-	for (var i = 0; i < selected_len; i++) {
-		total_price += +($(selected[i]).attr('ticket_price'));
+	var ft = {
+		"price": full_ticket_price,
+		"quantity": adults_len
 	};
-	$('.passenger_quantity').text(selected_len);
-	$('.per_price').text(full_ticket_price.toFixed(2));
+	return ft;
+};
+
+operations.processHalfPrice = function() {
+	var child_len = tools.childPassengers();
+	var half_price = ($('.full_per_price').text() / 2).toFixed(2);
+	child_len > 0 ? $('.right_area .child_ticket_price').removeClass('hide') : $('.right_area .child_ticket_price').addClass('hide');
+	// $('.right_area .child_ticket_price').removeClass('hide');
+	$('.half_price_quantity').text(child_len);
+	$('.half_per_price').text(half_price);
+	var hp = {
+		"price": half_price,
+		"quantity": child_len
+	};
+	return hp;
+};
+
+
+operations.calculatePrice = function() {
+	var fulls = this.fullTicketsPrice();
+	var halves = this.processHalfPrice();
+	var total_price = fulls.price * fulls.quantity + halves.price * halves.quantity;
+	$('.full_price_quantity').text(fulls.quantity);
+	$('.total_passenger_quantity').text(fulls.quantity + halves.quantity);
+	$('.full_per_price').text(fulls.price.toFixed(2));
 	$('.total_ticket_price').text(total_price.toFixed(1));
 };

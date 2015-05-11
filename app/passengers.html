@@ -22,8 +22,8 @@
     <![endif]-->
 
     <div class="root">
-
-    <div class="header_container">
+      <div id="header"></div>
+<!--     <div class="header_container">
       <div class="header">
         <span class="login_signup">
           <span class="greetings">您好，欢迎访问方便网!</span>
@@ -45,9 +45,9 @@
           <span class="arrow"></span>
         </span>
       </div>
-    </div>
+    </div> -->
 
-    <div class="top_banner">
+<!--     <div class="top_banner">
       <a href="index.html" class="logo"></a>
       <a href="#" class="sublogo"></a>
       <a href="#" class="app_link"></a>
@@ -62,7 +62,7 @@
         <span class="item"></span>
         <span class="hotline"></span>
       </div>
-    </div>
+    </div> -->
 
       <!-- <div class="breadcrumb">
         <span class="left">我的方便网</span>
@@ -244,6 +244,8 @@
         <script type="text/javascript" src="scripts/tools.js"></script>
         <script type="text/javascript" src="scripts/fbapi.js"></script>
         <script src="scripts/main.js"></script>
+        <script src="scripts/operation.js"></script>
+        <script src="scripts/partial_loader.js"></script>
         <script>
             FBAPI.get_contacts(tools.cookies.getItem("user_id"), FBAPI.get_contacts_complete);
             // FBAPI.delete_contact(tools.cookies.getItem("user_id"), "436")
