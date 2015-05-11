@@ -39,7 +39,7 @@ ui.dateBarControl = {
 	},
 	GetCanlenderLiArray01: function GetCanlenderLiArray01() {
         var canlenderui = document.getElementById("middle_datebar");
-        var canlenderarray = canlenderui.getElementsByClassName("day");
+        var canlenderarray = canlenderui.querySelectorAll(".day");
         var newcanlenderarray=new Array();
         for (var i = 0; i < canlenderarray.length; i++) {
             newcanlenderarray.push(canlenderarray[i]);
@@ -188,10 +188,12 @@ ui.getQueryResultArr = function() {
 };
 
 ui.filter = {};
+ui.filter.original_data = {};
 ui.filter.nodeListArr = [];
 ui.filter.getChecked = function() {
+    // log(this.nodeListArr);
 	var train_type = [],
-		nodeListArr = [],
+		// nodeListArr = [],
 		filterResult = [],
 		origin_station = [],
 		depart_time = [];
@@ -223,16 +225,38 @@ ui.filter.getChecked = function() {
 	        if (!this.originStation(b, origin_station)) {
 	            continue
 	        }
-            filterResult.push(b)
+            filterResult.push(b);
 	    }
 	}
 	// return filterResult;
-	document.getElementById('query_result_list').innerHTML = '';
-	var fragment = document.createDocumentFragment();
+	// document.getElementById('query_result_list').innerHTML = '';
+	// var fragment = document.createDocumentFragment();
+	// for (var i = 0; i < filterResult.length; i++) {
+	// 	fragment.appendChild(filterResult[i]);
+	// };
+	// document.getElementById('query_result_list').appendChild(fragment);
+
+	ui.filter.processResult(filterResult);
+
+};
+
+ui.filter.processResult = function(filterResult) {
+	var pl = $("#query_result_list .per_list");
+		pl.addClass('hide');
+	var tcArr = [];
 	for (var i = 0; i < filterResult.length; i++) {
-		fragment.appendChild(filterResult[i]);
+		tcArr.push(filterResult[i].getAttribute('train_code'));
 	};
-	document.getElementById('query_result_list').appendChild(fragment);
+	for (var j = 0; j < pl.length; j++) {
+		for (var k = 0; k < tcArr.length; k++) {
+			if (tcArr[k] === $(pl[j]).attr('train_code')) {
+				$(pl[j]).removeClass('hide');
+				break;
+			};
+
+		};
+
+	};
 };
 
 ui.filter.trainType = function(b, c) {
@@ -256,6 +280,7 @@ ui.filter.trainType = function(b, c) {
     }
     return false
 };
+
 
 ui.filter.departTime = function(a, e) {
     if (e.length == 0) {
@@ -297,12 +322,12 @@ ui.sort = function(nl, attr, reverse) {
 		 arr[i] = nl[i];
 		};
 		var return_val = this.quickSort(arr, attr, reverse);
-		document.getElementById('trainList').innerHTML = '';
+		document.getElementById('query_result_list').innerHTML = '';
 		var fragment = document.createDocumentFragment();
 		for (var i = 0; i < return_val.length; i++) {
 			fragment.appendChild(return_val[i]);
 		};
-		document.getElementById('trainList').appendChild(fragment);
+		document.getElementById('query_result_list').appendChild(fragment);
 };
 ui.quickSort = function(arr, attr, reverse) {
 	if(arr.length <= 1){

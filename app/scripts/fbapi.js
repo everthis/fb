@@ -1,4 +1,12 @@
 'use strict';
+
+Function.prototype.bind = Function.prototype.bind || function(context){
+  var self = this;
+  return function(){
+    return self.apply(context, arguments);
+  };
+};
+
 var FBAPI = {};
 /**
  * [general_input description]
@@ -56,8 +64,9 @@ FBAPI.get_brief_code = function() {
 };
 FBAPI.get_brief_code_complete = function(data) {
     this.brief_codes = data.data || [];
-    for(var per_item of data.data) {
+    for(var per_key in data.data) {
         var per_arr_item = [];
+        var per_item = data.data[per_key];
         per_arr_item.push(per_item["station_name"]);
         per_arr_item.push(per_item["brief_code"]);
         per_arr_item.push(per_item["full_spell"]);
@@ -89,7 +98,8 @@ FBAPI.code_to_name = function(code) {
 FBAPI.code_to_name_complete = function(code) {
     return function(data, textStatus, jqXHR) {
            var data_arr = data? data.data: this.brief_codes;
-           for (var per_data of data_arr) {
+           for (var per_key in data_arr) {
+                var per_data = data_arr[per_key];
                if (per_data.brief_code === code) {
                    return per_data.station_name;
                };
@@ -105,7 +115,8 @@ FBAPI.query_train_hots = function() {
 FBAPI.query_train_hots_complete = function(data) {
     var hots = data.data;
 
-    for(var per_hot of hots) {
+    for(var per_key in hots) {
+        var per_hot = hots[per_key];
         _index_train_hots.push(per_hot.stock_area_name);
     }
 };
@@ -341,7 +352,6 @@ FBAPI.coach.serviceIDs = {
     "get_orders": "U0105",
     "query_tickets": "U0103",
     "book_tickets": "U0203",
-    "get_orders": "U0105",
     "refund": "U0202"
 };
 

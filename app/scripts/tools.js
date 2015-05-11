@@ -1,4 +1,5 @@
 "use strict";
+// var log = Function.prototype.bind.call(console.log, console);
 var tools = {};
 var _useful_user_id_hashTable = {},
 	_contain_specific_user_hashTable = {};
