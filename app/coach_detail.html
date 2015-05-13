@@ -21,7 +21,8 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div class="root">
-        <div class="header_container">
+        <div id="header"></div>
+<!--         <div class="header_container">
           <div class="header">
             <span class="login_signup">
               <span class="greetings">您好，欢迎访问方便网!</span>
@@ -60,7 +61,7 @@
             <span class="item"></span>
             <span class="hotline"></span>
           </div>
-        </div>
+        </div> -->
 
             <div id="divinfo" class="root_container">
                 <!-- 左侧订单填写区域 -->
@@ -198,7 +199,7 @@
 
                             <div class="add_passenger">
                                 <span class="btn">
-                                    <input type="button" class="add_passenger_btn">
+                                    <input type="button" class="detail add_passenger_btn">
                                 </span>
                                 <span class="insurance">
                                     <select name="" id="">
@@ -258,14 +259,14 @@
                         <span class="check_tos">
                             <input type="checkbox">我已阅读并同意<a href="">《方便网服务协议》</a>
                         </span>
-                        <span class="passenger_quantity">
-                            共 <span class="orange">1名</span> 乘车人
+                        <span class="">
+                            共 <span class="orange total_passenger_quantity"></span><span class="orange">名</span> 乘车人
                         </span>
                         <span class="price">
-                            订单总价: <span class="orange twenty_four"> ¥ 68.0</span>
+                            订单总价: <span class="orange twenty_four"> ¥ </span><span class="orange twenty_four total_ticket_price"></span>
                         </span>
                         <span class="">
-                            <input type="button" class="coach submit_ticket_btn pop_btn">
+                            <input type="button" class="train submit_ticket_btn pop_btn">
                         </span>
                     </div>
 
@@ -281,7 +282,12 @@
                             <div class="ticket_price">
                                 <span class="left">票价</span>
                                 <span class="middle"></span>
-                                <span class="right">￥28.00*1</span>
+                                <span class="right"><span>￥</span><span class="full_per_price"></span><span>*</span><span class="full_price_quantity"></span></span>
+                            </div>
+                            <div class="child_ticket_price hide">
+                                <span class="left"></span>
+                                <span class="middle"></span>
+                                <span class="right"><span>￥</span><span class="half_per_price"></span><span>*</span><span class="half_price_quantity"></span></span>
                             </div>
                             <div class="insurance_price">
                                 <span class="left">保险费用</span>
@@ -297,7 +303,7 @@
                         </div>
                         <div class="total_price">
                             <span>订单总价: </span>
-                            <span class="total orange">68.0元</span>
+                            <span class="total orange"><span class="total_ticket_price"></span>元</span>
                         </div>
                     </div>
 
@@ -320,8 +326,8 @@
             <div class="shadow hide"></div>
             <div class="popup_submit_order hide">
               <div class="header">
-                <span class='title'></span>
-                <span class='close'>X</span>
+                <span class='title'>preservation...</span>
+                <span class='close'></span>
               </div>
               <div class="content"></div>
 
@@ -329,32 +335,8 @@
 
             <div class="root_footer"></div>
         </div>
-        <div class="footer">
-          <div class="footer_box">
-            <div class="footer_container">
 
-              <div class="row first">
-                <span class="footer_item"><img src="images/bottomPic-1.jpg" alt=""></span>
-                <span class="footer_item"><img src="images/bottomPic-2.jpg" alt=""></span>
-                <span class="footer_item"><img src="images/bottomPic-3.jpg" alt=""></span>
-                <span class="footer_item"><img src="images/bottomPic-4.jpg" alt=""></span>
-              </div>
-              <div class="row second">
-                <span class="footer_item">关于我们</span>
-                <span class="footer_item">免责声明</span>
-                <span class="footer_item">常见问题</span>
-                <span class="footer_item">联系我们</span>
-                <span class="footer_item">人才招聘</span>
-              </div>
-              <hr>
-              <div class="row third">
-                <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
+        <div id="footer" class="footer">
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -362,18 +344,26 @@
         <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/ejs.js"></script>
+        <script src="scripts/sha.js"></script>
         <script type="text/javascript" src="scripts/md55.js"></script>
         <script type="text/javascript" src="scripts/tools.js"></script>
         <script type="text/javascript" src="scripts/fbapi.js"></script>
+        <script type="text/javascript" src="scripts/ui.js"></script>
+        <script type="text/javascript" src="scripts/operation.js"></script>
 
         <script src="scripts/main.js"></script>
+        <script src="scripts/partial_loader.js"></script>
 
         <script>
         var index_query_params = tools.parseQueryString();
             FBAPI.coach.query_specific();
         var query_specific_train_result;
 
-        FBAPI.get_contacts("2", FBAPI.preserve_get_contacts_complete);
+        if (tools.cookies.hasItem("user_id")) {
+            var uid = tools.cookies.getItem("user_id");
+
+            FBAPI.get_contacts(uid, FBAPI.preserve_get_contacts_complete);
+        };
         </script>
         <!-- endbuild -->
     </body>

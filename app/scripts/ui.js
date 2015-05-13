@@ -245,11 +245,14 @@ ui.filter.processResult = function(filterResult) {
 		pl.addClass('hide');
 	var tcArr = [];
 	for (var i = 0; i < filterResult.length; i++) {
-		tcArr.push(filterResult[i].getAttribute('train_code'));
+		// train_code for train, train_number for coach, just as what API doc said.
+		var code = filterResult[i].getAttribute('train_code') || filterResult[i].getAttribute('train_number');
+		tcArr.push(code);
 	};
 	for (var j = 0; j < pl.length; j++) {
 		for (var k = 0; k < tcArr.length; k++) {
-			if (tcArr[k] === $(pl[j]).attr('train_code')) {
+			var pl_code = $(pl[j]).attr('train_code') || $(pl[j]).attr('train_number');
+			if (tcArr[k] === pl_code) {
 				$(pl[j]).removeClass('hide');
 				break;
 			};

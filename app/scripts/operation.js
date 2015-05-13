@@ -23,7 +23,7 @@ operations.coach_query = function() {
 	var ymd = $(this).attr('ymd');
 	var query_type = index_query_params.query_type;
 	ymd = ymd || _date;
-	str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + ymd + "&query_type=" + query_type;
+	var str = "?origin_code=" + _origin_code + "&origin_name=" + _origin_name + "&dest_code=" + _dest_code + "&dest_name=" + _dest_name + "&date=" + ymd + "&query_type=" + query_type;
 	window.location.href ="coach_query.html" + str;
 };
 operations.getCoachOrigins = function(data) {

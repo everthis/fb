@@ -20,9 +20,9 @@ var FBAPI = {};
 FBAPI.general_input = function(service_id, data, api_method, ajax_method, callb) {
     this.ci = "fbp0101abcd00001",
     this.ver = "1.0.0",
+    this.p
     this.ts = Date.now(),
     this.da = JSON.stringify(data),
-    // this.md5_private_key = md5("4C6EA522-9057"),
     this.md5_private_key = md5("ES2s#kd&(js9}dks2"),
     this.si = service_id,
     this.md5_sign = md5(this.ci + this.si + this.ts + this.da + this.md5_private_key),
@@ -37,6 +37,9 @@ FBAPI.general_input = function(service_id, data, api_method, ajax_method, callb)
         "sign": this.md5_sign,
         "data": this.da
     };
+    // var shaObj = new jsSHA(JSON.stringify(this.ajax_data), "TEXT");
+    //     this.ajax_data = shaObj.getHash("SHA-1", "HEX");
+    //     var hmac = shaObj.getHMAC("SecretKey", "TEXT", "SHA-512", "HEX");
     this.Ajax(callb);
 };
 FBAPI.Ajax = function(callb) {
@@ -518,6 +521,7 @@ FBAPI.coach.query_specific = function() {
     FBAPI.renderTemplate("adult_template", data, "coach_adult_passenger");
     $("#adult_template .adult_body").clone().appendTo('#passenger_section');
     FBAPI.renderTemplate("child_template", data, "coach_child_passenger");
+    operations.calculatePrice();
 };
 
 FBAPI.coach.get_orders = function(user_id) {

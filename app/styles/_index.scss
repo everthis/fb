@@ -26,6 +26,13 @@
 		.uid {
 			text-decoration: underline;
 		}
+		.logout {
+			border-bottom: 1px solid $black;
+			a {
+				color: $black;
+			}
+
+		}
 
 	}
 	.order_menu {
@@ -127,7 +134,10 @@
 }
 .nav_bar {
 	@extend .container;
-	background: url('../images/nav-bg.png') center no-repeat;
+	@extend %inline-block-fix;
+	position: relative;
+	// background: url('../images/nav-bg.png') center no-repeat;
+	background: url('../images/nav_bg.png') center no-repeat;
 	&.coach {
 		background: url('../images/detail_02.png') center no-repeat;
 	}
@@ -148,12 +158,27 @@
 		font-weight: bold;
 		width: 125px;
 		&.active {
-			background: url("../images/nav_item_shadow.png") center no-repeat;
+			background-color: $nav_bg;
 		}
+	}
+	.user_center {
+		background: url("../images/user_center.jpg") center no-repeat;
+		width: 162px;
+		float: right;
 	}
 	.hotline {
 		color: $yellow;
 		float: right;
+	}
+	&:after {
+		position: absolute;
+		content: '';
+		display: block;
+		top: 0;
+		left: 44px;
+		width: 561px;
+		height: 41px;
+		background: url("../images/query_item_text.png") center no-repeat;
 	}
 }
 .query_section {

@@ -138,10 +138,13 @@ tools.removeAddedPassenger = function(obj) {
 	var _bodies_length = _bodies.length;
 
 	if (_bodies_length === 1) {
-		_bodies.find(".name input[type='text']").val('').prop("disabled", false);
-		_bodies.find(".credential_num input[type='text']").val('').prop("disabled", false);
-		_bodies.find(".credential_type select").prop("disabled", false);
-		_bodies.removeAttr('contact_id');
+		if (obj.hasClass('adult_body')) {
+			_bodies.find(".name input[type='text']").val('').prop("disabled", false);
+			_bodies.find(".credential_num input[type='text']").val('').prop("disabled", false);
+			_bodies.find(".credential_type select").prop("disabled", false);
+			_bodies.removeAttr('contact_id');
+		};
+
 		if (obj.hasClass('child_body')) {
 			obj.remove();
 		};
