@@ -196,7 +196,8 @@ ui.filter.getChecked = function() {
 		// nodeListArr = [],
 		filterResult = [],
 		origin_station = [],
-		depart_time = [];
+		depart_time = [],
+		queried_data = FBAPI.query_tickets_data;
 	$(".filter_section input[class='train_type']").each(function() {
 	    if (this.checked === true) {
 	        train_type.push($(this).val())
@@ -213,9 +214,9 @@ ui.filter.getChecked = function() {
 	    }
 	});
 
-	if (train_type.length > 0 || depart_time.length > 0 || FBAPI.query_tickets_data.length > 0 ) {
-	    for (var f = 0; f < FBAPI.query_tickets_data.length; f++) {
-	        var b = FBAPI.query_tickets_data[f];
+	if (train_type.length > 0 || depart_time.length > 0 || queried_data.length > 0 ) {
+	    for (var f = 0; f < queried_data.length; f++) {
+	        var b = queried_data[f];
 	        if (!this.trainType(b, train_type)) {
 	            continue
 	        }
@@ -317,18 +318,38 @@ ui.filter.check = function() {
 
 
 
-ui.sort = function(nl, attr, reverse) {
-		var arr = [];
-		for (var i = 0, ref = arr.length = nl.length; i < ref; i++) {
-		 arr[i] = nl[i];
-		};
-		var return_val = this.quickSort(arr, attr, reverse);
-		document.getElementById('query_result_list').innerHTML = '';
-		var fragment = document.createDocumentFragment();
-		for (var i = 0; i < return_val.length; i++) {
-			fragment.appendChild(return_val[i]);
-		};
-		document.getElementById('query_result_list').appendChild(fragment);
+ui.sort = function(data, attr, reverse) {
+
+	var sort_data = data;
+	var return_val = this.quickSort(sort_data, attr, reverse);
+
+
+	var sType = ui.checkServiceType();
+	if (sType === "train") {
+		ui.renderTemplate("query_result_list", return_val, "train_query");
+		ui.renderTemplate("train_query_results_title", return_val, "train_query_title");
+	};
+	if (sType === "coach") {
+		ui.renderTemplate("query_result_list", return_val, "coach_query");
+		ui.renderTemplate("coach_query_results_title", return_val, "train_query_title");
+	};
+
+
+};
+ui.checkServiceType = function() {
+	var pn = window.location.pathname;
+	var tr = pn.indexOf('train');
+	var co = pn.indexOf('coach');
+	var pl = pn.indexOf('plane');
+	if (tr !== -1 && tr < 10) {
+		return "train";
+	};
+	if (co !== -1 && co < 10) {
+		return "coach";
+	};
+	if (pl !== -1 && pl < 10) {
+		return "plane";
+	};
 };
 ui.quickSort = function(arr, attr, reverse) {
 	if(arr.length <= 1){
@@ -338,9 +359,9 @@ ui.quickSort = function(arr, attr, reverse) {
 		    pivot = arr.splice(pivotIndex, 1),
 		    leftArray = [],
 		    rightArray = [],
-			pivot_attr = pivot[0].getAttribute(attr);
+			pivot_attr = pivot[0][attr];
 		for(var i = 0, len = arr.length; i < len; i++){
-			if(arr[i].getAttribute(attr) < pivot_attr){
+			if(arr[i][attr] < pivot_attr){
 				reverse ? leftArray.push(arr[i]) : rightArray.push(arr[i]);
 			} else {
 				reverse ? rightArray.push(arr[i]) : leftArray.push(arr[i]);

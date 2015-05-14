@@ -90,7 +90,6 @@ FBAPI.query_train_tickets_complete = function(data) {
     this.renderTemplate("query_result_list", data, "train_query");
     this.renderTemplate("train_query_results_title", data, "train_query_title");
     if (data.data.length > 0) {
-        console.log(data.data);
         this.query_tickets_data = data.data;
     };
     ui.filter.nodeListArr = ui.getQueryResultArr();
@@ -475,7 +474,7 @@ FBAPI.coach.query_tickets_complete = function(data) {
             str += tmp;
     };
     document.getElementsByClassName('origin_array')[0].innerHTML = str;
-    ui.filter.nodeListArr = ui.getQueryResultArr();
+    // ui.filter.nodeListArr = ui.getQueryResultArr();
 };
 
 FBAPI.coach.book_tickets = function(train_number, departure_land, starting_station, destination_land, destination_station, riding_date, depart_time, the_ticket_price, operation_type, site_code, extend_data1, extend_data2, riding_user_list, collect_user_id, user_id) {

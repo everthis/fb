@@ -202,18 +202,22 @@ $('body').on('click', '.result_section .duration em', function(event) {
     /* Act on the event */
     $(this).toggleClass('reverse');
 
-    var nl = document.getElementsByClassName('per_list');
-    var attr = 'run_time';
+    // var nl = document.getElementsByClassName('per_list');
+    // var attr = 'run_time';
+    // var reverse = $(this).hasClass('reverse');
+    // ui.sort(nl, attr, reverse);
+    // var data = FBAPI.query_tickets_data;
+    var attr = 'run_time'; //
     var reverse = $(this).hasClass('reverse');
-    ui.sort(nl, attr, reverse);
+    ui.sort(data, attr, reverse);
 });
 $('body').on('click', '.result_section .time em', function(event) {
     event.preventDefault();
     /* Act on the event */
     $(this).toggleClass('reverse');
 
-    var nl = document.getElementById('query_result_list').children;
-    var attr = 'start_time';
+    var nl = $.extend([], FBAPI.query_tickets_data);;
+    var attr = 'depart_time'; // depart_time  start_time
     var reverse = $(this).hasClass('reverse');
     ui.sort(nl, attr, !reverse);
 });
