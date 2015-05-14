@@ -89,6 +89,10 @@ FBAPI.query_train_tickets = function(date, origin, destination, passenger_type) 
 FBAPI.query_train_tickets_complete = function(data) {
     this.renderTemplate("query_result_list", data, "train_query");
     this.renderTemplate("train_query_results_title", data, "train_query_title");
+    if (data.data.length > 0) {
+        console.log(data.data);
+        this.query_tickets_data = data.data;
+    };
     ui.filter.nodeListArr = ui.getQueryResultArr();
 };
 FBAPI.code_to_name = function(code) {
@@ -458,6 +462,9 @@ FBAPI.coach.query_tickets = function(origin_name, origin_code, destination_name,
 FBAPI.coach.query_tickets_complete = function(data) {
     FBAPI.renderTemplate("query_result_list", data, "coach_query");
     FBAPI.renderTemplate("coach_query_results_title", data, "train_query_title");
+    if (data.data.length > 0) {
+        FBAPI.query_tickets_data = data.data;
+    };
     var origin_array = operations.getCoachOrigins(data);
     var unique_array = operations.uniqueArray(origin_array);
     var str = "";

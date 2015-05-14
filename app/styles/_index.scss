@@ -154,6 +154,7 @@
 		font-size: 16px;
 	}
 	.item {
+		position: relative;
 		color: white;
 		font-weight: bold;
 		width: 125px;
@@ -161,8 +162,42 @@
 			background-color: $nav_bg;
 		}
 	}
+	.bg_item {
+		display: inline-block;
+		width: 125px;
+		height: 40px;
+		cursor: pointer;
+	}
+	.index {
+		.bg_item {
+			background: url("../images/index_index.png") center no-repeat;
+		}
+	}
+
+	.train {
+		.bg_item {
+			background: url("../images/index_train.png") center no-repeat;
+		}
+	}
+	.coach {
+		.bg_item {
+			background: url("../images/index_coach.png") center no-repeat;
+		}
+	}
+	.plane {
+		.bg_item {
+			background: url("../images/index_plane.png") center no-repeat;
+		}
+	}
+	.mobile {
+		.bg_item {
+			background: url("../images/index_mobile.png") center no-repeat;
+		}
+	}
+
 	.user_center {
 		background: url("../images/user_center.jpg") center no-repeat;
+		cursor: pointer;
 		width: 162px;
 		float: right;
 	}
@@ -170,16 +205,7 @@
 		color: $yellow;
 		float: right;
 	}
-	&:after {
-		position: absolute;
-		content: '';
-		display: block;
-		top: 0;
-		left: 44px;
-		width: 561px;
-		height: 41px;
-		background: url("../images/query_item_text.png") center no-repeat;
-	}
+
 }
 .query_section {
 	background: url('../images/wide_bg.jpg') center no-repeat;

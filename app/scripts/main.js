@@ -212,7 +212,7 @@ $('body').on('click', '.result_section .time em', function(event) {
     /* Act on the event */
     $(this).toggleClass('reverse');
 
-    var nl = document.getElementsByClassName('per_list');
+    var nl = document.getElementById('query_result_list').children;
     var attr = 'start_time';
     var reverse = $(this).hasClass('reverse');
     ui.sort(nl, attr, !reverse);

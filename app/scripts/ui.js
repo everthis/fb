@@ -213,9 +213,9 @@ ui.filter.getChecked = function() {
 	    }
 	});
 
-	if (train_type.length > 0 || depart_time.length > 0 || this.nodeListArr.length > 0 ) {
-	    for (var f = 0; f < this.nodeListArr.length; f++) {
-	        var b = this.nodeListArr[f];
+	if (train_type.length > 0 || depart_time.length > 0 || FBAPI.query_tickets_data.length > 0 ) {
+	    for (var f = 0; f < FBAPI.query_tickets_data.length; f++) {
+	        var b = FBAPI.query_tickets_data[f];
 	        if (!this.trainType(b, train_type)) {
 	            continue
 	        }
@@ -228,36 +228,33 @@ ui.filter.getChecked = function() {
             filterResult.push(b);
 	    }
 	}
-	// return filterResult;
-	// document.getElementById('query_result_list').innerHTML = '';
-	// var fragment = document.createDocumentFragment();
-	// for (var i = 0; i < filterResult.length; i++) {
-	// 	fragment.appendChild(filterResult[i]);
-	// };
-	// document.getElementById('query_result_list').appendChild(fragment);
-
-	ui.filter.processResult(filterResult);
+	this.processResult(filterResult);
 
 };
-
+ui.renderTemplate = function(id, data, template) {
+    var _ele = document.getElementById(id);
+    if(_ele && data !== "[]" && data !== "") {
+    	var new_data = {
+    		"data": data
+    	};
+        document.getElementById(id).innerHTML = '';
+        document.getElementById(id).innerHTML = new EJS({url: './templates/' + template + '.ejs'}).render(new_data);
+    };
+};
 ui.filter.processResult = function(filterResult) {
-	var pl = $("#query_result_list .per_list");
-		pl.addClass('hide');
-	var tcArr = [];
-	for (var i = 0; i < filterResult.length; i++) {
-		// train_code for train, train_number for coach, just as what API doc said.
-		var code = filterResult[i].getAttribute('train_code') || filterResult[i].getAttribute('train_number');
-		tcArr.push(code);
+	var pn = window.location.pathname;
+	var tr = pn.indexOf('train');
+	var co = pn.indexOf('coach');
+	var pl = pn.indexOf('plane');
+	if (tr !== -1 && tr < 10) {
+		ui.renderTemplate("query_result_list", filterResult, "train_query");
+		ui.renderTemplate("train_query_results_title", filterResult, "train_query_title");
 	};
-	for (var j = 0; j < pl.length; j++) {
-		for (var k = 0; k < tcArr.length; k++) {
-			var pl_code = $(pl[j]).attr('train_code') || $(pl[j]).attr('train_number');
-			if (tcArr[k] === pl_code) {
-				$(pl[j]).removeClass('hide');
-				break;
-			};
-
-		};
+	if (co !== -1 && co < 10) {
+		ui.renderTemplate("query_result_list", filterResult, "coach_query");
+		ui.renderTemplate("coach_query_results_title", filterResult, "train_query_title");
+	};
+	if (pl !== -1 && pl < 10) {
 
 	};
 };
@@ -267,16 +264,16 @@ ui.filter.trainType = function(b, c) {
         return true
     }
     for (var a = 0; a < c.length; a++) {
-        if (b.getAttribute('train_code').substring(0, 1) == c[a]) {
+        if (b.train_code.substring(0, 1) == c[a]) {
             return true
         }
         if (c[a] == "QT") {
-            if (b.getAttribute('train_code').substring(0, 1) != "G" && b.getAttribute('train_code').substring(0, 1) != "D" && b.getAttribute('train_code').substring(0, 1) != "C" && b.getAttribute('train_code').substring(0, 1) != "T" && b.getAttribute('train_code').substring(0, 1) != "K" && b.getAttribute('train_code').substring(0, 1) != "Z") {
+            if (b.train_code.substring(0, 1) != "G" && b.train_code.substring(0, 1) != "D" && b.train_code.substring(0, 1) != "C" && b.train_code.substring(0, 1) != "T" && b.train_code.substring(0, 1) != "K" && b.train_code.substring(0, 1) != "Z") {
                 return true
             }
         }
         if (c[a] == "G") {
-            if (b.getAttribute('train_code').substring(0, 1) == "C" || b.getAttribute('train_code').substring(0, 1) == "G") {
+            if (b.train_code.substring(0, 1) == "C" || b.train_code.substring(0, 1) == "G") {
                 return true
             }
         }
@@ -290,7 +287,8 @@ ui.filter.departTime = function(a, e) {
         return true
     }
     for (var d = 0; d < e.length; d++) {
-        var f = (a.getAttribute('start_time').replace(":", ""));
+    	var start_time = a.start_time || a.depart_time.substring(0, 5);
+        var f = (start_time.replace(":", ""));
         var c = Number(e[d].substring(0, 4));
         var b = Number(e[d].substring(4, 8));
         if (f >= c && f <= b) {
@@ -305,7 +303,7 @@ ui.filter.originStation = function(bY, bX) {
         return true
     }
     for (var bZ = 0; bZ < bX.length; bZ++) {
-        if (bX[bZ] == bY.getAttribute('origin_station')) {
+        if (bX[bZ] == bY.starting_station) {
             return true
         }
     }
