@@ -2,7 +2,7 @@
 <div class="per_list <%= tools.isTrainOrderComplete(data[i].order_status) ? 'hide' : '' %>" iscomplete="<%= tools.isTrainOrderComplete(data[i].order_status) ? 'true' : 'false' %>">
   <span class="number">
     <div><%= data[i].order_id %></div>
-    <div><a href="order_details.html?order_id=<%= data[i].order_id %>">订单详情</a></div>
+    <div><a href="train_order_details.html?order_id=<%= data[i].order_id %>">订单详情</a></div>
   </span>
   <span class="time">
     <div><%= data[i].order_time.split(" ")[0] %></div>

@@ -163,6 +163,12 @@
         margin-left: 120px;
         width: 816px;
         @extend %inline-block-fix;
+        &:before {
+            content:"";
+            display: inline-block;
+            height: 15px;
+            width: 1px;
+        }
     }
 
     .time_array {

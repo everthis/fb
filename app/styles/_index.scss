@@ -147,7 +147,8 @@
 	&.user {
 		background: url('../images/user_nav.png') center no-repeat;
 	}
-	> span {
+	> span,
+	> a {
 		display: inline-block;
 		height: 40px;
 		line-height: 40px;
@@ -160,6 +161,10 @@
 		width: 125px;
 		&.active {
 			background-color: $nav_bg;
+		}
+		&:hover {
+			background-color: $nav_bg;
+
 		}
 	}
 	.bg_item {
@@ -200,6 +205,30 @@
 		cursor: pointer;
 		width: 162px;
 		float: right;
+		position: relative;
+		.submenu {
+			position: absolute;
+			top: 40px;
+			left: 0;
+			background-color: white;
+			width: 100%;
+			padding: 0 0 0 10px;
+			border: 1px solid #ddd;
+			z-index: 9999;
+			h4 {
+				height: 30px;
+				line-height: 30px;
+			}
+			.menu_item {
+				padding: 0 0 0 10px;
+				height: 25px;
+				line-height: 25px;
+				a {
+					height: 25px;
+					line-height: 25px;
+				}
+			}
+		}
 	}
 	.hotline {
 		color: $yellow;

@@ -45,6 +45,12 @@ div[class^="popup_"] {
     border: 5px solid #7C7C7C;
     border-radius: 5px;
     background: #FFF;
+    .close {
+      cursor: pointer;
+    }
+}
+[class$="_btn"] {
+  cursor: pointer;
 }
 .white_bg {
   background-color: $white;

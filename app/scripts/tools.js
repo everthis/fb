@@ -103,34 +103,7 @@ tools.getAllUsersIDCallback = function(user_id, passenger_name) {
 	   };
 };
 
-tools.batchBookTickets = function(date, origin, destination, passenger_type) {
-    var query_train_data = {
-        "train_date": date,
-        "from_station": origin,
-        "to_station": destination,
-        "purpose_codes": passenger_type
-    };
-    FBAPI.general_input("U0109", query_train_data, "Query", "POST", tools.batchBookTicketsCallback.bind(this));
-};
-tools.batchBookTicketsCallback = function(data) {
-	for (var per_id in _useful_user_id_hashTable) {
-		var _first_contact = _useful_user_id_hashTable[per_id][0].contact_id;
 
-		for (var i = data.data.length - 1; i >= 0; i--) {
-		    var dt= data.data[i],
-		        train_code = dt.train_code,
-		        start_time = dt.start_time,
-		        price, seat_type;
-	        for (var j = dt.listdata.length - 1; j >= 0; j--) {
-	            if (dt.listdata[j].remain_num !== "无" && dt.listdata[j].seat_type === "一等座") {
-	                price = dt.listdata[j].ticket_price;
-	                seat_type = "M";
-	                FBAPI.book_train_tickets(per_id, train_code, "SHH", "NJH", "20150425", start_time, price, "M", [{"passenger_id": _first_contact, "ticket_type": 1}])
-	            };
-	        };
-		};
-	};
-};
 
 tools.removeAddedPassenger = function(obj) {
 	var contact_id = obj.attr('contact_id') || '';
@@ -578,7 +551,7 @@ $('body').on('click', '.coach.submit_ticket_btn', function(event) {
 
 });
 
-$('body').on('click', '.user_section.add_passenger_btn', function(event) {
+$('body').on('click', '.user_section .add_passenger_btn', function(event) {
 	event.preventDefault();
 	/* Act on the event */
 	var user_id, real_name, id_type_code, id_type, id_number, mobile_phone, email_address, passenger_type, sex_code;
@@ -613,9 +586,20 @@ $('body').on('click', '#get_cellphone_val_code_btn', function(event) {
 
 $('body').on('click', '#login_btn', function(event) {
 	event.stopPropagation();
-	var cellphone_number = $(".cellphone_num_input").val().trim();
-	var val_code = $("#cellphone_val_code").val().trim();
-	FBAPI.signup_firstLogin(cellphone_number, val_code, "2");
+	var val_code = $('.login_header .val_code');
+	var pwd = $('.login_header .pwd');
+    if (val_code.hasClass('active')) {
+    	var cellphone_number = $(".cellphone_num_input").val().trim();
+    	var val_code = $("#cellphone_val_code").val().trim();
+    	FBAPI.signup_firstLogin(cellphone_number, val_code, "2");
+    };
+    if (pwd.hasClass('active')) {
+    	var user_name = $(".pwd_login_user_name_input").val().trim();
+    	var pwd_input = $(".pwd_login_pwd_input").val().trim();
+    	FBAPI.user_pwd_login(user_name, pwd_input, "2");
+    };
+
+
 	/* Act on the event */
 });
 

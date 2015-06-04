@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>fangbian_com</title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body style="background: #fcfcfc;">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="root">
+
+    <div class="header_container">
+      <div class="header">
+        <span class="login_signup">
+          <span class="greetings">您好，欢迎访问方便网!</span>
+          <span class="login"><a href="login.html">登录</a></span>
+          <span class="signup"><a href="signup.html">注册</a></span>
+        </span>
+        <span class="order_menu">
+          <span class="menu">
+            <span class="menu_title"><a href="user.html" style="text-decoration: none; color: #000;">我的订单</a></span>
+            <span class="arrow"></span>
+            <span class="submenu hide">
+              <div class="item">火车票订单</div>
+              <div class="item">汽车票订单</div>
+            </span>
+          </span>
+          <span class="mobile_portal">手机方便网</span>
+          <span class="arrow"></span>
+          <span class="service">客服服务</span>
+          <span class="arrow"></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="top_banner">
+      <a href="index.html" class="logo"></a>
+      <a href="#" class="sublogo"></a>
+      <a href="#" class="app_link"></a>
+    </div>
+
+    <div class="nav_bar_container">
+      <div class="nav_bar user">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="hotline"></span>
+      </div>
+    </div>
+
+      <!-- <div class="breadcrumb">
+        <span class="left">我的方便网</span>
+      </div> -->
+
+      <div class="user_section">
+        <span id="user_nav" class="user_nav"></span>
+        <span id="order_details" class="order_details">
+<!--           <div class="summary">
+            <span>订单号：FT54DB008421003D1761</span>
+            <span>订单状态： 出票成功</span>
+            <span>预订时间：2015-02-11 15:12:02</span>
+          </div>
+          <div class="journey_info">
+            <h4>行程信息</h4>
+            <div class="journey_header">
+              <span class="order_num">取票单号</span>
+              <span class="vehicle_num">车次</span>
+              <span class="ends">出发/到达站</span>
+              <span class="time">出发/到达时间</span>
+            </div>
+            <div class="info_details">
+              <div class="per_order">
+                <span class="order_num">EC23851025</span>
+                <span class="vehicle_num">K21</span>
+                <span class="ends">
+                  <div class="origin">长沙</div>
+                  <div class="departure">岳阳</div>
+                </span>
+                <span class="time">
+                  <div class="start">2015-02-20 07:24:00</div>
+                  <div class="end">2015-02-20 07:24:00</div>
+                </span>
+              </div>
+
+            </div>
+          </div>
+          <div class="pay_info">
+            <h4>支付信息</h4>
+            <div>
+              <span>支付金额: </span>
+              <span class="price">￥300.00</span>
+              <span>（票价: </span>
+              <span class="price">￥300.00</span>
+              <span>保险: </span>
+              <span class="price">￥300.00</span>
+              <span>凭证邮寄费</span>
+              <span class="price">￥300.00</span>
+              <span>）</span>
+            </div>
+            <div>
+              <span>支付方式：</span>
+              <span>支付宝</span>
+            </div>
+          </div>
+          <div class="order_passenger_info">
+            <h4>乘客信息</h4>
+            <div class="passenger_header">
+              <span class="name">姓名</span>
+              <span class="passenger_type">乘客类型</span>
+              <span class="credential_type">证件类型</span>
+              <span class="credential_num">证件号码</span>
+              <span class="seat_num">车厢/座位号</span>
+              <span class="insurance">交通意外险</span>
+              <span class="insurance_num">电子保单号</span>
+              <span class="action">退改签</span>
+            </div>
+            <div class="passengers_list">
+              <div class="per_passenger">
+                <span class="name">傅新刚</span>
+                <span class="passenger_type">成人</span>
+                <span class="credential_type">身份证</span>
+                <span class="credential_num">3101************123</span>
+                <span class="seat_num">01车厢/054座</span>
+                <span class="insurance">20元/保100W</span>
+                <span class="insurance_num">1000000000</span>
+                <span class="action"><input class="refund_btn pop_btn" type="button" value=""><input class="change_btn" type="button" value=""></span>
+              </div>
+            </div>
+          </div>
+          <div class="order_contact_info">
+            <h4>联系人信息</h4>
+            <div>
+              <span >手机号码：</span>
+              <span>136*****5187</span>
+              <span class="label">姓名：</span>
+              <span>傅新刚</span>
+            </div>
+          </div>
+          <div class="reimburse_info">
+            <h4>报销凭证</h4>
+            <div class="reimburse_header">
+              <span class="name">收件人</span>
+              <span class="cellphone">手机号码</span>
+              <span class="address">邮寄地址</span>
+              <span class="post_code">邮政编码</span>
+            </div>
+            <div class="reimburse_body">
+              <span class="name">傅新刚</span>
+              <span class="cellphone">136*****5187</span>
+              <span class="address">湖南长沙市麓谷大道麓谷信息港B座101室</span>
+              <span class="post_code">200000</span>
+            </div>
+          </div>
+
+          <input class="back_to_orders" type="button" value=""> -->
+        </span>
+      </div>
+
+      <div class="shadow hide"></div>
+      <div class="popup_ticket_refund hide">
+        <div class="header">
+          <span class='title'></span>
+          <span class='close'></span>
+        </div>
+        <div class="content">
+          <span><img src="images/refund_icon.png" style="margin:0 20px 0 0;" alt=""></span>
+          <span>
+            <div class="refund_info">您确定要为 <span class="ticket_info">张三(02车厢/021座)</span> 申请退票吗?</div>
+            <div>
+              <input type="button" class="confirm_refund">
+              <input type="button" class="cancel_refund">
+            </div>
+          </span>
+        </div>
+        <div class="hint">
+          <p>如您已换取了纸质车票，无需网上提交退票申请，请携带购票时的有效证件自行前往火车站退票窗口办理。</p>
+        </div>
+      </div>
+
+
+
+      <div class="root_footer"></div>
+    </div>
+    <div class="footer">
+      <div class="footer_box">
+        <div class="footer_container">
+
+          <div class="row first">
+            <span class="footer_item"><img src="images/bottomPic-1.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-2.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-3.jpg" alt=""></span>
+            <span class="footer_item"><img src="images/bottomPic-4.jpg" alt=""></span>
+          </div>
+          <div class="row second">
+            <span class="footer_item">关于我们</span>
+            <span class="footer_item">免责声明</span>
+            <span class="footer_item">常见问题</span>
+            <span class="footer_item">联系我们</span>
+            <span class="footer_item">人才招聘</span>
+          </div>
+          <hr>
+          <div class="row third">
+            <span class="footer_item"><span class="copyrights">Copyright@ 2013-2015</span> | 苏ICP备12063525号-4 苏州乐卡网络科技有限公司</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- build:js(div.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+        <!-- build:js({app,.tmp}) scripts/main.js -->
+                <script src="scripts/ejs.js"></script>
+        <script type="text/javascript" src="scripts/md55.js"></script>
+        <script type="text/javascript" src="scripts/tools.js"></script>
+        <script type="text/javascript" src="scripts/fbapi.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/fbapi.js"></script>
+        <script src="scripts/partial_loader.js"></script>
+        <script>
+            var index_query_params = tools.parseQueryString();
+            FBAPI.get_order_detail("2", index_query_params.order_id);
+        </script>
+        <!-- endbuild -->
+</body>
+</html>

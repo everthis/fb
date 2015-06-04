@@ -175,8 +175,11 @@ FBAPI.add_contact = function(user_id, real_name, id_type_code, id_type, id_numbe
     };
     this.general_input("U0202", query_data, "Order", "POST", callback.bind(this));
 };
-FBAPI.add_contact_complete = function() {
+FBAPI.add_contact_complete = function(data) {
     $('div[class^="popup_"] .content').append("<p>" + data.message + "</p>");
+    if (data.message.indexOf('成功') !== -1 && document.location.href.indexOf('passengers') !== -1) {
+        document.location.reload(true);
+    };
 };
 FBAPI.update_contact = function(contact_id, user_id, real_name, id_type_code, id_type, id_number, passenger_type, sex_code) {
     var query_data = {
@@ -193,7 +196,9 @@ FBAPI.update_contact = function(contact_id, user_id, real_name, id_type_code, id
 
 };
 FBAPI.update_contact_complete = function(data) {
-
+    if (data.message.indexOf('成功') !== -1 && document.location.href.indexOf('passengers') !== -1) {
+        document.location.reload(true);
+    };
 };
 FBAPI.delete_contact = function(user_id, contact_ids) {
     var query_data = {
@@ -203,7 +208,9 @@ FBAPI.delete_contact = function(user_id, contact_ids) {
     this.general_input("U0207", query_data, "Order", "POST", this.update_contact_complete);
 };
 FBAPI.delete_contact_complete = function(data) {
-
+    if (data.message.indexOf('成功') !== -1 && document.location.href.indexOf('passengers') !== -1) {
+        document.location.reload(true);
+    };
 };
 FBAPI.book_train_tickets = function(user_id, train_number, from_station_code, to_station_code, train_date, depart_time, ticket_price, seat_code, passengers_info) {
     var query_data = {
@@ -240,7 +247,7 @@ FBAPI.get_orders = function(user_id) {
     this.general_input("U0107", query_data, "Query", "POST", this.get_orders_complete.bind(this));
 };
 FBAPI.get_orders_complete = function(data) {
-    this.renderTemplate("order_lists_body", data, "get_orders");
+    this.renderTemplate("order_lists_body", data, "train_get_orders");
 };
 FBAPI.get_order_detail = function(user_id, order_id) {
     var query_data = {
@@ -289,6 +296,27 @@ FBAPI.login = function(session_key, code_scope) {
 };
 FBAPI.login_complete = function (data){
 
+};
+FBAPI.user_pwd_login = function(login_name, password, code_scope) {
+    var query_data = {
+        "login_name": login_name,
+        "password": password,
+        "code_scope": code_scope
+    };
+    this.general_input("U0104", query_data, "Query", "POST", this.user_pwd_login_complete);
+};
+FBAPI.user_pwd_login_complete = function(data) {
+     $('div[class^="popup_"] .content').html('');
+    if (data.message.indexOf("成功") !== -1) {
+        tools.cookies.setItem("user_id", data.data.user_id, Infinity);
+        tools.cookies.setItem("user_name", data.data.user_name, Infinity);
+        window.location.href = "index.html";
+    };
+    if (data.message.indexOf("错误") !== -1) {
+        $(".shadow").removeClass('hide').css('z-index', '999');
+        $('div[class^="popup_"]').removeClass('hide').css('z-index', '9999');
+        $('div[class^="popup_"] .content').append("<p>" + data.message + "</p>");
+    };
 };
 
 

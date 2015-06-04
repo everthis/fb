@@ -244,4 +244,19 @@ $('body').on('click', '.login_signup .logout', function(event) {
        tools.cookies.removeItem("user_id");
         location.reload();
     };
+    if (tools.cookies.hasItem("user_name")) {
+       tools.cookies.removeItem("user_name");
+        location.reload();
+    };
+});
+
+
+
+$("body").on("mouseover", ".nav_bar .user_center", function(){
+    // $('.nav_bar .user_center .submenu').removeClass('hide');
+    $(this).find('.submenu').css('display', 'block');
+}).on("mouseleave", ".nav_bar .user_center", function(){
+    // $('.nav_bar .user_center .submenu').addClass('hide');
+    $(this).find('.submenu').css('display', 'none');
+
 });

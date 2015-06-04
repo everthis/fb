@@ -32,32 +32,48 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
+        tasks: ['wiredep'],
+        options: {
+              livereload: 37521
+        }
       },
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
         tasks: ['jshint'],
         options: {
-          livereload: true
+          livereload: 37522
         }
       },
       jstest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['test:watch']
+        tasks: ['test:watch'],
+        options: {
+              livereload: 37523
+        }
       },
       gruntfile: {
-        files: ['Gruntfile.js']
+        files: ['Gruntfile.js'],
+        options: {
+              livereload: 37524
+        }
       },
       sass: {
         files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server', 'autoprefixer'],
+        options: {
+              livereload: 37525
+        }
       },
       styles: {
         files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        tasks: ['newer:copy:styles', 'autoprefixer'],
+        options: {
+              livereload: 37526
+        }
       },
       livereload: {
         options: {
+          port: 37528,
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
@@ -71,9 +87,9 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9660,
+        port: 9668,
         open: true,
-        livereload: 35729,
+        livereload: 35728,
         // Change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0'
       },

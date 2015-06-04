@@ -114,4 +114,9 @@
 			@extend .sms_box;
 		}
 	}
+
+}
+
+.popup_login {
+   @extend .popup_submit_order;
 }

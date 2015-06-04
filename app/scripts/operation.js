@@ -1,7 +1,12 @@
 'use strict';
 var auth = {};
 auth.check = function() {
-	if (tools.cookies.hasItem("user_id")) {
+	if (tools.cookies.hasItem("user_name")) {
+		var user_name = tools.cookies.getItem("user_name");
+		var _uid = document.getElementsByClassName("uid")[0];
+		_uid.innerHTML =  " " + user_name + " ";
+		$('.login_signup .login, .login_signup .signup').addClass('hide');
+	} else if (tools.cookies.hasItem("user_id")){
 		var uid = tools.cookies.getItem("user_id");
 		var _uid = document.getElementsByClassName("uid")[0];
 		_uid.innerHTML =  " " + uid + " ";
